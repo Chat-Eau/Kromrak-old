@@ -1,6 +1,7 @@
 package Outils;
 
 import Objets.Objet;
+import Objets.Tresor;
 
 import java.util.List;
 import java.util.Random;
@@ -52,7 +53,7 @@ public class Outils {
             i++;
         }
         if (pieceCréée) {
-            objets.add(objets.size(), new Objet(total));
+            objets.add(objets.size(), new Tresor(total));
         }
         return objets;
     }

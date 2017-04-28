@@ -54,22 +54,19 @@ public class Personnage {
         Outils.maxCap(vie, vieMax);
     }
 
-    public int attaquer()
-    {
-        int degats = this.arme.getDegats();
+    public int attaquer() {
+        int degats = 0;
+        if (this.arme != null) {
+            degats = arme.getDegats();
+        }
 
         cible.recevoirDegats(Outils.minCap((degats + force - cible.CA), 1));
 
         return degats;
     }
 
-    public void gagnerVie (int nbVie)
-    {
-        this.vie += nbVie;
-        if (this.vie > vieMax)
-        {
-            this.vie = vieMax;
-        }
+    public void gagnerVie (int nbVie) {
+        this.vie = Outils.maxCap(nbVie + this.vie, vieMax);
     }
 
     public void setArme (Arme arme)
@@ -77,9 +74,26 @@ public class Personnage {
         this.arme = arme;
     }
 
-    public void afficherEtat () {
-        System.out.println("vie:" + this.vie + "/" + this.vieMax);
-        System.out.println("Votre arme est : " + arme.toString());
+    public String toString () {
+        String sep = System.lineSeparator();
+        String strObjets = "";
+        for (int i = 0; i < objets.size(); i++){
+            strObjets += objets.get(i).toString();
+            if (i != objets.size() - 1){
+                strObjets += sep;
+            }
+        }
+        return "Nom: " + nom + sep +
+                "Vie: " + this.vie + "/" + this.vieMax + sep +
+                "Arme: " + this.arme.toString() + sep +
+                "Vitesse: " + vitesse + sep +
+                "Force: " + force + sep +
+                "Dextérité: " + dextérité + sep +
+                "Endurance: " + endurance + sep +
+                "Intelligence: " + intelligence + sep +
+                "Classe d'armure: " + CA + sep + sep +
+                "Inventaire: " + sep +
+                strObjets;
     }
 
     public boolean avancerVitesse() {
@@ -141,7 +155,7 @@ public class Personnage {
         return vieMax;
     }
 
-    public List getObjet() {
+    public List getObjets() {
         return objets;
     }
 
