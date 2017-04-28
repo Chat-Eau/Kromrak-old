@@ -7,13 +7,13 @@ import static Outils.Outils.lancerDes;
  */
 public class Arme extends Equipement {
     private int nbDés;
-    private int modificateur;
+    private int multiplicateur;
     private int dmgBase;
 
     public Arme () {
         this.nbDés = 1;
         this.dmgBase = -1;
-        this.modificateur = 0;
+        this.multiplicateur = 1;
         this.nom = "Epée courte et molle";
         this.valeur = 3;
     }
@@ -22,15 +22,15 @@ public class Arme extends Equipement {
         super(nom, valeur);
         this.nbDés = nbDés;
         this.dmgBase = dmgBase;
-        this.modificateur = modificateur;
+        this.multiplicateur = modificateur;
     }
 
     public int getDegats() {
-        return lancerDes(nbDés, modificateur);
+        return (lancerDes(nbDés) + dmgBase) * multiplicateur;
     }
 
     public String toString(){
-        return (nom + " : dommages de " + nbDés + "D4, " + dmgBase + " * " + modificateur);
+        return nom + " : dommages de " + nbDés + "D4, " + dmgBase + (multiplicateur != 1 ? " * " + multiplicateur : "");
     }
 }
 

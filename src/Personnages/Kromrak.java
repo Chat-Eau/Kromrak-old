@@ -11,7 +11,7 @@ public class Kromrak extends Personnage {
         this.arme = (Arme) objets.get(0);
         nom = "Kromrak";
 
-        parade = false;
+        reaction = false;
 
         //Attributs
         vieMax = 40;
@@ -21,7 +21,7 @@ public class Kromrak extends Personnage {
         dextérité = 1;//à faire
         endurance = 0;//à faire
         intelligence = 0;//à faire
-        CA = 1;
+        CA = 0;
 
         this.cible = null;
     }
@@ -34,5 +34,13 @@ public class Kromrak extends Personnage {
 
     public String toString() {
         return super.toString();
+    }
+
+    public void recevoirDegats (int nbDegats)
+    {
+        super.recevoirDegats(nbDegats);
+        if (reaction){
+            //TODO:GLM: Kromrak peut réagir
+        }
     }
 }
