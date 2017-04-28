@@ -25,7 +25,7 @@ public class Ennemi extends Personnage {
         intelligence = 0;
         CA = 0;
 
-        objets.add(new Objet("Pièces d'or", Outils.lancerDes(4, Outils.minCap(-6, 0))));
+        objets.add(new Objet("Pièces d'or", Outils.minCap(0, Outils.lancerDes(4, -6))));
 
     }
 }
