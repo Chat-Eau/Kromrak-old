@@ -32,5 +32,6 @@ public class Ennemi extends Personnage {
         for (int i = new Random().nextInt(5) + 10; 0 < i; i--) {
             objets.add(new Objet());
         }
+
     }
 }
