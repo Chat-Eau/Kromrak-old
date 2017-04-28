@@ -51,7 +51,7 @@ public class Combat {
                     } else {
                         tourEnnemi(personnages.get(i));
                     }
-
+                    i++;
                     if (this.verifierEtat() != 0){
                         combatFini = true;
                     }
@@ -149,7 +149,13 @@ public class Combat {
 
     protected void popPersonnage(Personnage mort) {
         System.out.println(mort.getNom() + " est mort.");
-        loot.addAll(mort.getObjet());
+
+        while (0 < mort.getObjet().size()) {
+            if (new Random().nextInt(10) == 0) {
+                loot.add((Objet) mort.getObjet().get(0));
+            }
+            mort.getObjet().remove(0);
+        }
         personnages.remove(mort);
     }
 

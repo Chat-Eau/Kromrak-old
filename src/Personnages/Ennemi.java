@@ -1,8 +1,11 @@
 package Personnages;
 
-import Equipements.Arme;
+import Objets.Arme;
 import Objets.Objet;
 import Outils.Outils;
+
+import java.util.Random;
+
 /**
  * Created by lapb290796 on 2017-02-21.
  */
@@ -11,7 +14,8 @@ public class Ennemi extends Personnage {
 
     public Ennemi(String nom) {
         this.nom = nom;
-        this.arme = new Arme();
+        objets.add(new Arme());
+        this.arme = (Arme) objets.get(0);
         //TODO: Pas besoin de cible, il faut seulement separer les IA.
         //TODO: Faire deux fonctions jouerTour(). Celle des ennemis attaque toujours le joueur.
         this.cible = Kromrak.getInstance();
@@ -25,7 +29,8 @@ public class Ennemi extends Personnage {
         intelligence = 0;
         CA = 0;
 
-        objets.add(new Objet("Pièces d'or", Outils.lancerDes(4, Outils.minCap(-6, 0))));
-
+        for (int i = new Random().nextInt(5) + 10; 0 < i; i--) {
+            objets.add(new Objet());
+        }
     }
 }

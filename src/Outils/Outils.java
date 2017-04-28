@@ -42,14 +42,18 @@ public class Outils {
     static public List mergeArgent(List<Objet> objets){
         int i = 0;
         int total = 0;
+        boolean pieceCréée = false;
         while (i < objets.size()) {
-            if (objets.get(i).getNom().equals("Pièces d'or")){
+            if (objets.get(i).getNom().equals("Pièces d'or") || objets.get(i).getNom().equals("Pièce d'or")){
                 total += objets.remove(i).getValeur();
                 i--;
+                pieceCréée = true;
             }
             i++;
         }
-        objets.add(objets.size(), new Objet(total));
+        if (pieceCréée) {
+            objets.add(objets.size(), new Objet(total));
+        }
         return objets;
     }
 }

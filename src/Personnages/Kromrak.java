@@ -1,13 +1,13 @@
 package Personnages;
 
-import Equipements.Arme;
+import Objets.Arme;
 
 /**
  * Created by lapb290796 on 2017-02-21.
  */
 public class Kromrak extends Personnage {
     private Kromrak() {
-        this.arme = new Arme("Épée longue et dure", 1, 1, 0);
+        this.arme = new Arme("Épée longue et dure", 1, 1, 0, 5);
 
         nom = "Kromrak";
 
