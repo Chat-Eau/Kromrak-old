@@ -1,7 +1,6 @@
 package Outils;
 
 import Objets.Objet;
-import Objets.Tresor;
 
 import java.util.List;
 import java.util.Random;
@@ -10,23 +9,13 @@ import java.util.Random;
  * Created by lapb290796 on 2017-02-21.
  */
 public class Outils {
-    static public int lancerDes(int nbDés, int base, double multiplicateur) {
+    static public int lancerDes(int nbDés) {
         int total = 0;
 
         for (int x = 0; x < nbDés; x++)
-            total += new Random().nextInt(4) + 1 + base;
-        total *= multiplicateur;
+            total += new Random().nextInt(4) + 1;
 
-        return total > 0 ? total : 0;
-    }
-
-    static public int lancerDes(int nbDés, int base) {
-        int total = 0;
-
-        for (int x = 0; x < nbDés; x++)
-            total += new Random().nextInt(4) + 1 + base;
-
-        return total > 0 ? total : 0;
+        return total;
     }
 
     static public int maxCap(int stat, int max){
@@ -53,7 +42,7 @@ public class Outils {
             i++;
         }
         if (pieceCréée) {
-            objets.add(objets.size(), new Tresor(total));
+            objets.add(objets.size(), new Objet(total));
         }
         return objets;
     }

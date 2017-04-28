@@ -1,12 +1,14 @@
 package Personnages;
 
 
+import Evenements.Combat;
 import Objets.Arme;
 import Objets.Objet;
 import Outils.Outils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by lapb290796 on 2017-02-21.
@@ -20,7 +22,7 @@ public class Personnage {
     //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable.
     protected Personnage cible;
 
-    protected boolean parade = false;
+    protected boolean reaction = false;
 
     private int barreVitesse = 0;
     private int barreReaction = 0;
@@ -42,16 +44,18 @@ public class Personnage {
 
     public void recevoirDegats (int nbDegats)
     {
-        int degats = (this.parade == true)?nbDegats-1-this.CA:nbDegats;
-        degats = (degats > 0)?degats:1;
-        this.parade = false;
+        int degats = Outils.minCap(nbDegats - CA, 1);
 
         System.out.print(this.nom + " a reçu: " + degats + " dégats." + System.lineSeparator());
 
-        this.barreReaction += dextérité + 5;
+        avancerReaction();
         this.vie -= degats;
 
-        Outils.maxCap(vie, vieMax);
+        vie = Outils.minMaxCap(vie, 0, vieMax);
+
+        if (this.vie == 0) {
+            this.pop();
+        }
     }
 
     public int attaquer() {
@@ -102,18 +106,18 @@ public class Personnage {
         if (this.barreVitesse >= 100) {
             this.barreVitesse -= 100;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    public boolean verrifierReaction() {
-        if (this.barreReaction >= 100) {
-            this.barreReaction -= 100;
-            return true;
-        } else {
-            return false;
+    public void avancerReaction() {
+        if (!reaction) {
+            this.barreReaction += 5 + dextérité;
+            if (this.barreReaction >= 100) {
+                this.barreReaction -= 100;
+                reaction = true;
+            }
         }
     }
 
@@ -159,8 +163,21 @@ public class Personnage {
         return objets;
     }
 
-    public void activerParade() { parade = true; }
+    public void activerParade() { reaction = true; }
 
     public void setCible(Personnage cible) {this.cible = cible; }
 
+    protected void pop() {
+        System.out.println(this.nom + " est mort.");
+
+        if (this != Kromrak.getInstance()) {
+            while (0 < this.objets.size()) {
+                if (new Random().nextInt(10) == 0) {
+                    Combat.loot.add((Objet) this.objets.get(0));
+                }
+                this.objets.remove(0);
+            }
+        }
+        Combat.personnages.remove(this);
+    }
 }

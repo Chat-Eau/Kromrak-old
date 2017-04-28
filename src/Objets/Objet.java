@@ -9,7 +9,7 @@ public class Objet {
 
 
     public Objet(){
-        nom = "Pièces d'or";
+        nom = "Pièce d'or";
         valeur = 1;
     }
     public Objet(String nom, int valeur){

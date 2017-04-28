@@ -15,21 +15,32 @@ import java.util.Scanner;
  * Created by lapb290796 on 2017-02-21.
  */
 public class Combat {
-    private int tour = 1;
-    private List<Personnage> personnages = new ArrayList<>();
-    private List<Objet> loot = new ArrayList<>();
-    private Kromrak kromrak;
+    public static int tour = 1;
+    public static List<Personnage> personnages = new ArrayList<>();
+    public static List<Objet> loot = new ArrayList<>();
+    public static Kromrak kromrak;
 
-    public Combat() {
+    private Combat() {
         this.kromrak = Kromrak.getInstance();
         //TODO: Faire une fonction qui parse les ennemis et leur donne des nombres si leur nom est en double?
         //Benjamin: Pas nécessaire pour l'instant. on verra plus tard.
 
         //TODO: Nommer les ennemis individuellement ne se fait pas lors de la génération aléatoire
+        this.personnages.removeAll(personnages);
         this.personnages.add(this.personnages.size(), kromrak);
         this.personnages.add(this.personnages.size(), new Ennemi("goblin"));
         this.personnages.add(this.personnages.size(), new Ennemi("gnollblin"));
         this.personnages.add(this.personnages.size(), new Ennemi("gnoublin"));
+    }
+
+    private static Combat combat = null;
+
+    public static Combat getInstance() {
+        return combat;
+    }
+
+    public static Combat newCombat() {
+        return combat = new Combat();
     }
 
     public void combattre()
@@ -52,11 +63,11 @@ public class Combat {
                     } else {
                         tourEnnemi(personnages.get(i));
                     }
-                    i++;
                     if (this.verifierEtat() != 0){
                         combatFini = true;
                     }
                 }
+                i++;
             }
         }
         finCombat();
@@ -78,9 +89,7 @@ public class Combat {
             switch (scanner.nextLine()){
                 case "1":
                     choisirCible();
-                    if (this.kromrak.verrifierReaction()) reactionEnnemi(this.kromrak.getCible());
                     this.kromrak.attaquer();
-                    if (!this.kromrak.getCible().estVivant()) popPersonnage(this.kromrak.getCible());
                     break;
                 default:
                     valide = false;
@@ -110,11 +119,11 @@ public class Combat {
         boolean mauvaisChoix = false;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print(System.lineSeparator() + "Choisisser votre cible :     ");
+        System.out.print(System.lineSeparator() + "Choisisser votre cible :         ");
 
         for (int i = 1; i < this.personnages.size(); i++){
             if (i != this.personnages.size() && i != 1)
-                System.out.print(",                        ");
+                System.out.print(",         ");
             if(this.personnages.get(i).estVivant())
                 System.out.print(i + ". " + this.personnages.get(i).getNom());
         }
@@ -144,18 +153,6 @@ public class Combat {
         for (Personnage personnage:this.personnages)
             if (personnage.estVivant() && personnage != this.kromrak) return 0;
         return 1;
-    }
-
-    protected void popPersonnage(Personnage mort) {
-        System.out.println(mort.getNom() + " est mort.");
-
-        while (0 < mort.getObjets().size()) {
-            if (new Random().nextInt(10) == 0) {
-                loot.add((Objet) mort.getObjets().get(0));
-            }
-            mort.getObjets().remove(0);
-        }
-        personnages.remove(mort);
     }
 
     protected void finCombat(){
