@@ -1,9 +1,12 @@
 package Evenements;
 
+import Objets.Objet;
 import Personnages.Ennemi;
 import Personnages.Kromrak;
 import Personnages.Personnage;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,7 +15,8 @@ import java.util.Scanner;
  */
 public class Combat {
     private int tour = 1;
-    private Personnage[] personnages;
+    private List<Personnage> personnages = new ArrayList<>();
+    private List<Objet> loot = new ArrayList<>();
     private Kromrak kromrak;
 
     public Combat() {
@@ -21,29 +25,31 @@ public class Combat {
         //Benjamin: Pas nécessaire pour l'instant. on verra plus tard.
 
         //TODO: Nommer les ennemis individuellement ne se fait pas lors de la génération aléatoire
-        this.personnages = new Personnage[]{kromrak, new Ennemi("goblin"), new Ennemi("goblin")};
+        this.personnages.add(this.personnages.size(), kromrak);
+        this.personnages.add(this.personnages.size(), new Ennemi("goblin"));
+        this.personnages.add(this.personnages.size(), new Ennemi("gnollblin"));
+        this.personnages.add(this.personnages.size(), new Ennemi("gnoublin"));
     }
 
     public void combattre()
     {
         boolean combatFini = false;
-        //TODO: ordreTour() est VRAIMENT inutile, les enemis sont triés de toute manière.
-        ordreTour();
 
         //TODO: A la place de faire jouer le tour des mobs (if (personnage == this.kromrak)),
         //TODO: chaques personnages devraient implémenter les méthodes jouerTour(),
         //TODO: au lieux que ces méthodes soient dans la classe Combat.
         //TODO: personnage.jouerTour()
-
+        short i;
         while (!combatFini) {
-            for (Personnage personnage : this.personnages) {
-                if (personnage.estVivant() && personnage.avancerVitesse() == true && !combatFini) {
+            i = 0;
+            while (i < personnages.size() && !combatFini) {
+                if (personnages.get(i).estVivant() && personnages.get(i).avancerVitesse() == true && !combatFini) {
                     System.out.print(System.lineSeparator() + "Tour " + this.tour++ + " : ");
                     //TODO: personnage.jouerTour();
-                    if (personnage == this.kromrak) {
+                    if (personnages.get(i) == this.kromrak) {
                         tourKromrak();
                     } else {
-                        tourEnnemi(personnage);
+                        tourEnnemi(personnages.get(i));
                     }
 
                     if (this.verifierEtat() != 0){
@@ -52,9 +58,7 @@ public class Combat {
                 }
             }
         }
-        //TODO: Créer une méthode qui gère les fins de combats?
-        //TODO: OU retourner l'état du combat, vu que le message de fin/loot/etc ne fais techniquement pas partie d'un combat
-        System.out.println(this.verifierEtat() < 1 ? "Va chier Kromrak." : "Je t'aime, Kromrak!");
+        finCombat();
     }
 
 
@@ -70,12 +74,12 @@ public class Combat {
         do{
             valide = true;
             scanner = new Scanner(System.in);
-            switch (scanner.nextLine()){//choix){
+            switch (scanner.nextLine()){
                 case "1":
                     choisirCible();
-                    if (this.kromrak.verrifierReaction() > 0) reactionEnnemi(this.kromrak.getCible());
+                    if (this.kromrak.verrifierReaction()) reactionEnnemi(this.kromrak.getCible());
                     this.kromrak.attaquer();
-                    if (!this.kromrak.getCible().estVivant()) afficherMort(this.kromrak.getCible());
+                    if (!this.kromrak.getCible().estVivant()) popPersonnage(this.kromrak.getCible());
                     break;
                 default:
                     valide = false;
@@ -107,18 +111,14 @@ public class Combat {
 
         System.out.print(System.lineSeparator() + "Choisisser votre cible :     ");
 
-        for (int i = 1; i < this.personnages.length; i++){
-            if (i != this.personnages.length && i != 1)
+        for (int i = 1; i < this.personnages.size(); i++){
+            if (i != this.personnages.size() && i != 1)
                 System.out.print(",                        ");
-            if(this.personnages[i].estVivant())
-                System.out.print(i + ". " + this.personnages[i].getNom());
+            if(this.personnages.get(i).estVivant())
+                System.out.print(i + ". " + this.personnages.get(i).getNom());
         }
         System.out.println();
 
-
-        //TODO:GLM: Sa serais pas mieux de faire une fonction qui pop les ennemis?
-        //TODO:GLM: La fonction pop pourrais potentiellement les détruire, mais ajouter leur loot
-        //TODO:GLM: à une variable de la classe combat "Loot"?
         scanner = new Scanner(System.in);
 
         System.out.print("Faites votre choix : ");
@@ -134,10 +134,10 @@ public class Combat {
                     scanner.next();
                 }
                 noEnnemi = scanner.nextInt();
-            } while (noEnnemi < 1 || noEnnemi > this.personnages.length - 1);
-        } while (!this.personnages[noEnnemi].estVivant());
+            } while (noEnnemi < 1 || noEnnemi > this.personnages.size() - 1);
+        } while (!this.personnages.get(noEnnemi).estVivant());
         System.out.println();
-        this.kromrak.setCible(this.personnages[noEnnemi]);
+        this.kromrak.setCible(this.personnages.get(noEnnemi));
     }
 
     protected int verifierEtat(){
@@ -147,22 +147,26 @@ public class Combat {
         return 1;
     }
 
-    protected void afficherMort(Personnage mort) {
-        System.out.println(this.kromrak.getCible().getNom() + " est mort.");
+    protected void popPersonnage(Personnage mort) {
+        System.out.println(mort.getNom() + " est mort.");
+        loot.addAll(mort.getObjet());
+        personnages.remove(mort);
     }
 
-    protected void ordreTour() {
-        Personnage tampon;
-        for (int i = this.personnages.length; i > 1; i--) {
-            tampon = this.personnages[1];
-            for (int j = 2; j < i; j++) {
-                if (tampon.getVitesse() > this.personnages[j].getVitesse()) {
-                    tampon = this.personnages[j];
-                } else {
-                    this.personnages[j - 1] = this.personnages[j];
-                    this.personnages[j] = tampon;
-                }
+    protected void finCombat(){
+        if (this.verifierEtat() == -1) {
+            System.out.println("Va chier Kromrak.");
+        } else if (this.verifierEtat() == 0) {
+            System.out.println("Combat en cours.");
+        } else {
+            System.out.println("Je t'aime, Kromrak!");
+
+            Outils.Outils.mergeArgent(loot);
+            kromrak.getObjet().addAll(loot);
+            for (Objet objet : loot){
+                System.out.println("Vous avez obtenu : " + objet.toString());
             }
+            Outils.Outils.mergeArgent(kromrak.getObjet());
         }
     }
 }

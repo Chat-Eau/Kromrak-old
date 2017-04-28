@@ -1,6 +1,7 @@
 package Personnages;
 
 import Equipements.Arme;
+import Objets.Objet;
 import Outils.Outils;
 /**
  * Created by lapb290796 on 2017-02-21.
@@ -15,13 +16,16 @@ public class Ennemi extends Personnage {
         //TODO: Faire deux fonctions jouerTour(). Celle des ennemis attaque toujours le joueur.
         this.cible = Kromrak.getInstance();
 
-        vieMax = Outils.lancerDes(1, 2);
+        vieMax = 5;
         vie = vieMax;
-        vitesse = Outils.lancerDes(1, -1);
-        force = Outils.lancerDes(1, -2);
-        dextérité = Outils.lancerDes(1, -2);
-        endurance = Outils.lancerDes(1, -2);
+        vitesse = Outils.lancerDes(1, 0);
+        force = 2;
+        dextérité = 2;
+        endurance = 0;
         intelligence = 0;
-        CA = Outils.lancerDes(1, -2);
+        CA = 0;
+
+        objets.add(new Objet("Pièces d'or", Outils.lancerDes(4, Outils.minCap(-6, 0))));
+
     }
 }

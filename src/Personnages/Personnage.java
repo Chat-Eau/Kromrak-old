@@ -2,9 +2,11 @@ package Personnages;
 
 
 import Equipements.Arme;
+import Objets.Objet;
 import Outils.Outils;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lapb290796 on 2017-02-21.
@@ -12,6 +14,8 @@ import java.util.Random;
 public class Personnage {
     protected Arme arme;
     protected String nom;
+    protected List<Objet> objets = new ArrayList<>();
+
     //TODO: Cible? Pourquoi personnage a besoin d'un personnage cible?
     //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable.
     protected Personnage cible;
@@ -19,7 +23,7 @@ public class Personnage {
     protected boolean parade = false;
 
     private int barreVitesse = 0;
-
+    private int barreReaction = 0;
     //Attributs
     //TODO: Une classe pour chaque attribut?
     //TODO: Pour séparer les get/set, les gérer individuellement pour les caps...
@@ -32,9 +36,7 @@ public class Personnage {
     protected int intelligence = 0;//à faire
     protected int CA = 1;
 
-    static public final int STEP_TOUR = 3;
-    static public final int STEP_REACTION = 100;
-
+    static public final int STEP_VITESSE = 3;
 
     protected Personnage() {}
 
@@ -46,6 +48,7 @@ public class Personnage {
 
         System.out.print(this.nom + " a reçu: " + degats + " dégats." + System.lineSeparator());
 
+        this.barreReaction += dextérité + 5;
         this.vie -= degats;
 
         Outils.maxCap(vie, vieMax);
@@ -76,23 +79,28 @@ public class Personnage {
 
     public void afficherEtat () {
         System.out.println("vie:" + this.vie + "/" + this.vieMax);
-
-        //this.arme->afficher();
+        System.out.println("Votre arme est : " + arme.toString());
     }
 
     public boolean avancerVitesse() {
-        this.barreVitesse += STEP_TOUR + vitesse;
+        this.barreVitesse += STEP_VITESSE + vitesse;
 
         if (this.barreVitesse >= 100) {
             this.barreVitesse -= 100;
             return true;
         }
-        else return false;
+        else {
+            return false;
+        }
     }
 
-    public int verrifierReaction() {
-        return new Random().nextInt((this.cible.getDextérité() + 1) * STEP_REACTION + 1)
-                - new Random().nextInt((this.getDextérité() + 1) * STEP_REACTION + 1);
+    public boolean verrifierReaction() {
+        if (this.barreReaction >= 100) {
+            this.barreReaction -= 100;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean estVivant() { return vie > 0; }
@@ -131,6 +139,10 @@ public class Personnage {
 
     public int getVieMax() {
         return vieMax;
+    }
+
+    public List getObjet() {
+        return objets;
     }
 
     public void activerParade() { parade = true; }

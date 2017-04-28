@@ -7,7 +7,7 @@ import Equipements.Arme;
  */
 public class Kromrak extends Personnage {
     private Kromrak() {
-        this.arme = new Arme("Épée longue et dure", 1, 0);
+        this.arme = new Arme("Épée longue et dure", 1, 1, 0);
 
         nom = "Kromrak";
 
@@ -16,11 +16,11 @@ public class Kromrak extends Personnage {
         //Attributs
         vieMax = 40;
         vie = vieMax;
-        vitesse = 1;
-        force = 0;
+        vitesse = 2;
+        force = 3;
         dextérité = 1;//à faire
-        endurance = 1;//à faire
-        intelligence = 1;//à faire
+        endurance = 0;//à faire
+        intelligence = 0;//à faire
         CA = 1;
 
         this.cible = null;
