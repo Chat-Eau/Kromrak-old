@@ -17,7 +17,7 @@ public class Objet {
         this.valeur = valeur;
     }
     public Objet(int valeur){
-        this.nom = "Pièces d'or";
+        this.nom = valeur > 1 ? "Pièces d'or" : "Pièce d'or";
         this.valeur = valeur;
     }
     public Objet(String nom){

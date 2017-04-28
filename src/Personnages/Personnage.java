@@ -1,7 +1,7 @@
 package Personnages;
 
 
-import Equipements.Arme;
+import Objets.Arme;
 import Objets.Objet;
 import Outils.Outils;
 
