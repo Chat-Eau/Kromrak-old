@@ -34,8 +34,6 @@ public class Combat {
     public void combattre()
     {
         boolean combatFini = false;
-        //TODO: ordreTour() est VRAIMENT inutile, les enemis sont triés de toute manière.
-//        ordreTour();
 
         //TODO: A la place de faire jouer le tour des mobs (if (personnage == this.kromrak)),
         //TODO: chaques personnages devraient implémenter les méthodes jouerTour(),
@@ -76,7 +74,7 @@ public class Combat {
         do{
             valide = true;
             scanner = new Scanner(System.in);
-            switch (scanner.nextLine()){//choix){
+            switch (scanner.nextLine()){
                 case "1":
                     choisirCible();
                     if (this.kromrak.verrifierReaction()) reactionEnnemi(this.kromrak.getCible());
@@ -121,10 +119,6 @@ public class Combat {
         }
         System.out.println();
 
-
-        //TODO:GLM: Sa serais pas mieux de faire une fonction qui pop les ennemis?
-        //TODO:GLM: La fonction pop pourrais potentiellement les détruire, mais ajouter leur loot
-        //TODO:GLM: à une variable de la classe combat "Loot"?
         scanner = new Scanner(System.in);
 
         System.out.print("Faites votre choix : ");
@@ -154,16 +148,12 @@ public class Combat {
     }
 
     protected void popPersonnage(Personnage mort) {
-        //TODO: METTRE LE LOOT DES MORTS DANS LA TABLE LOOT DU COMBAT
-
         System.out.println(mort.getNom() + " est mort.");
         loot.addAll(mort.getObjet());
         personnages.remove(mort);
     }
 
     protected void finCombat(){
-        //TODO: Créer une méthode qui gère les fins de combats?
-        //TODO: OU retourner l'état du combat, vu que le message de fin/loot/etc ne fais techniquement pas partie d'un combat
         if (this.verifierEtat() == -1) {
             System.out.println("Va chier Kromrak.");
         } else if (this.verifierEtat() == 0) {
@@ -178,22 +168,5 @@ public class Combat {
             }
             Outils.Outils.mergeArgent(kromrak.getObjet());
         }
-
-
     }
-
-//    protected void ordreTour() {
-//        Personnage tampon;
-//        for (int i = this.personnages.length; i > 1; i--) {
-//            tampon = this.personnages[1];
-//            for (int j = 2; j < i; j++) {
-//                if (tampon.getVitesse() > this.personnages[j].getVitesse()) {
-//                    tampon = this.personnages[j];
-//                } else {
-//                    this.personnages[j - 1] = this.personnages[j];
-//                    this.personnages[j] = tampon;
-//                }
-//            }
-//        }
-//    }
 }
