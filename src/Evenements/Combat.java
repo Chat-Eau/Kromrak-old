@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+//TODO:GLM: Constant "SEP" qui remplace "System.LineSeparator()"?
 /**
  * Created by lapb290796 on 2017-02-21.
  */
@@ -107,7 +108,7 @@ public class Combat {
     protected void choisirCible(){
         int noEnnemi = 0;
         boolean mauvaisChoix = false;
-        Scanner scanner;
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print(System.lineSeparator() + "Choisisser votre cible :     ");
 
@@ -117,11 +118,9 @@ public class Combat {
             if(this.personnages.get(i).estVivant())
                 System.out.print(i + ". " + this.personnages.get(i).getNom());
         }
-        System.out.println();
 
-        scanner = new Scanner(System.in);
+        System.out.print(System.lineSeparator() + "Faites votre choix : ");
 
-        System.out.print("Faites votre choix : ");
         do{
             do{
                 if (mauvaisChoix){
@@ -150,29 +149,30 @@ public class Combat {
     protected void popPersonnage(Personnage mort) {
         System.out.println(mort.getNom() + " est mort.");
 
-        while (0 < mort.getObjet().size()) {
+        while (0 < mort.getObjets().size()) {
             if (new Random().nextInt(10) == 0) {
-                loot.add((Objet) mort.getObjet().get(0));
+                loot.add((Objet) mort.getObjets().get(0));
             }
-            mort.getObjet().remove(0);
+            mort.getObjets().remove(0);
         }
         personnages.remove(mort);
     }
 
     protected void finCombat(){
         if (this.verifierEtat() == -1) {
-            System.out.println("Va chier Kromrak.");
+            System.out.println(System.lineSeparator() + "Va chier Kromrak.");
         } else if (this.verifierEtat() == 0) {
-            System.out.println("Combat en cours.");
+            System.out.println(System.lineSeparator() + "Combat en cours.");
         } else {
-            System.out.println("Je t'aime, Kromrak!");
+            System.out.println(System.lineSeparator() + "Je t'aime, Kromrak!");
 
             Outils.Outils.mergeArgent(loot);
-            kromrak.getObjet().addAll(loot);
+            kromrak.getObjets().addAll(loot);
             for (Objet objet : loot){
                 System.out.println("Vous avez obtenu : " + objet.toString());
             }
-            Outils.Outils.mergeArgent(kromrak.getObjet());
+            System.out.println();
+            Outils.Outils.mergeArgent(kromrak.getObjets());
         }
     }
 }

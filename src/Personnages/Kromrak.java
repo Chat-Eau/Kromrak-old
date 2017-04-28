@@ -7,8 +7,8 @@ import Objets.Arme;
  */
 public class Kromrak extends Personnage {
     private Kromrak() {
-        this.arme = new Arme("Épée longue et dure", 1, 1, 0, 5);
-
+        objets.add(new Arme("Épée longue et dure", 1, 1, 0, 5));
+        this.arme = (Arme) objets.get(0);
         nom = "Kromrak";
 
         parade = false;
@@ -30,5 +30,9 @@ public class Kromrak extends Personnage {
 
     public static Kromrak getInstance() {
         return kromrak;
+    }
+
+    public String toString() {
+        return super.toString();
     }
 }
