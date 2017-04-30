@@ -53,68 +53,29 @@ public class Combat {
         //TODO: personnage.jouerTour()
         short i;
         while (!combatFini) {
-            i = 0;
-            while (i < personnages.size() && !combatFini) {
-                if (personnages.get(i).estVivant() && personnages.get(i).avancerVitesse() == true && !combatFini) {
-                    System.out.print(System.lineSeparator() + "Tour " + this.tour++ + " : ");
-                    //TODO: personnage.jouerTour();
-                    if (personnages.get(i) == this.kromrak) {
+            while (!combatFini) {
+                    for (Personnage personnage: personnages)  {
+                        if (personnage.avancerVitesse()) {
+                            System.out.print(System.lineSeparator() + "Tour " + this.tour++ + " : ");
+                            personnage.jouerTour();
+                            if (this.verifierEtat() != 0){
+                                combatFini = true;
+                                break;
+                            }
+                        }
+                    /*if (personnages.get(i) == this.kromrak) {
                         tourKromrak();
                     } else {
                         tourEnnemi(personnages.get(i));
-                    }
-                    if (this.verifierEtat() != 0){
-                        combatFini = true;
-                    }
+                    }*/
                 }
-                i++;
             }
         }
         finCombat();
     }
 
-
-
-    protected void tourKromrak(){
-        boolean valide;
-        Scanner scanner;
-
-        System.out.println(" Au tour de Kromrak!");
-        System.out.println("Vos choix: 1. Attaquer");
-        System.out.print("Choix : ");
-
-        do{
-            valide = true;
-            scanner = new Scanner(System.in);
-            switch (scanner.nextLine()){
-                case "1":
-                    choisirCible();
-                    this.kromrak.attaquer();
-                    break;
-                default:
-                    valide = false;
-                    System.out.print("Choisissez un numéro d'action correct parmis vos choix : ");
-                    break;
-            }
-        } while (!valide);
-    }
-
-    protected void reactionEnnemi(Personnage ennemi) {
-        if (new Random().nextInt(3) == 0) {
-            System.out.print(ennemi.getNom() + " bloque l'attaque et ");
-            ennemi.activerParade();
-        } else {
-            System.out.println(ennemi.getNom() + " contre-attaque!" + System.lineSeparator());
-            ennemi.attaquer();
-        }
-    }
-
-    protected void tourEnnemi(Personnage ennemi){
-        System.out.println("Au tour de : " + ennemi.getNom());
-        ennemi.attaquer();
-    }
-
-    protected void choisirCible(){
+    //Je laisse choisirCiblie() ici, c'est un peu moins compliquer
+    public void choisirCible(){
         int noEnnemi = 0;
         boolean mauvaisChoix = false;
         Scanner scanner = new Scanner(System.in);
@@ -150,8 +111,12 @@ public class Combat {
 
     protected int verifierEtat(){
         if (!this.kromrak.estVivant()) return -1;
-        for (Personnage personnage:this.personnages)
+        for (Personnage personnage:this.personnages) {
             if (personnage.estVivant() && personnage != this.kromrak) return 0;
+            else if (personnage != this.kromrak)
+                personnage.pop();
+        }
+
         return 1;
     }
 
