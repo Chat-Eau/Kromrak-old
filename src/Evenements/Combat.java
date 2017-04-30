@@ -7,6 +7,7 @@ import Personnages.Personnage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 //TODO:GLM: Constant "SEP" qui remplace "System.LineSeparator()"?
@@ -46,34 +47,30 @@ public class Combat {
     {
         boolean combatFini = false;
 
-        //TODO:GLM: Ben faut tester avant + après tes modifications. La boucle for plante après un pop.
-//        short i;
-//        while (!combatFini) {
-//            for (Personnage personnage: personnages)  {
-//                if (personnage.avancerVitesse()) {
-//                    System.out.print(System.lineSeparator() + "Tour " + this.tour++ + " : ");
-//                    personnage.jouerTour();
-//                    if (this.verifierEtat() != 0){
-//                        combatFini = true;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
+        //TODO: A la place de faire jouer le tour des mobs (if (personnage == this.kromrak)),
+        //TODO: chaques personnages devraient implémenter les méthodes jouerTour(),
+        //TODO: au lieux que ces méthodes soient dans la classe Combat.
+        //TODO: personnage.jouerTour()
         short i;
         while (!combatFini) {
-            i = 0;
-                while (i < personnages.size() && !combatFini) {
-                    if (personnages.get(i).estVivant() && personnages.get(i).avancerVitesse() == true && !combatFini) {
-                        System.out.print(System.lineSeparator() + "Tour " + this.tour++ + " : ");
-                        personnages.get(i).jouerTour();
-                        if (this.verifierEtat() != 0) {
-                            combatFini = true;
+            while (!combatFini) {
+                    for (Personnage personnage: personnages)  {
+                        if (personnage.avancerVitesse()) {
+                            System.out.print(System.lineSeparator() + "Tour " + this.tour++ + " : ");
+                            personnage.jouerTour();
+                            if (this.verifierEtat() != 0){
+                                combatFini = true;
+                                break;
+                            }
                         }
-                    }
-                    i++;
+                    /*if (personnages.get(i) == this.kromrak) {
+                        tourKromrak();
+                    } else {
+                        tourEnnemi(personnages.get(i));
+                    }*/
                 }
             }
+        }
         finCombat();
     }
 
