@@ -1,11 +1,23 @@
 import Evenements.Combat;
+import Personnages.Kromrak;
+
+import java.util.Scanner;
 
 /**
  * Created by lapb290796 on 2017-03-28.
  */
 public class Application {
     public static void main(String[] args) {
-        Combat combatTest = new Combat();
-        combatTest.combattre();
+        Scanner scanner = new Scanner(System.in);
+
+        Combat.getInstance().newCombat().combattre();
+        System.out.println(Kromrak.getInstance().toString() + System.lineSeparator() +
+                System.lineSeparator() + "Appuyez sur 'Enter' pour continuer.");;
+        scanner.nextLine();
+
+        Combat.getInstance().newCombat().combattre();
+        System.out.println(Kromrak.getInstance().toString() + System.lineSeparator() +
+                System.lineSeparator() + "Appuyez sur 'Enter' pour continuer.");
+        scanner.nextLine();
     }
 }

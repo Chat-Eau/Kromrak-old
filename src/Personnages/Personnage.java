@@ -1,9 +1,13 @@
 package Personnages;
 
 
-import Equipements.Arme;
+import Evenements.Combat;
+import Objets.Arme;
+import Objets.Objet;
 import Outils.Outils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -12,14 +16,16 @@ import java.util.Random;
 public class Personnage {
     protected Arme arme;
     protected String nom;
+    protected List<Objet> objets = new ArrayList<>();
+
     //TODO: Cible? Pourquoi personnage a besoin d'un personnage cible?
     //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable.
     protected Personnage cible;
 
-    protected boolean parade = false;
+    protected boolean reaction = false;
 
     private int barreVitesse = 0;
-
+    private int barreReaction = 0;
     //Attributs
     //TODO: Une classe pour chaque attribut?
     //TODO: Pour séparer les get/set, les gérer individuellement pour les caps...
@@ -32,41 +38,39 @@ public class Personnage {
     protected int intelligence = 0;//à faire
     protected int CA = 1;
 
-    static public final int STEP_TOUR = 3;
-    static public final int STEP_REACTION = 100;
-
+    static public final int STEP_VITESSE = 3;
 
     protected Personnage() {}
 
     public void recevoirDegats (int nbDegats)
     {
-        int degats = (this.parade == true)?nbDegats-1-this.CA:nbDegats;
-        degats = (degats > 0)?degats:1;
-        this.parade = false;
+        int degats = Outils.minCap(nbDegats - CA, 1);
 
         System.out.print(this.nom + " a reçu: " + degats + " dégats." + System.lineSeparator());
 
+        avancerReaction();
         this.vie -= degats;
 
-        Outils.maxCap(vie, vieMax);
+        vie = Outils.minMaxCap(vie, 0, vieMax);
+
+        if (this.vie == 0) {
+            this.pop();
+        }
     }
 
-    public int attaquer()
-    {
-        int degats = this.arme.getDegats();
+    public int attaquer() {
+        int degats = 0;
+        if (this.arme != null) {
+            degats = arme.getDegats();
+        }
 
         cible.recevoirDegats(Outils.minCap((degats + force - cible.CA), 1));
 
         return degats;
     }
 
-    public void gagnerVie (int nbVie)
-    {
-        this.vie += nbVie;
-        if (this.vie > vieMax)
-        {
-            this.vie = vieMax;
-        }
+    public void gagnerVie (int nbVie) {
+        this.vie = Outils.maxCap(nbVie + this.vie, vieMax);
     }
 
     public void setArme (Arme arme)
@@ -74,25 +78,47 @@ public class Personnage {
         this.arme = arme;
     }
 
-    public void afficherEtat () {
-        System.out.println("vie:" + this.vie + "/" + this.vieMax);
-
-        //this.arme->afficher();
+    public String toString () {
+        String sep = System.lineSeparator();
+        String strObjets = "";
+        for (int i = 0; i < objets.size(); i++){
+            strObjets += objets.get(i).toString();
+            if (i != objets.size() - 1){
+                strObjets += sep;
+            }
+        }
+        return "Nom: " + nom + sep +
+                "Vie: " + this.vie + "/" + this.vieMax + sep +
+                "Arme: " + this.arme.toString() + sep +
+                "Vitesse: " + vitesse + sep +
+                "Force: " + force + sep +
+                "Dextérité: " + dextérité + sep +
+                "Endurance: " + endurance + sep +
+                "Intelligence: " + intelligence + sep +
+                "Classe d'armure: " + CA + sep + sep +
+                "Inventaire: " + sep +
+                strObjets;
     }
 
     public boolean avancerVitesse() {
-        this.barreVitesse += STEP_TOUR + vitesse;
+        this.barreVitesse += STEP_VITESSE + vitesse;
 
         if (this.barreVitesse >= 100) {
             this.barreVitesse -= 100;
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
 
-    public int verrifierReaction() {
-        return new Random().nextInt((this.cible.getDextérité() + 1) * STEP_REACTION + 1)
-                - new Random().nextInt((this.getDextérité() + 1) * STEP_REACTION + 1);
+    public void avancerReaction() {
+        if (!reaction) {
+            this.barreReaction += 5 + dextérité;
+            if (this.barreReaction >= 100) {
+                this.barreReaction -= 100;
+                reaction = true;
+            }
+        }
     }
 
     public boolean estVivant() { return vie > 0; }
@@ -133,8 +159,25 @@ public class Personnage {
         return vieMax;
     }
 
-    public void activerParade() { parade = true; }
+    public List getObjets() {
+        return objets;
+    }
+
+    public void activerParade() { reaction = true; }
 
     public void setCible(Personnage cible) {this.cible = cible; }
 
+    protected void pop() {
+        System.out.println(this.nom + " est mort.");
+
+        if (this != Kromrak.getInstance()) {
+            while (0 < this.objets.size()) {
+                if (new Random().nextInt(10) == 0) {
+                    Combat.loot.add((Objet) this.objets.get(0));
+                }
+                this.objets.remove(0);
+            }
+        }
+        Combat.personnages.remove(this);
+    }
 }
