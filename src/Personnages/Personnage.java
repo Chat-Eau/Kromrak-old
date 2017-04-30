@@ -13,7 +13,7 @@ import java.util.Random;
 /**
  * Created by lapb290796 on 2017-02-21.
  */
-public class Personnage {
+public abstract class Personnage {
     protected Arme arme;
     protected String nom;
     protected List<Objet> objets = new ArrayList<>();
@@ -78,6 +78,9 @@ public class Personnage {
         this.arme = arme;
     }
 
+    //BL: Un jouerTour() abstrait pour pouvoir l'appeler à partir du tableau de personnages
+    public abstract void jouerTour();
+
     public String toString () {
         String sep = System.lineSeparator();
         String strObjets = "";
@@ -120,7 +123,6 @@ public class Personnage {
             }
         }
     }
-
     public boolean estVivant() { return vie > 0; }
 
     public Personnage getCible() { return cible; }
@@ -167,17 +169,5 @@ public class Personnage {
 
     public void setCible(Personnage cible) {this.cible = cible; }
 
-    protected void pop() {
-        System.out.println(this.nom + " est mort.");
-
-        if (this != Kromrak.getInstance()) {
-            while (0 < this.objets.size()) {
-                if (new Random().nextInt(10) == 0) {
-                    Combat.loot.add((Objet) this.objets.get(0));
-                }
-                this.objets.remove(0);
-            }
-        }
-        Combat.personnages.remove(this);
-    }
+    public void pop() {};
 }
