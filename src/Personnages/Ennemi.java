@@ -7,6 +7,8 @@ import Outils.Outils;
 
 import java.util.Random;
 
+import static Outils.Constantes.SEP;
+
 /**
  * Created by lapb290796 on 2017-02-21.
  */
@@ -15,13 +17,14 @@ public class Ennemi extends Personnage {
 
     public Ennemi(String nom) {
         this.nom = nom;
-        //TODO: Pas besoin de cible, il faut seulement separer les IA.
-        //TODO: Faire deux fonctions jouerTour(). Celle des ennemis attaque toujours le joueur.
+        //TODO: On a tu vraiment besoin de cible?
         this.cible = Kromrak.getInstance();
 
         reaction = false;
         vieMax = 5;
         vie = vieMax;
+        //TODO:GLM: Donner un stat de dommage sans arme d4? Sinon, tout les ennemis sans armes vont toujours frapper pareil.
+        //TODO:GLM: Une alternative serait de faire que la force a 75% de chance de boost les dommages de 1 par point de force? Quelque chose dans le genre.
         force = 2;
         intelligence = 1;
         dextérité = 3;
@@ -57,7 +60,7 @@ public class Ennemi extends Personnage {
             System.out.print(getNom() + " bloque l'attaque et ");
             activerParade();
         } else {
-            System.out.println(getNom() + " contre-attaque!" + System.lineSeparator());
+            System.out.println(getNom() + " contre-attaque!" + SEP);
             attaquer();
         }
     }

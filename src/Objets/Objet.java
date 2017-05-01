@@ -44,6 +44,11 @@ public class Objet {
 //        return null;
 //    }
     public String toString(){
-        return (nom + ", valeur de " + valeur + " pièces.");
+        if (nom == "Pièces d'or" || nom == "Pièce d'or") {
+            return (valeur + " " + nom);
+        }
+        else {
+            return nom + ", valeur de " + valeur + " pièces.";
+        }
     }
 }
