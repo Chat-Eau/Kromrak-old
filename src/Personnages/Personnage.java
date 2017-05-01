@@ -1,14 +1,12 @@
 package Personnages;
 
 
-import Evenements.Combat;
 import Objets.Arme;
 import Objets.Objet;
 import Outils.Outils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static Outils.Constantes.SEP;
 
@@ -20,8 +18,7 @@ public abstract class Personnage {
     protected String nom;
     protected List<Objet> objets = new ArrayList<>();
 
-    //TODO: Cible? Pourquoi personnage a besoin d'un personnage cible?
-    //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable.
+    //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable, non?
     protected Personnage cible;
 
     protected boolean reaction = false;
@@ -53,7 +50,7 @@ public abstract class Personnage {
     {
         int degats = Outils.minCap(nbDegats - CA, 1);
 
-        System.out.print(this.nom + " a reçu: " + degats + " dégats." + System.lineSeparator());
+        System.out.print(this.nom + " a reçu: " + degats + " dégats." + SEP);
 
         avancerReaction();
         this.vie -= degats;
@@ -90,7 +87,6 @@ public abstract class Personnage {
     public abstract void jouerTour();
 
     public String toString () {
-        String sep = System.lineSeparator();
         String strObjets = "";
         for (int i = 0; i < objets.size(); i++){
             if (objets.get(i).getEquipé() == false) {
@@ -101,16 +97,16 @@ public abstract class Personnage {
             }
         }
 
-        return "Nom: " + nom + sep +
-                "Vie: " + this.vie + "/" + this.vieMax + sep +
-                "Arme: " + this.arme.toString() + sep +
-                "Vitesse: " + vitesse + sep +
-                "Force: " + force + sep +
-                "Dextérité: " + dextérité + sep +
-                "Endurance: " + endurance + sep +
-                "Intelligence: " + intelligence + sep +
-                "Classe d'armure: " + CA + sep + sep +
-                "Inventaire: " + sep +
+        return "Nom: " + nom + SEP +
+                "Vie: " + this.vie + "/" + this.vieMax + SEP +
+                "Arme: " + this.arme.toString() + SEP +
+                "Vitesse: " + vitesse + SEP +
+                "Force: " + force + SEP +
+                "Dextérité: " + dextérité + SEP +
+                "Endurance: " + endurance + SEP +
+                "Intelligence: " + intelligence + SEP +
+                "Classe d'armure: " + CA + SEP + SEP +
+                "Inventaire: " + SEP +
                 strObjets;
     }
 
