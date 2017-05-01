@@ -50,20 +50,20 @@ public class Combat {
 
         while (!combatFini) {
             for (int i = 0; i < personnages.size(); i++)  {
-                  if (personnages.get(i).avancerVitesse()) {
-                      System.out.print(SEP + "Tour " + this.tour++ + " : ");
-                      personnages.get(i).jouerTour();
-                      if (this.verifierEtat() != 0){
-                          combatFini = true;
-                          break;
-                      }
-                  }
+                if (personnages.get(i).avancerVitesse()) {
+                    System.out.print(SEP + "Tour " + this.tour++ + " : ");
+                    personnages.get(i).jouerTour();
+                    if (this.verifierEtat() != 0){
+                        combatFini = true;
+                        break;
+                    }
+                }
             }
+        }
         finCombat();
     }
 
-    //BL: Je laisse choisirCiblie() ici, c'est un peu moins compliqué
-
+    //BL: Je laisse choisirCiblie() ici, c'est un peu moins compliquer
     public void choisirCible(){
         int noEnnemi = 0;
         boolean mauvaisChoix = false;
