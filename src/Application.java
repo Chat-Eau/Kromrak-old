@@ -14,11 +14,5 @@ public class Application {
         System.out.println(Kromrak.getInstance().toString() + System.lineSeparator() +
                 System.lineSeparator() + "Appuyez sur 'Enter' pour continuer.");;
         scanner.nextLine();
-
-        //GLM: Deux combats pour tester que kromrak et combat fonctionne toujours correctement après.
-        Combat.getInstance().newCombat().combattre();
-        System.out.println(Kromrak.getInstance().toString() + System.lineSeparator() +
-                System.lineSeparator() + "Appuyez sur 'Enter' pour continuer.");;
-        scanner.nextLine();
     }
 }
