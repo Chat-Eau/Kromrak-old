@@ -1,36 +1,37 @@
 package Evenements;
 
 import Objets.Objet;
+import Outils.Constantes;
 import Personnages.Ennemi;
 import Personnages.Kromrak;
 import Personnages.Personnage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
+
+import static Outils.Constantes.SEP;
 
 //TODO:GLM: Constant "SEP" qui remplace "System.LineSeparator()"?
 /**
  * Created by lapb290796 on 2017-02-21.
  */
 public class Combat {
-    public static int tour = 1;
-    public static List<Personnage> personnages = new ArrayList<>();
-    public static List<Objet> loot = new ArrayList<>();
-    public static Kromrak kromrak;
+    private int tour = 1;
+    private List<Personnage> personnages = new ArrayList<>();
+    private List<Objet> loot = new ArrayList<>();
+    private Iterator<Personnage> iterator = personnages.iterator();
+
+    private Kromrak kromrak;
 
     private Combat() {
         this.kromrak = Kromrak.getInstance();
         //TODO: Faire une fonction qui parse les ennemis et leur donne des nombres si leur nom est en double?
-        //Benjamin: Pas nécessaire pour l'instant. on verra plus tard.
 
         //TODO: Nommer les ennemis individuellement ne se fait pas lors de la génération aléatoire
         this.personnages.removeAll(personnages);
         this.personnages.add(this.personnages.size(), kromrak);
-        this.personnages.add(this.personnages.size(), new Ennemi("goblin"));
-        this.personnages.add(this.personnages.size(), new Ennemi("gnollblin"));
-        this.personnages.add(this.personnages.size(), new Ennemi("gnoublin"));
+        this.personnages.add(this.personnages.size(), new Ennemi("goblin 1"));
+        this.personnages.add(this.personnages.size(), new Ennemi("goblin 2"));
+        this.personnages.add(this.personnages.size(), new Ennemi("goblin 3"));
     }
 
     private static Combat combat = null;
@@ -51,75 +52,35 @@ public class Combat {
         //TODO: chaques personnages devraient implémenter les méthodes jouerTour(),
         //TODO: au lieux que ces méthodes soient dans la classe Combat.
         //TODO: personnage.jouerTour()
-        short i;
         while (!combatFini) {
-            i = 0;
-            while (i < personnages.size() && !combatFini) {
-                if (personnages.get(i).estVivant() && personnages.get(i).avancerVitesse() == true && !combatFini) {
-                    System.out.print(System.lineSeparator() + "Tour " + this.tour++ + " : ");
-                    //TODO: personnage.jouerTour();
-                    if (personnages.get(i) == this.kromrak) {
+            while (!combatFini) {
+                    for (int i = 0; i < personnages.size(); i++)  {
+                        if (personnages.get(i).avancerVitesse()) {
+                            System.out.print(SEP + "Tour " + this.tour++ + " : ");
+                            personnages.get(i).jouerTour();
+                            if (this.verifierEtat() != 0){
+                                combatFini = true;
+                                break;
+                            }
+                        }
+                    /*if (personnages.get(i) == this.kromrak) {
                         tourKromrak();
                     } else {
                         tourEnnemi(personnages.get(i));
-                    }
-                    if (this.verifierEtat() != 0){
-                        combatFini = true;
-                    }
+                    }*/
                 }
-                i++;
             }
         }
         finCombat();
     }
 
-
-
-    protected void tourKromrak(){
-        boolean valide;
-        Scanner scanner;
-
-        System.out.println(" Au tour de Kromrak!");
-        System.out.println("Vos choix: 1. Attaquer");
-        System.out.print("Choix : ");
-
-        do{
-            valide = true;
-            scanner = new Scanner(System.in);
-            switch (scanner.nextLine()){
-                case "1":
-                    choisirCible();
-                    this.kromrak.attaquer();
-                    break;
-                default:
-                    valide = false;
-                    System.out.print("Choisissez un numéro d'action correct parmis vos choix : ");
-                    break;
-            }
-        } while (!valide);
-    }
-
-    protected void reactionEnnemi(Personnage ennemi) {
-        if (new Random().nextInt(3) == 0) {
-            System.out.print(ennemi.getNom() + " bloque l'attaque et ");
-            ennemi.activerParade();
-        } else {
-            System.out.println(ennemi.getNom() + " contre-attaque!" + System.lineSeparator());
-            ennemi.attaquer();
-        }
-    }
-
-    protected void tourEnnemi(Personnage ennemi){
-        System.out.println("Au tour de : " + ennemi.getNom());
-        ennemi.attaquer();
-    }
-
-    protected void choisirCible(){
+    //BL: Je laisse choisirCiblie() ici, c'est un peu moins compliquer
+    public void choisirCible(){
         int noEnnemi = 0;
         boolean mauvaisChoix = false;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print(System.lineSeparator() + "Choisisser votre cible :         ");
+        System.out.print(SEP + "Choisisser votre cible :         ");
 
         for (int i = 1; i < this.personnages.size(); i++){
             if (i != this.personnages.size() && i != 1)
@@ -128,7 +89,7 @@ public class Combat {
                 System.out.print(i + ". " + this.personnages.get(i).getNom());
         }
 
-        System.out.print(System.lineSeparator() + "Faites votre choix : ");
+        System.out.print(SEP + "Faites votre choix : ");
 
         do{
             do{
@@ -150,18 +111,21 @@ public class Combat {
 
     protected int verifierEtat(){
         if (!this.kromrak.estVivant()) return -1;
-        for (Personnage personnage:this.personnages)
-            if (personnage.estVivant() && personnage != this.kromrak) return 0;
+
+        for (int i = 0; i < personnages.size(); i++) {
+            if (personnages.get(i).estVivant() && personnages.get(i) != this.kromrak) return 0;
+        }
+
         return 1;
     }
 
     protected void finCombat(){
         if (this.verifierEtat() == -1) {
-            System.out.println(System.lineSeparator() + "Va chier Kromrak.");
+            System.out.println(SEP + "Va chier Kromrak.");
         } else if (this.verifierEtat() == 0) {
-            System.out.println(System.lineSeparator() + "Combat en cours.");
+            System.out.println(SEP + "Combat en cours.");
         } else {
-            System.out.println(System.lineSeparator() + "Je t'aime, Kromrak!");
+            System.out.println(SEP + "Je t'aime, Kromrak!");
 
             Outils.Outils.mergeArgent(loot);
             kromrak.getObjets().addAll(loot);
@@ -171,5 +135,13 @@ public class Combat {
             System.out.println();
             Outils.Outils.mergeArgent(kromrak.getObjets());
         }
+    }
+
+    public void lootAdd(Objet objet) {
+        loot.add(objet);
+    }
+
+    public void personnagesRemove(Personnage personnage) {
+        personnages.remove(personnage);
     }
 }

@@ -1,13 +1,16 @@
 package Personnages;
 
+import Evenements.Combat;
 import Objets.Arme;
+
+import java.util.Scanner;
 
 /**
  * Created by lapb290796 on 2017-02-21.
  */
 public class Kromrak extends Personnage {
     private Kromrak() {
-        objets.add(new Arme("Épée longue et dure", 1, 1, 0, 5));
+        objets.add(new Arme("Épée longue et dure", 1, 1, 0, 5, true));
         this.arme = (Arme) objets.get(0);
         nom = "Kromrak";
 
@@ -43,4 +46,29 @@ public class Kromrak extends Personnage {
             //TODO:GLM: Kromrak peut réagir
         }
     }
+
+    public void jouerTour() {
+        boolean valide;
+        Scanner scanner;
+
+        System.out.println(" Au tour de Kromrak!");
+        System.out.println("Vos choix: 1. Attaquer");
+        System.out.print("Choix : ");
+
+        do{
+            valide = true;
+            scanner = new Scanner(System.in);
+            switch (scanner.nextLine()){
+                case "1":
+                    Combat.getInstance().choisirCible();
+                    attaquer();
+                    break;
+                default:
+                    valide = false;
+                    System.out.print("Choisissez un numéro d'action correct parmis vos choix : ");
+                    break;
+            }
+        } while (!valide);
+    }
+
 }

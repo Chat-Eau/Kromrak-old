@@ -1,5 +1,6 @@
 package Personnages;
 
+import Evenements.Combat;
 import Objets.Arme;
 import Objets.Objet;
 import Outils.Outils;
@@ -44,5 +45,32 @@ public class Ennemi extends Personnage {
         //TODO:GLM: Réagir
             reaction = false;
         }
+    }
+
+    public void jouerTour(){
+        System.out.println("Au tour de : " + getNom());
+        attaquer();
+    }
+
+    protected void reactionEnnemi() {
+        if (new Random().nextInt(3) == 0) {
+            System.out.print(getNom() + " bloque l'attaque et ");
+            activerParade();
+        } else {
+            System.out.println(getNom() + " contre-attaque!" + System.lineSeparator());
+            attaquer();
+        }
+    }
+
+    public void pop() {
+        System.out.println(this.nom + " est mort.");
+
+        while (0 < this.objets.size()) {
+            if (new Random().nextInt(10) == 0) {
+                Combat.getInstance().lootAdd((Objet) this.objets.get(0));
+            }
+            this.objets.remove(0);
+        }
+        Combat.getInstance().personnagesRemove(this);
     }
 }

@@ -7,6 +7,8 @@ public class Objet {
     public String nom;
     public int valeur;
 
+    public boolean getEquipé() {return false; }
+
 
     public Objet(){
         nom = "Pièce d'or";
