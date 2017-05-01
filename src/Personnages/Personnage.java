@@ -133,7 +133,6 @@ public abstract class Personnage {
                 reaction = true;
             }
         }
-
         return reaction;
     }
     public boolean estVivant() { return vie > 0; }

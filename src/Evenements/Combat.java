@@ -48,33 +48,22 @@ public class Combat {
     {
         boolean combatFini = false;
 
-        //TODO: A la place de faire jouer le tour des mobs (if (personnage == this.kromrak)),
-        //TODO: chaques personnages devraient implémenter les méthodes jouerTour(),
-        //TODO: au lieux que ces méthodes soient dans la classe Combat.
-        //TODO: personnage.jouerTour()
         while (!combatFini) {
-            while (!combatFini) {
-                    for (int i = 0; i < personnages.size(); i++)  {
-                        if (personnages.get(i).avancerVitesse()) {
-                            System.out.print(SEP + "Tour " + this.tour++ + " : ");
-                            personnages.get(i).jouerTour();
-                            if (this.verifierEtat() != 0){
-                                combatFini = true;
-                                break;
-                            }
-                        }
-                    /*if (personnages.get(i) == this.kromrak) {
-                        tourKromrak();
-                    } else {
-                        tourEnnemi(personnages.get(i));
-                    }*/
-                }
+            for (int i = 0; i < personnages.size(); i++)  {
+                  if (personnages.get(i).avancerVitesse()) {
+                      System.out.print(SEP + "Tour " + this.tour++ + " : ");
+                      personnages.get(i).jouerTour();
+                      if (this.verifierEtat() != 0){
+                          combatFini = true;
+                          break;
+                      }
+                  }
             }
-        }
         finCombat();
     }
 
-    //BL: Je laisse choisirCiblie() ici, c'est un peu moins compliquer
+    //BL: Je laisse choisirCiblie() ici, c'est un peu moins compliqué
+
     public void choisirCible(){
         int noEnnemi = 0;
         boolean mauvaisChoix = false;
