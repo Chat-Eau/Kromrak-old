@@ -14,10 +14,5 @@ public class Application {
         System.out.println(Kromrak.getInstance().toString() + System.lineSeparator() +
                 System.lineSeparator() + "Appuyez sur 'Enter' pour continuer.");;
         scanner.nextLine();
-
-        Combat.getInstance().newCombat().combattre();
-        System.out.println(Kromrak.getInstance().toString() + System.lineSeparator() +
-                System.lineSeparator() + "Appuyez sur 'Enter' pour continuer.");
-        scanner.nextLine();
     }
 }

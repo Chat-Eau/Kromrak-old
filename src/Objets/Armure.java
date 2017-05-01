@@ -9,8 +9,8 @@ public class Armure extends Equipement{
         this.valeur = 3;
     }
 
-    public Armure (String nom, int valeur) {
-        super(nom, valeur);
+    public Armure (String nom, int valeur, boolean equipé) {
+        super(nom, valeur, equipé);
     }
 
     public String toString(){
