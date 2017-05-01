@@ -67,10 +67,10 @@ public class Ennemi extends Personnage {
 
         while (0 < this.objets.size()) {
             if (new Random().nextInt(10) == 0) {
-                Combat.loot.add((Objet) this.objets.get(0));
+                Combat.getInstance().lootAdd((Objet) this.objets.get(0));
             }
             this.objets.remove(0);
         }
-        Combat.personnages.remove(this);
+        Combat.getInstance().personnagesRemove(this);
     }
 }
