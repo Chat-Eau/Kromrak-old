@@ -17,6 +17,7 @@ import static Outils.Outils.lancerDes;
 public class Ennemi extends Personnage {
     int rarete;
     int tier;
+    int noEnnemi;
     List<String> type = new ArrayList<>();
 
 
@@ -245,4 +246,10 @@ public class Ennemi extends Personnage {
         }
         Combat.getInstance().personnagesRemove(this);
     }
+
+    public void setNoEnnemi(int noEnnemi){
+        this.noEnnemi = noEnnemi;
+    }
+
+    public int getNoEnnemi(){ return noEnnemi; }
 }

@@ -72,6 +72,7 @@ public class Combat {
     }
 
     //BL: Je laisse choisirCiblie() ici, c'est un peu moins compliquer
+    //TODO:GLM: ChoisirCible() doit être refait pour prendre la variable noEnnemi de chaque ennemi, a la place de leur position dans le tableau
     public void choisirCible(){
         int noEnnemi = 0;
         boolean mauvaisChoix = false;
@@ -82,7 +83,10 @@ public class Combat {
         for (int i = 1; i < this.personnages.size(); i++){
             if (i != this.personnages.size() && i != 1)
                 System.out.print("         ");
-            System.out.print(i + ". " + this.personnages.get(i).getNom() + " " + this.personnages.get(i).getLvl());
+            System.out.print((i) + ". " + this.personnages.get(i).getNom() + " " + this.personnages.get(i).getLvl());
+            //TODO:GLM: Décomenter le sout en dessous lorsque choisirCible choisit selon le numéro de l'ennemi, pas sa position dans le tableau.
+//          System.out.print(((Ennemi)this.personnages.get(i)).getNoEnnemi() + ". "
+//                  + this.personnages.get(i).getNom() + " " + this.personnages.get(i).getLvl());
         }
 
         System.out.print(SEP + "Faites votre choix : ");
@@ -142,6 +146,15 @@ public class Combat {
     }
 
     public void assignerNbrEnnemi(){
+        //Nouvelle utilité :
+        int cpt = 1;
+        for (Personnage personnage:personnages) {
+            if (personnage.getClass() != Kromrak.class){
+                ((Ennemi) personnage).setNoEnnemi(cpt++);
+            }
+        }
+
+        //Ancienne utilitée (A garder ou pas?) :
 //        for (Personnage personnage1:personnages) {
 //            String nom1 = personnage1.getNom();
 //            short cptSimilaire = 1;
