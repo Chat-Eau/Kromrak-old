@@ -5,6 +5,7 @@ import Personnages.Ennemi;
 import Personnages.Kromrak;
 import Personnages.Personnage;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,15 @@ public class Combat {
         //TODO: Assigner un numéro à l'ennemi lors de sa création
         this.personnages.removeAll(personnages);
         this.personnages.add(this.personnages.size(), kromrak);
+
+        File file = new File("Ennemi.txt");
+        Scanner scannerEnnemi = new Scanner(file);
+
+        while (scannerEnnemi.hasNext()) {
+            String line = scannerEnnemi.nextLine();
+            personnages.add(new Ennemi(line));
+        }
+
         this.personnages.add(this.personnages.size(), new Ennemi("Nom:Probablementmort"));
         this.personnages.add(this.personnages.size(), new Ennemi("Nom:Probablementmort;dvie:10"));
         this.personnages.add(this.personnages.size(), new Ennemi());
