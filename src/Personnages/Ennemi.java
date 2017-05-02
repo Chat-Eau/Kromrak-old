@@ -68,6 +68,7 @@ public class Ennemi extends Personnage {
         CA = 0;
 
         //GLM: TOUJOURS passer le niveau en tant que premiere section dans la string.
+
         String[] sections = ennemi.split(" ; ");
         for (int i = 0; i < sections.length; i++){
             String[] unit = sections[i].split(":");

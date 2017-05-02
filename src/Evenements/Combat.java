@@ -33,7 +33,9 @@ public class Combat {
             Scanner scanner = new Scanner(new FileInputStream("src\\fichierEnnemi"));
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
-                personnages.add(new Ennemi(line));
+                if (line.charAt(0) != '/'){
+                    personnages.add(new Ennemi(line));
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
