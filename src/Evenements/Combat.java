@@ -5,11 +5,9 @@ import Personnages.Ennemi;
 import Personnages.Kromrak;
 import Personnages.Personnage;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 import static Outils.Constantes.SEP;
 
@@ -30,8 +28,9 @@ public class Combat {
         this.personnages.removeAll(personnages);
         this.personnages.add(this.personnages.size(), kromrak);
 
+
         try {
-            Scanner scanner = new Scanner(new FileInputStream("C:\\Users\\LAMG030499\\Documents\\GitHub\\Kromrak\\src\\fichierEnnemi"));
+            Scanner scanner = new Scanner(new FileInputStream("src\\fichierEnnemi"));
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 personnages.add(new Ennemi(line));
@@ -83,7 +82,7 @@ public class Combat {
         for (int i = 1; i < this.personnages.size(); i++){
             if (i != this.personnages.size() && i != 1)
                 System.out.print("         ");
-            System.out.print((i) + ". " + this.personnages.get(i).getNom() + " " + this.personnages.get(i).getLvl());
+            System.out.print((i) + ". " + this.personnages.get(i).getNom() + " lvl " + this.personnages.get(i).getLvl());
             //TODO:GLM: Décomenter le sout en dessous lorsque choisirCible choisit selon le numéro de l'ennemi, pas sa position dans le tableau.
 //          System.out.print(((Ennemi)this.personnages.get(i)).getNoEnnemi() + ". "
 //                  + this.personnages.get(i).getNom() + " " + this.personnages.get(i).getLvl());
