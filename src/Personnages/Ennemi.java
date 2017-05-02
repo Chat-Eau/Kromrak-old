@@ -20,6 +20,7 @@ public class Ennemi extends Personnage {
     List<String> type = new ArrayList<>();
 
 
+    //TODO:GLM: Refaire les initialisateurs. Ennemi(int) = random de niveau int. Ennemi(nom, int) cherche un ennemi specifique.
 
     public Ennemi() {
         this.nom = "Gobelin";
@@ -55,7 +56,6 @@ public class Ennemi extends Personnage {
 
         rarete = 0;
         tier = 0;
-        type.add("Vide");
         lvl = 0;
         vieMax = 0;
         vie = 0;
@@ -67,7 +67,7 @@ public class Ennemi extends Personnage {
         CA = 0;
 
         //GLM: TOUJOURS passer le niveau en tant que premiere section dans la string.
-        String[] sections = ennemi.split(";");
+        String[] sections = ennemi.split(" ; ");
         for (int i = 0; i < sections.length; i++){
             String[] unit = sections[i].split(":");
             switch(unit[0].toLowerCase()){
@@ -195,6 +195,12 @@ public class Ennemi extends Personnage {
             }
         }
 
+        if (vieMax < 1){
+            vieMax = 1;
+        }
+        if (vie < 1){
+            vie = 1;
+        }
         if (vie > vieMax){
             vieMax = vie;
         }

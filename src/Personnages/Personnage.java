@@ -68,7 +68,7 @@ public abstract class Personnage {
                 degats = arme.getDegats();
         }
 
-        cible.recevoirDegats(Outils.minCap((degats + force - cible.CA), 1));
+        cible.recevoirDegats(Outils.minCap((degats + force), 1));
 
         return degats;
     }
@@ -173,6 +173,8 @@ public abstract class Personnage {
     public List getObjets() {
         return objets;
     }
+
+    public int getLvl() { return lvl; }
 
     public void activerParade() { reaction = true; }
 

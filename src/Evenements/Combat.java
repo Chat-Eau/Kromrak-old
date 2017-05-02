@@ -39,9 +39,6 @@ public class Combat {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        this.personnages.add(this.personnages.size(), new Ennemi());
-        this.personnages.add(this.personnages.size(), new Ennemi());
-        this.personnages.add(this.personnages.size(), new Ennemi());
         assignerNbrEnnemi();
     }
 
@@ -85,7 +82,7 @@ public class Combat {
         for (int i = 1; i < this.personnages.size(); i++){
             if (i != this.personnages.size() && i != 1)
                 System.out.print("         ");
-            System.out.print(i + ". " + this.personnages.get(i).getNom());
+            System.out.print(i + ". " + this.personnages.get(i).getNom() + " " + this.personnages.get(i).getLvl());
         }
 
         System.out.print(SEP + "Faites votre choix : ");
