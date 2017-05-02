@@ -16,6 +16,7 @@ import static Outils.Constantes.SEP;
 public abstract class Personnage {
     protected Arme arme;
     protected String nom;
+    protected int lvl;
     protected List<Objet> objets = new ArrayList<>();
 
     //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable, non?
