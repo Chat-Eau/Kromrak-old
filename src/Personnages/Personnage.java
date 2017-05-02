@@ -28,8 +28,7 @@ public abstract class Personnage {
     private int barreReaction = 0;
 
     //Attributs
-    //TODO: Une classe pour chaque attribut?
-    //TODO: Pour séparer les get/set, les gérer individuellement pour les caps...
+    //TODO: Une classe pour chaque attribut pour séparer les get/set, les gérer individuellement pour les caps...
     protected int vieMax;
     protected int vie;
     protected int vitesse = 0;
@@ -69,7 +68,7 @@ public abstract class Personnage {
                 degats = arme.getDegats();
         }
 
-        cible.recevoirDegats(Outils.minCap((degats + force - cible.CA), 1));
+        cible.recevoirDegats(Outils.minCap((degats + force), 1));
 
         return degats;
     }
@@ -175,9 +174,13 @@ public abstract class Personnage {
         return objets;
     }
 
+    public int getLvl() { return lvl; }
+
     public void activerParade() { reaction = true; }
 
     public void setCible(Personnage cible) {this.cible = cible; }
+
+    public void setNom(String nom) {this.nom = nom; }
 
     public void pop() {};
 }

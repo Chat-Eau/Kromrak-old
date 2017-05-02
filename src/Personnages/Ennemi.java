@@ -17,9 +17,11 @@ import static Outils.Outils.lancerDes;
 public class Ennemi extends Personnage {
     int rarete;
     int tier;
+    int noEnnemi;
     List<String> type = new ArrayList<>();
 
 
+    //TODO:GLM: Refaire les initialisateurs. Ennemi(int) = random de niveau int. Ennemi(nom, int) cherche un ennemi specifique.
 
     public Ennemi() {
         this.nom = "Gobelin";
@@ -32,8 +34,6 @@ public class Ennemi extends Personnage {
         reaction = false;
         vieMax = 5;
         vie = vieMax;
-        //TODO:GLM: Donner un stat de dommage sans arme d4? Sinon, tout les ennemis sans armes vont toujours frapper pareil.
-        //TODO:GLM: Une alternative serait de faire que la force a 75% de chance de boost les dommages de 1 par point de force? Quelque chose dans le genre.
         force = 2;
         intelligence = 1;
         dextérité = 3;
@@ -52,9 +52,12 @@ public class Ennemi extends Personnage {
     public Ennemi(String ennemi) {
         this.nom = "";
         this.cible = Kromrak.getInstance();
+        this.arme = null;
         reaction = false;
 
-        lvl = 1;
+        rarete = 0;
+        tier = 0;
+        lvl = 0;
         vieMax = 0;
         vie = 0;
         force = 0;
@@ -65,9 +68,9 @@ public class Ennemi extends Personnage {
         CA = 0;
 
         //GLM: TOUJOURS passer le niveau en tant que premiere section dans la string.
-        String[] sections = ennemi.split(":");
+        String[] sections = ennemi.split(" ; ");
         for (int i = 0; i < sections.length; i++){
-            String[] unit = sections[i].split(";");
+            String[] unit = sections[i].split(":");
             switch(unit[0].toLowerCase()){
                 case "niv":case "niveau": case "lvl":
                     lvl = Integer.parseInt(unit[1]);
@@ -105,6 +108,18 @@ public class Ennemi extends Personnage {
                     break;
                 case "pdvie":case "pdpdv":case "dpvie":case "dppdv":
                     vie += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
+                    break;
+                case "pdvmax":case "viemax":
+                    vieMax += Integer.parseInt(unit[1]);
+                    break;
+                case "pviemax":case "ppdvmax":
+                    vieMax += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
+                    break;
+                case "dpdvmax":case "dviemax":
+                    vieMax += lancerDes(Integer.parseInt(unit[1]));
+                    break;
+                case "pdviemax":case "pdpdvmax":case "dpviemax":case "dppdvmax":
+                    vieMax += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
                     break;
                 case "for":case "force":
                     force += Integer.parseInt(unit[1]);
@@ -181,6 +196,16 @@ public class Ennemi extends Personnage {
             }
         }
 
+        if (vieMax < 1){
+            vieMax = 1;
+        }
+        if (vie < 1){
+            vie = 1;
+        }
+        if (vie > vieMax){
+            vieMax = vie;
+        }
+
         if (new Random().nextInt(3) == 0) {
             objets.add(new Arme());
             this.arme = (Arme) objets.get(0);
@@ -221,4 +246,10 @@ public class Ennemi extends Personnage {
         }
         Combat.getInstance().personnagesRemove(this);
     }
+
+    public void setNoEnnemi(int noEnnemi){
+        this.noEnnemi = noEnnemi;
+    }
+
+    public int getNoEnnemi(){ return noEnnemi; }
 }
