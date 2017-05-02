@@ -5,7 +5,7 @@ import Personnages.Ennemi;
 import Personnages.Kromrak;
 import Personnages.Personnage;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -30,16 +30,15 @@ public class Combat {
         this.personnages.removeAll(personnages);
         this.personnages.add(this.personnages.size(), kromrak);
 
-        File file = new File("Ennemi.txt");
-        Scanner scannerEnnemi = new Scanner(file);
-
-        while (scannerEnnemi.hasNext()) {
-            String line = scannerEnnemi.nextLine();
-            personnages.add(new Ennemi(line));
+        try {
+            Scanner scanner = new Scanner(new FileInputStream("C:\\Users\\LAMG030499\\Documents\\GitHub\\Kromrak\\src\\fichierEnnemi"));
+            while (scanner.hasNext()) {
+                String line = scanner.nextLine();
+                personnages.add(new Ennemi(line));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-
-        this.personnages.add(this.personnages.size(), new Ennemi("Nom:Probablementmort"));
-        this.personnages.add(this.personnages.size(), new Ennemi("Nom:Probablementmort;dvie:10"));
         this.personnages.add(this.personnages.size(), new Ennemi());
         this.personnages.add(this.personnages.size(), new Ennemi());
         this.personnages.add(this.personnages.size(), new Ennemi());
