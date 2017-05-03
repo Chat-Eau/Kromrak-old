@@ -102,97 +102,121 @@ public class Ennemi extends Personnage {
                     vie += Integer.parseInt(unit[1]);
                     break;
                 case "pvie":case "ppdv":
-                    vie += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        vie += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
                     break;
                 case "dpdv":case "dvie":
-                    vie += lancerDes(Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        vie += lancerDes(Integer.parseInt(unit[1]));
                     break;
                 case "pdvie":case "pdpdv":case "dpvie":case "dppdv":
-                    vie += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        vie += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
                     break;
                 case "pdvmax":case "viemax":
                     vieMax += Integer.parseInt(unit[1]);
                     break;
                 case "pviemax":case "ppdvmax":
-                    vieMax += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        vieMax += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
                     break;
                 case "dpdvmax":case "dviemax":
-                    vieMax += lancerDes(Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        vieMax += lancerDes(Integer.parseInt(unit[1]));
                     break;
                 case "pdviemax":case "pdpdvmax":case "dpviemax":case "dppdvmax":
-                    vieMax += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        vieMax += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
                     break;
                 case "for":case "force":
                     force += Integer.parseInt(unit[1]);
                     break;
                 case "pfor":case "pforce":
-                    force += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        force += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
                     break;
                 case "dfor":case "dforce":
-                    force += lancerDes(Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        force += lancerDes(Integer.parseInt(unit[1]));
                     break;
                 case "pdforce":case "pdfor":case "dpforce":case "dpfor":
-                    force += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        force += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
                     break;
-                case "int":case "intelligence":
+                case "int":case "intel":case "intelligence":
                     intelligence += Integer.parseInt(unit[1]);
                     break;
-                case "pint":case "pintelligence":
-                    intelligence += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
+                case "pint":case "pintel":case "pintelligence":
+                    if (Integer.parseInt(unit[1]) != 0)
+                        intelligence += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
                     break;
-                case "dint":case "dintelligence":
-                    intelligence += lancerDes(Integer.parseInt(unit[1]));
+                case "dint":case "dintel":case "dintelligence":
+                    if (Integer.parseInt(unit[1]) != 0)
+                        intelligence += lancerDes(Integer.parseInt(unit[1]));
                     break;
-                case "dpint":case "dpintelligence":case "pdint":case "pdintelligence":
-                    intelligence += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
+                case "dpint":case "dpintel":case "dpintelligence":case "pdint":case "pdintel":case "pdintelligence":
+                    if (Integer.parseInt(unit[1]) != 0)
+                        intelligence += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
                     break;
                 case "dex":case "dexterite":
                     dextérité += Integer.parseInt(unit[1]);
                     break;
                 case "pdex":case "pdexterite":
-                    dextérité += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        dextérité += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
                     break;
                 case "ddex":case "ddexterite":
-                    dextérité += lancerDes(Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        dextérité += lancerDes(Integer.parseInt(unit[1]));
                     break;
                 case "pddex":case "pddexterite":case "dpdex":case "dpdexterite":
-                    dextérité += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        dextérité += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
                     break;
                 case "vit":case "vitesse":
                     vitesse += Integer.parseInt(unit[1]);
                     break;
                 case "pvit":case "pvitesse":
-                    vitesse += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        vitesse += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
                     break;
                 case "dvit":case "dvitesse":
-                    vitesse += lancerDes(Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        vitesse += lancerDes(Integer.parseInt(unit[1]));
                     break;
                 case "pdvit":case "pdvitesse":case "dpvit":case "dpvitesse":
-                    vitesse += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        vitesse += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
                     break;
                 case "end":case "endurance":
                     endurance += Integer.parseInt(unit[1]);
                     break;
                 case "pend":case "pendurance":
-                    endurance += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        endurance += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
                     break;
                 case "dend":case "dendurance":
-                    endurance += lancerDes(Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        endurance += lancerDes(Integer.parseInt(unit[1]));
                     break;
                 case "pdend":case "pdendurance":case "dpend":case "dpendurance":
-                    endurance += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        endurance += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
                     break;
                 case "ca":case "classearmure":
                     CA += Integer.parseInt(unit[1]);
                     break;
                 case "pca":case "pclassearmure":
-                    CA += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        CA += (int) Math.floor(lvl / Integer.parseInt(unit[1]));
                     break;
                 case "dca":case "dclassearmure":
-                    CA += lancerDes(Integer.parseInt(unit[1]));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        CA += lancerDes(Integer.parseInt(unit[1]));
                     break;
                 case "pdca":case "pdclassearmure":case "dpca":case "dpclassearmure":
-                    CA += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
+                    if (Integer.parseInt(unit[1]) != 0)
+                        CA += lancerDes((int) Math.floor(lvl / Integer.parseInt(unit[1])));
                     break;
             }
         }

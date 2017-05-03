@@ -1,3 +1,6 @@
-Nom:Gobelin ; lvl:5 ; type:Humanoide ; type:Gobelin ; Vie:5 ; pVie:10 ; pdVie:30 ; Force:2 ; pforce:40 ; pdforce:60 ; int:1 ; dex:3 ; pdex:50 ; pvit:40 ; dvit:1 ; pend:33 ; pCA:65 ; rarete:1 ; tier:1
+//Entrez TOUJOURS le niveau avant les autres stats des monstres.
+//
+//Nom:Gobelin ; lvl:5 ; type:Humanoide ; type:Gobelin ; Vie:5 ; pVie:10 ; pdVie:30 ; Force:2 ; pforce:40 ; pdforce:60 ; int:1 ; dex:3 ; pdex:50 ; pvit:40 ; dvit:1 ; pend:33 ; pCA:65 ; rarete:1 ; tier:1
 Nom:Kobold ; lvl:10 ; type:Humanoide ; type:Draconique ; Vie:6 ; pVie:8 ; pdVie:33 ; Force:1 ; pforce:25 ; pdforce:60 ; int:1 ; pint:45 ; dex:1 ; pdex:33 ; ddex:1 ; vit:3 ; pvit:50 ; pend:50 ; CA:1 ; pCA:35 ; rarete:1 ; tier:1
 //Nom:Feu-Follet ; lvl:1 ; type:Esprit ; Vie:1 ; DVie:1 ; PVie:15 ; DPVie:50 ; int:2 ; dint:1 ; pint:35 ; dpint:100 ; pdex:40 ; vit:2 ; pvit:60 ; CA:3 ; pCA:50 ; rarete:1 ; tier:1
+Nom:Dexterieux ; Lvl:1 ; Type:Humanoide ; Tier:1 ; Rarete:1 ; PdvMax:50 ; pdv:50 ; force:0 ; Intel:0 ; Dex:15 ; Vit:2 ; End:0 ; CA:3 ; dpdv:0 ; dforce:0 ; dIntel:0 ; dDex:0 ; dVit:0 ; dEnd:0 ; dCA:0 ; ppdv:5 ; pforce:0 ; pIntel:0 ; pDex:0 ; pVit:0 ; pEnd:0 ; pCA:0 ; pdpdv:0 ; pdforce:0 ; pdIntel:0 ; pdDex:0 ; pdVit:0 ; pdEnd:0 ; pdCA:0
