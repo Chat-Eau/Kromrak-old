@@ -1,6 +1,6 @@
 package Evenements;
 
-import Objets.Conteneur;
+import Conteneur.Conteneur;
 import Objets.Objet;
 import Personnages.Ennemi;
 import Personnages.Kromrak;

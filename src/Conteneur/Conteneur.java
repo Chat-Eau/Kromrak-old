@@ -1,4 +1,7 @@
-package Objets;
+package Conteneur;
+
+import Objets.Objet;
+import Objets.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +26,9 @@ public class Conteneur {
 
     public int size() { return objets.size();}
     public void add(Objet objet) { objets.add(objet);}
-    public void add(int i) { this.pieces.valeur += i;}
+    public void add(int i) { this.pieces.add(i);}
     public void addAll(Conteneur cible) {
-        cible.add(this.pieces.valeur);
+        cible.add(this.pieces.getValeur());
         for (Objet objet: this.objets) {
             cible.add(objet);
         }
@@ -37,7 +40,7 @@ public class Conteneur {
     public Objet remove(int i){
         return objets.remove(i);
     }
-    public int getPiece() { return pieces.valeur; }
+    public int getPiece() { return pieces.getValeur(); }
 
     public String toString(){
         String string = this.pieces.toString() + SEP;

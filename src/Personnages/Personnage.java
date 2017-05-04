@@ -2,7 +2,7 @@ package Personnages;
 
 
 import Objets.Arme;
-import Objets.Conteneur;
+import Conteneur.Conteneur;
 import Outils.Outils;
 
 import static Outils.Constantes.SEP;

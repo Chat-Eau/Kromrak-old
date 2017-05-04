@@ -237,10 +237,21 @@ public class Ennemi extends Personnage {
     }
     public void recevoirDegats (int nbDegats)
     {
-        super.recevoirDegats(nbDegats);
+        int reactionChoisie = -1;
+        Random random = new Random();
         if (reaction){
-        //TODO:GLM: Réagir
+            reactionChoisie = random.nextInt(2);
             reaction = false;
+        } else {
+            super.recevoirDegats(3);
+        }
+
+        if (reactionChoisie == 0){
+            super.recevoirDegats(nbDegats);
+            System.out.println(SEP + this.getNom() + " contre-attaque!");
+            this.attaquer();
+        } else if (reactionChoisie == 1){
+            System.out.println(this.getNom() + " esquive l'attaque de " + nbDegats + " dommages.");
         }
     }
 

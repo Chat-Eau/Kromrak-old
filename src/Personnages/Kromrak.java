@@ -5,6 +5,8 @@ import Objets.Arme;
 
 import java.util.Scanner;
 
+import static Outils.Constantes.SEP;
+
 /**
  * Created by lapb290796 on 2017-02-21.
  */
@@ -21,10 +23,10 @@ public class Kromrak extends Personnage {
         vie = vieMax;
         vitesse = 2;
         force = 3;
-        dextérité = 1;//à faire
+        dextérité = 5;
         endurance = 0;//à faire
         intelligence = 0;//à faire
-        CA = 0;
+        CA = 1;
 
         this.cible = null;
     }
@@ -41,9 +43,25 @@ public class Kromrak extends Personnage {
 
     public void recevoirDegats (int nbDegats)
     {
-        super.recevoirDegats(nbDegats);
+        Scanner scanner = new Scanner(System.in);
+
+        int reactionChoisie = -1;
         if (reaction){
-            //TODO:GLM: Kromrak peut réagir
+            System.out.println(SEP + "Kromrak peux réagir à l'attaque! 1:Esquiver / 2:Contre-attaquer / Autre:économiser la réaction.");
+            System.out.print("Faites votre choix : ");
+            reactionChoisie = Integer.parseInt(scanner.next());
+        }
+
+        if (reactionChoisie == 2){
+            super.recevoirDegats(nbDegats);
+            System.out.println(SEP + this.getNom() + " contre-attaque!");
+            this.attaquer();
+            reaction = false;
+        } else if (reactionChoisie == 1){
+            System.out.println(this.getNom() + " esquive l'attaque de " + nbDegats + " dommages.");
+            reaction = false;
+        } else {
+            super.recevoirDegats(3);
         }
     }
 
