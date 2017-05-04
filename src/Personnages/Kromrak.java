@@ -10,8 +10,8 @@ import java.util.Scanner;
  */
 public class Kromrak extends Personnage {
     private Kromrak() {
-        objets.add(new Arme("Épée longue et dure", 1, 1, 0, 5, true));
-        this.arme = (Arme) objets.get(0);
+        inventaire.add(new Arme("Épée longue et dure", 1, 1, 0, 5));
+        this.arme = (Arme) inventaire.get(0);
         nom = "Kromrak";
 
         reaction = false;

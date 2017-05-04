@@ -2,11 +2,8 @@ package Personnages;
 
 
 import Objets.Arme;
-import Objets.Objet;
+import Objets.Conteneur;
 import Outils.Outils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static Outils.Constantes.SEP;
 
@@ -17,7 +14,7 @@ public abstract class Personnage {
     protected Arme arme;
     protected String nom;
     protected int lvl;
-    protected List<Objet> objets = new ArrayList<>();
+    protected Conteneur inventaire = new Conteneur("Les pochettes de Kromrak");
 
     //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable, non?
     protected Personnage cible;
@@ -87,16 +84,6 @@ public abstract class Personnage {
     public abstract void jouerTour();
 
     public String toString () {
-        String strObjets = "";
-        for (int i = 0; i < objets.size(); i++){
-            if (objets.get(i).getEquipé() == false) {
-                strObjets += objets.get(i).toString();
-                if (i != objets.size() - 1) {
-                    strObjets += SEP;
-                }
-            }
-        }
-
         return "Nom: " + nom + SEP +
                 "Vie: " + this.vie + "/" + this.vieMax + SEP +
                 "Arme: " + this.arme.toString() + SEP +
@@ -107,7 +94,7 @@ public abstract class Personnage {
                 "Intelligence: " + intelligence + SEP +
                 "Classe d'armure: " + CA + SEP + SEP +
                 "Inventaire: " + SEP +
-                strObjets;
+                getObjets().toString();
     }
 
     public boolean avancerVitesse() {
@@ -170,8 +157,8 @@ public abstract class Personnage {
         return vieMax;
     }
 
-    public List getObjets() {
-        return objets;
+    public Conteneur getObjets() {
+        return inventaire;
     }
 
     public int getLvl() { return lvl; }

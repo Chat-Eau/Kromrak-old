@@ -42,11 +42,11 @@ public class Ennemi extends Personnage {
         CA = 0;
 
         if (new Random().nextInt(3) == 0) {
-            objets.add(new Arme());
-            this.arme = (Arme) objets.get(0);
+            inventaire.add(new Arme());
+            this.arme = (Arme) inventaire.get(0);
         }
         for (int i = new Random().nextInt(5) + 10; 0 < i; i--) {
-            objets.add(new Objet());
+            inventaire.add(new Objet());
         }
     }
     public Ennemi(String ennemi) {
@@ -95,9 +95,8 @@ public class Ennemi extends Personnage {
                     //À faire
                     break;
                 case "pièce":case "piece":case "or":
-                    for (int cptObjet = Integer.parseInt(unit[1]); 0 < cptObjet; cptObjet--) {
-                        objets.add(new Objet());
-                    }
+                    inventaire.add(Integer.parseInt(unit[1]));
+                    break;
                 case "pdv":case "vie":
                     vie += Integer.parseInt(unit[1]);
                     break;
@@ -232,8 +231,8 @@ public class Ennemi extends Personnage {
         }
 
         if (new Random().nextInt(3) == 0) {
-            objets.add(new Arme());
-            this.arme = (Arme) objets.get(0);
+            this.arme = (new Arme());
+            inventaire.add(this.arme);
         }
     }
     public void recevoirDegats (int nbDegats)
@@ -263,11 +262,13 @@ public class Ennemi extends Personnage {
     public void pop() {
         System.out.println(this.nom + " est mort.");
 
-        while (0 < this.objets.size()) {
+        Combat.getInstance().lootAdd(this.inventaire.getPiece());
+
+        while (0 < this.inventaire.size()) {
             if (new Random().nextInt(10) == 0) {
-                Combat.getInstance().lootAdd((Objet) this.objets.get(0));
+                Combat.getInstance().lootAdd((Objet) this.inventaire.get(0));
             }
-            this.objets.remove(0);
+            this.inventaire.remove(0);
         }
         Combat.getInstance().personnagesRemove(this);
     }

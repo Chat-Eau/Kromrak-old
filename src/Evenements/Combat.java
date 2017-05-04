@@ -1,5 +1,6 @@
 package Evenements;
 
+import Objets.Conteneur;
 import Objets.Objet;
 import Personnages.Ennemi;
 import Personnages.Kromrak;
@@ -7,7 +8,9 @@ import Personnages.Personnage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 import static Outils.Constantes.SEP;
 
@@ -17,8 +20,7 @@ import static Outils.Constantes.SEP;
 public class Combat {
     private int tour = 1;
     private List<Personnage> personnages = new ArrayList<>();
-    private List<Objet> loot = new ArrayList<>();
-    private Iterator<Personnage> iterator = personnages.iterator();
+    private Conteneur loot = new Conteneur("loot de fin de combat");
 
     private Kromrak kromrak;
 
@@ -128,18 +130,17 @@ public class Combat {
         } else {
             System.out.println(SEP + "Je t'aime, Kromrak!");
 
-            Outils.Outils.mergeArgent(loot);
-            kromrak.getObjets().addAll(loot);
-            for (Objet objet : loot){
-                System.out.println("Vous avez obtenu : " + objet.toString());
-            }
+            System.out.println("Vous avez obtenu : " + loot.toString());
             System.out.println();
-            Outils.Outils.mergeArgent(kromrak.getObjets());
+            loot.addAll(kromrak.getObjets());
         }
     }
 
     public void lootAdd(Objet objet) {
         loot.add(objet);
+    }
+    public void lootAdd(int i) {
+        loot.add(i);
     }
 
     public void personnagesRemove(Personnage personnage) {
@@ -154,19 +155,5 @@ public class Combat {
                 ((Ennemi) personnage).setNoEnnemi(cpt++);
             }
         }
-
-        //Ancienne utilitée (A garder ou pas?) :
-//        for (Personnage personnage1:personnages) {
-//            String nom1 = personnage1.getNom();
-//            short cptSimilaire = 1;
-//            for (Personnage personnage2:personnages) {
-//                if (nom1.equals(personnage2.getNom()) && personnage1 != personnage2){
-//                    personnage2.setNom(nom1 + " " + (++cptSimilaire));
-//                }
-//            }
-//            if(cptSimilaire > 1){
-//                personnage1.setNom(nom1 + " 1");
-//            }
-//        }
     }
 }
