@@ -1,7 +1,6 @@
 package Conteneur;
 
 import Objets.Objet;
-import Objets.Piece;
 
 import java.util.ArrayList;
 import java.util.List;

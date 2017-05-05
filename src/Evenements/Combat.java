@@ -17,7 +17,7 @@ import static Outils.Constantes.SEP;
 /**
  * Created by lapb290796 on 2017-02-21.
  */
-public class Combat {
+public class Combat extends Evenement{
     private int tour = 1;
     private List<Personnage> personnages = new ArrayList<>();
     private Conteneur loot = new Conteneur("loot de fin de combat");

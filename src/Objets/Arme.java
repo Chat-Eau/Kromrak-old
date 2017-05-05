@@ -18,11 +18,11 @@ public class Arme extends Equipement {
         this.valeur = 3;
     }
 
-    public Arme (String nom, int nbDés, int dmgBase,int modificateur, int valeur) {
+    public Arme (String nom, int nbDés, int dmgBase,int multiplicateur, int valeur) {
         super(nom, valeur);
         this.nbDés = nbDés;
         this.dmgBase = dmgBase;
-        this.multiplicateur = modificateur;
+        this.multiplicateur = multiplicateur;
     }
 
     public int getDegats() {

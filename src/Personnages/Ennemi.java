@@ -243,7 +243,7 @@ public class Ennemi extends Personnage {
             reactionChoisie = random.nextInt(2);
             reaction = false;
         } else {
-            super.recevoirDegats(3);
+            super.recevoirDegats(nbDegats);
         }
 
         if (reactionChoisie == 0){

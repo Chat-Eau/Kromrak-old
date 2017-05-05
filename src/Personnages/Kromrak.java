@@ -12,7 +12,7 @@ import static Outils.Constantes.SEP;
  */
 public class Kromrak extends Personnage {
     private Kromrak() {
-        inventaire.add(new Arme("Épée longue et dure", 1, 1, 0, 5));
+        inventaire.add(new Arme("Espadon", 1, 2, 1, 5));
         this.arme = (Arme) inventaire.get(0);
         nom = "Kromrak";
 
@@ -22,7 +22,7 @@ public class Kromrak extends Personnage {
         vieMax = 40;
         vie = vieMax;
         vitesse = 2;
-        force = 3;
+        force = 0;
         dextérité = 5;
         endurance = 0;//à faire
         intelligence = 0;//à faire
@@ -61,7 +61,7 @@ public class Kromrak extends Personnage {
             System.out.println(this.getNom() + " esquive l'attaque de " + nbDegats + " dommages.");
             reaction = false;
         } else {
-            super.recevoirDegats(3);
+            super.recevoirDegats(nbDegats);
         }
     }
 
