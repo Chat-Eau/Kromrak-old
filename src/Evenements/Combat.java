@@ -20,6 +20,8 @@ public class Combat {
     private List<Objet> loot = new ArrayList<>();
     private Iterator<Personnage> iterator = personnages.iterator();
 
+    //Mmmm
+
     private Kromrak kromrak;
 
     private Combat() {
