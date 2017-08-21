@@ -25,11 +25,10 @@ public class Combat extends Evenement{
     private Kromrak kromrak;
 
     private Combat() {
+        this.description = "Deux méchants très menacants attaque Kromrak! Oh! Il y a un caca aussi!";
         this.kromrak = Kromrak.getInstance();
-        //TODO: Assigner un numéro à l'ennemi lors de sa création
         this.personnages.removeAll(personnages);
         this.personnages.add(this.personnages.size(), kromrak);
-
 
         try {
             Scanner scanner = new Scanner(new FileInputStream("src\\fichierEnnemi"));
@@ -54,9 +53,12 @@ public class Combat extends Evenement{
     public static Combat newCombat() {
         return combat = new Combat();
     }
+    public static Combat setCombat(Combat nouveauCombat) { return combat = nouveauCombat; }
 
-    public void combattre()
+    public void activer()
     {
+        super.activer();
+
         boolean combatFini = false;
 
         while (!combatFini) {
@@ -134,6 +136,8 @@ public class Combat extends Evenement{
             System.out.println();
             loot.addAll(kromrak.getObjets());
         }
+
+        combat = null;
     }
 
     public void lootAdd(Objet objet) {
