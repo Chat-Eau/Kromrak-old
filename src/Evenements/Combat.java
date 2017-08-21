@@ -26,7 +26,7 @@ public class Combat extends Evenement{
 
     private Kromrak kromrak;
 
-    private Combat() {
+    private Combat() {//LES CHATS SONT TOUS MORTS.
         this.kromrak = Kromrak.getInstance();
         //TODO: Assigner un numéro à l'ennemi lors de sa création
         this.personnages.removeAll(personnages);
