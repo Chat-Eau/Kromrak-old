@@ -1,8 +1,5 @@
 package Outils;
 
-import Objets.Objet;
-
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -29,22 +26,5 @@ public class Outils {
     static public int minMaxCap(int stat, int min, int max){
         stat = stat > max ? max : stat;
         return stat < min ? min : stat;
-    }
-
-    static public List mergeArgent(List<Objet> objets){
-        int total = 0;
-        boolean pieceCréée = false;
-
-        for (int i = 0; i < objets.size(); i++) {
-            if (objets.get(i).getNom().equals("Pièces d'or") || objets.get(i).getNom().equals("Pièce d'or")){
-                total += objets.remove(i).getValeur();
-                i--;
-                pieceCréée = true;
-            }
-        }
-        if (pieceCréée) {
-            objets.add(objets.size(), new Objet(total));
-        }
-        return objets;
     }
 }

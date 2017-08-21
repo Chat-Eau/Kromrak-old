@@ -2,11 +2,8 @@ package Personnages;
 
 
 import Objets.Arme;
-import Objets.Objet;
+import Conteneur.Conteneur;
 import Outils.Outils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static Outils.Constantes.SEP;
 
@@ -16,7 +13,8 @@ import static Outils.Constantes.SEP;
 public abstract class Personnage {
     protected Arme arme;
     protected String nom;
-    protected List<Objet> objets = new ArrayList<>();
+    protected int lvl;
+    protected Conteneur inventaire = new Conteneur("Les pochettes de Kromrak");
 
     //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable, non?
     protected Personnage cible;
@@ -27,8 +25,7 @@ public abstract class Personnage {
     private int barreReaction = 0;
 
     //Attributs
-    //TODO: Une classe pour chaque attribut?
-    //TODO: Pour séparer les get/set, les gérer individuellement pour les caps...
+    //TODO: Une classe pour chaque attribut pour séparer les get/set, les gérer individuellement pour les caps...
     protected int vieMax;
     protected int vie;
     protected int vitesse = 0;
@@ -68,7 +65,7 @@ public abstract class Personnage {
                 degats = arme.getDegats();
         }
 
-        cible.recevoirDegats(Outils.minCap((degats + force - cible.CA), 1));
+        cible.recevoirDegats(Outils.minCap((degats + force), 1));
 
         return degats;
     }
@@ -87,16 +84,6 @@ public abstract class Personnage {
     public abstract void jouerTour();
 
     public String toString () {
-        String strObjets = "";
-        for (int i = 0; i < objets.size(); i++){
-            if (objets.get(i).getEquipé() == false) {
-                strObjets += objets.get(i).toString();
-                if (i != objets.size() - 1) {
-                    strObjets += SEP;
-                }
-            }
-        }
-
         return "Nom: " + nom + SEP +
                 "Vie: " + this.vie + "/" + this.vieMax + SEP +
                 "Arme: " + this.arme.toString() + SEP +
@@ -107,7 +94,7 @@ public abstract class Personnage {
                 "Intelligence: " + intelligence + SEP +
                 "Classe d'armure: " + CA + SEP + SEP +
                 "Inventaire: " + SEP +
-                strObjets;
+                getObjets().toString();
     }
 
     public boolean avancerVitesse() {
@@ -170,13 +157,17 @@ public abstract class Personnage {
         return vieMax;
     }
 
-    public List getObjets() {
-        return objets;
+    public Conteneur getObjets() {
+        return inventaire;
     }
+
+    public int getLvl() { return lvl; }
 
     public void activerParade() { reaction = true; }
 
     public void setCible(Personnage cible) {this.cible = cible; }
+
+    public void setNom(String nom) {this.nom = nom; }
 
     public void pop() {};
 }
