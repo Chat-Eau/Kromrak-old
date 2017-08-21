@@ -7,24 +7,21 @@ public class Objet {
     public String nom;
     public int valeur;
 
-    public boolean getEquipé() {return false; }
-
-
     public Objet(){
-        nom = "Pièce d'or";
+        nom = "Objet par defaut";
         valeur = 1;
     }
-    public Objet(String nom, int valeur){
-        this.nom = nom;
-        this.valeur = valeur;
-    }
     public Objet(int valeur){
-        this.nom = valeur > 1 ? "Pièces d'or" : "Pièce d'or";
+        this.nom = "Objet par defaut";
         this.valeur = valeur;
     }
     public Objet(String nom){
         this.nom = nom;
         this.valeur = 1;
+    }
+    public Objet(String nom, int valeur){
+        this.nom = nom;
+        this.valeur = valeur;
     }
 
     public String getNom(){
@@ -44,11 +41,6 @@ public class Objet {
 //        return null;
 //    }
     public String toString(){
-        if (nom == "Pièces d'or" || nom == "Pièce d'or") {
-            return (valeur + " " + nom);
-        }
-        else {
-            return nom + ", valeur de " + valeur + " pièces.";
-        }
+        return nom + ", valeur de " + valeur + " pièces.";
     }
 }

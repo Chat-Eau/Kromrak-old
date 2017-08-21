@@ -12,9 +12,8 @@ public class Equipement extends Objet {
         this.equipé = true;
     }
 
-    protected Equipement (String nom, int valeur, boolean equipé) {
+    protected Equipement (String nom, int valeur) {
         super(nom, valeur);
-        this.equipé = equipé;
     }
 
     public String toString(){

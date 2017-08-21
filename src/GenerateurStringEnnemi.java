@@ -26,7 +26,7 @@ public class GenerateurStringEnnemi {
 
 
         System.out.print("Nom du monstre : ");
-        String nom = scanner.nextLine();
+        String nom = scanner.next();
         System.out.print(SEP + "Niveau : ");
         int lvl = scanner.nextInt();
         System.out.print(SEP + "Type : ");
@@ -67,7 +67,8 @@ public class GenerateurStringEnnemi {
         int dCA = scanner.nextInt();
 
         System.out.println("Voulez vous implementer des stats par niveau au mob? (O/N)");
-        String choix = scanner.nextLine().toLowerCase();
+        String choix = scanner.next();
+        choix = choix.toLowerCase();
         if (choix.charAt(0) == 'o') {
             System.out.print(SEP + "Pallier par niveau de vie au spawn : ");
             pvie = scanner.nextInt();
