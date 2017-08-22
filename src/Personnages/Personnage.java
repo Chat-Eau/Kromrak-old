@@ -99,10 +99,10 @@ public abstract class Personnage {
                 getObjets().toString();
     }
 
-    public void resetBarreVitesse(){
+    protected void resetBarreVitesse(){
         this.barreVitesse = 0;
     }
-    public void resetBarreReaction(){
+    protected void resetBarreReaction(){
         this.barreReaction = 0;
     }
     public void resetBarres(){
