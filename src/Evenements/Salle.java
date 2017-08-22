@@ -3,6 +3,7 @@ package Evenements;
 import Evenements.Combat;
 import Evenements.Evenement;
 
+import java.awt.*;
 import java.util.List;
 
 import static Outils.Constantes.SEP;
@@ -19,5 +20,12 @@ public class Salle extends Evenement{
     public Salle(){
         this.evenements.add(Combat.newCombat());
         this.description = "Vous entrez dans une salle non initialisée.";
+    }
+
+    public void setDescription(String description){
+        this.description = description;
+    }
+    public void addEvenement(Evenement evenement){
+        this.evenements.add(evenement);
     }
 }
