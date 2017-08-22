@@ -32,7 +32,7 @@ public class Zone {
 
     public Salle getSalle(Coord coord) {
         for(Salle salle : this.salles){
-            if (salle.getCoord() == coord)
+            if (salle.getCoord().compareTo(coord))
                 return salle;
         }
         return null;

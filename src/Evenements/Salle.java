@@ -30,7 +30,7 @@ public class Salle extends Evenement{
 
     public Salle(Coord coord){
         this.evenements.add(Combat.newCombat());
-        this.description = "Vous entrez dans une salle non initialisée.";
+        this.description = "Vous entrez dans une salle non initialisée aux coordonnées.";
         this.coord = coord;
     }
 
