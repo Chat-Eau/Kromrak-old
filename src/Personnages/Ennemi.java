@@ -28,6 +28,8 @@ public class Ennemi extends Personnage {
         //TODO: On a tu vraiment besoin de cible?
         cible = Kromrak.getInstance();
         this.nom = "Gobelin";
+        Personnage cible = Kromrak.getInstance();
+
         lvl = 1;
         tier = 1;
         rarete = 1;

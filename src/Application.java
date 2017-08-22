@@ -1,5 +1,6 @@
 import Evenements.Combat;
 import Evenements.Salle;
+import Lieux.Zone;
 import Personnages.Kromrak;
 
 import java.util.Scanner;
@@ -16,8 +17,13 @@ public class Application {
 
         //Test salle avec combat :
         Kromrak.getInstance().setSalle(new Salle());
-        Kromrak.getInstance().setSalle(new Salle());
+        //Kromrak.getInstance().setSalle(new Salle());
 
+//        //Test zone avec salle avec combat (sans déplacement)
+//        Zone zone = new Zone();
+//        Kromrak.getInstance().setSalle(zone.salles[3][3]);
+//        Kromrak.getInstance().setSalle(zone.salles[1][7]);
+//        Kromrak.getInstance().setSalle(zone.salles[6][9]);
 
 
         System.out.println(Kromrak.getInstance().toString() + System.lineSeparator() +

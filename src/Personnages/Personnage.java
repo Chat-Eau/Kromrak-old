@@ -65,8 +65,9 @@ public abstract class Personnage {
         if (this.arme != null) {
                 degats = arme.getDegats();
         }
+        degats += force;
 
-        cible.recevoirDegats(Outils.minCap((degats + force), 1));
+        cible.recevoirDegats(Outils.minCap((degats), 1));
 
         return degats;
     }
