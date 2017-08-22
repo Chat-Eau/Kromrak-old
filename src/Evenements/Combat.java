@@ -22,8 +22,6 @@ public class Combat extends Evenement{
     private List<Personnage> personnages = new ArrayList<>();
     private Conteneur loot = new Conteneur("loot de fin de combat");
 
-    //Mmmm
-
     private Kromrak kromrak;
 
     private Combat() {
@@ -32,6 +30,7 @@ public class Combat extends Evenement{
         this.kromrak = Kromrak.getInstance();
         this.personnages.removeAll(personnages);
         this.personnages.add(this.personnages.size(), kromrak);
+        this.auto = true;
 
         try {
             Scanner scanner = new Scanner(new FileInputStream("src\\fichierEnnemi"));
@@ -93,6 +92,7 @@ public class Combat extends Evenement{
                 System.out.print("         ");
             System.out.print((i) + ". " + this.personnages.get(i).getNom() + " lvl " + this.personnages.get(i).getLvl());
             //TODO:GLM: Décomenter le sout en dessous lorsque choisirCible choisit selon le numéro de l'ennemi, pas sa position dans le tableau.
+
 //          System.out.print(((Ennemi)this.personnages.get(i)).getNoEnnemi() + ". "
 //                  + this.personnages.get(i).getNom() + " " + this.personnages.get(i).getLvl());
         }
@@ -152,7 +152,6 @@ public class Combat extends Evenement{
     }
 
     public void assignerNbrEnnemi(){
-        //Nouvelle utilité :
         int cpt = 1;
         for (Personnage personnage:personnages) {
             if (personnage.getClass() != Kromrak.class){

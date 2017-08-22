@@ -1,5 +1,7 @@
 package Evenements;
 
+import Personnages.Kromrak;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,14 @@ import static Outils.Constantes.SEP;
 public class Evenement {
     String description = "";
     List<Evenement> evenements = new ArrayList<>();
-    //On devrais mettre un bool dans Evenement pour identifier les evenements agro/automatique.
+    boolean auto = false;
+    //TODO:GLM: On devrais mettre un bool dans Evenement pour identifier les evenements agro/automatique.
+    //Done!
+
+    public Evenement(List<Evenement> evenements, String descEntree, boolean auto){
+        this.evenements = evenements;
+        this.description = descEntree;
+    }
 
     public Evenement(List<Evenement> evenements, String descEntree){
         this.evenements = evenements;
@@ -24,11 +33,17 @@ public class Evenement {
     public void activer() {
         System.out.println(this + SEP);
         for(Evenement evenement: evenements) {
-            evenement.activer();
+            if (getAuto()) evenement.activer();
         }
     }
 
     public String toString(){
         return description;
     }
+
+    public void retour() {
+        Kromrak.getInstance().getSalle().activer();
+    }
+
+    protected boolean getAuto() {return auto;}
 }
