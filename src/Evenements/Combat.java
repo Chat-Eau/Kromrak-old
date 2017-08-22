@@ -27,11 +27,10 @@ public class Combat extends Evenement{
     private Kromrak kromrak;
 
     private Combat() {
+        this.description = "Deux méchants très menacants attaque Kromrak! Oh! Il y a un caca aussi!";
         this.kromrak = Kromrak.getInstance();
-        //TODO: Assigner un numéro à l'ennemi lors de sa création
         this.personnages.removeAll(personnages);
         this.personnages.add(this.personnages.size(), kromrak);
-
 
         try {
             Scanner scanner = new Scanner(new FileInputStream("src\\fichierEnnemi"));
@@ -56,9 +55,12 @@ public class Combat extends Evenement{
     public static Combat newCombat() {
         return combat = new Combat();
     }
+    public static Combat setCombat(Combat nouveauCombat) { return combat = nouveauCombat; }
 
-    public void combattre()
+    public void activer()
     {
+        super.activer();
+
         boolean combatFini = false;
 
         while (!combatFini) {
@@ -116,6 +118,9 @@ public class Combat extends Evenement{
         this.kromrak.setCible(this.personnages.get(noEnnemi));
     }
 
+    //Return -1 : Kromrak mort
+    //Return 0 : Combat en cours
+    //Return 1 : Combat gagné
     protected int verifierEtat(){
         if (!this.kromrak.estVivant()) return -1;
 
@@ -133,11 +138,11 @@ public class Combat extends Evenement{
             System.out.println(SEP + "Combat en cours.");
         } else {
             System.out.println(SEP + "Je t'aime, Kromrak!");
-
-            System.out.println("Vous avez obtenu : " + loot.toString());
-            System.out.println();
+            System.out.println("Vous avez obtenu : " + loot.toString() + SEP);
             loot.addAll(kromrak.getObjets());
         }
+        Kromrak.getInstance().resetBarres();
+        combat = null;
     }
 
     public void lootAdd(Objet objet) {

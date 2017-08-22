@@ -98,6 +98,17 @@ public abstract class Personnage {
                 getObjets().toString();
     }
 
+    public void resetBarreVitesse(){
+        this.barreVitesse = 0;
+    }
+    public void resetBarreReaction(){
+        this.barreReaction = 0;
+    }
+    public void resetBarres(){
+        resetBarreVitesse();
+        resetBarreReaction();
+    }
+
     public boolean avancerVitesse() {
         this.barreVitesse += STEP_VITESSE + vitesse;
 
