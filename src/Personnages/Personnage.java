@@ -5,7 +5,7 @@ import Objets.Arme;
 import Conteneur.Conteneur;
 import Outils.Outils;
 
-import static Outils.Constantes.SEP;
+import static Outils.Constantes.*;
 
 /**
  * Created by lapb290796 on 2017-02-21.
@@ -17,6 +17,11 @@ public abstract class Personnage {
     protected Conteneur inventaire = new Conteneur("Les pochettes de Kromrak");
 
     //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable, non?
+    /*
+    BL: Ouais, mais pour la gestion des enemis, un attribut est plus simple parce que la cible par défaut des ennemis
+    est (presque) toujours Kromrak. Pour Kromrak, on va avoir besoin d'une variable locale dans
+    cible de toute façon.
+    */
     protected Personnage cible;
 
     protected boolean reaction = false;
@@ -35,11 +40,7 @@ public abstract class Personnage {
     protected int intelligence = 0;//à faire
     protected int CA = 1;
 
-    static public final int STEP_VITESSE = 3;
-    static public final int STEP_REACTION = 5;
 
-    static public final int MAX_REACTION = 100;
-    static public final int MAX_VITESSE = 100;
 
     protected Personnage() {}
 

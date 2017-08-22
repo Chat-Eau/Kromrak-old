@@ -31,6 +31,7 @@ public class Kromrak extends Personnage {
         this.cible = null;
     }
 
+    //best ligne de code ever.
     private static Kromrak kromrak = new Kromrak();
 
     public static Kromrak getInstance() {
@@ -45,6 +46,7 @@ public class Kromrak extends Personnage {
     {
         Scanner scanner = new Scanner(System.in);
 
+        //TODO:BL : Il y a certainement une meilleur façon de gérer les réactions...
         int reactionChoisie = -1;
         if (reaction){
             System.out.println(SEP + "Kromrak peux réagir à l'attaque! 1:Esquiver / 2:Contre-attaquer / Autre:économiser la réaction.");

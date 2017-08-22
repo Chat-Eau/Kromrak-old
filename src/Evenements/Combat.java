@@ -26,7 +26,7 @@ public class Combat extends Evenement{
 
     private Kromrak kromrak;
 
-    private Combat() {//LES CHATS SONT TOUS MORTS.
+    private Combat() {
         this.kromrak = Kromrak.getInstance();
         //TODO: Assigner un numéro à l'ennemi lors de sa création
         this.personnages.removeAll(personnages);
@@ -90,6 +90,8 @@ public class Combat extends Evenement{
                 System.out.print("         ");
             System.out.print((i) + ". " + this.personnages.get(i).getNom() + " lvl " + this.personnages.get(i).getLvl());
             //TODO:GLM: Décomenter le sout en dessous lorsque choisirCible choisit selon le numéro de l'ennemi, pas sa position dans le tableau.
+            //BL: Me souvient plus pourquoi on voulait pas utiliser leurs positions dans le tableau
+
 //          System.out.print(((Ennemi)this.personnages.get(i)).getNoEnnemi() + ". "
 //                  + this.personnages.get(i).getNom() + " " + this.personnages.get(i).getLvl());
         }
