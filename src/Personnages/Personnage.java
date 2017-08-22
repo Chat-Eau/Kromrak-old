@@ -169,6 +169,38 @@ public abstract class Personnage {
         return vieMax;
     }
 
+    public void setDextérité(int dextérité) {
+        this.dextérité = dextérité;
+    }
+
+    public void setForce(int force) {
+        this.force = force;
+    }
+
+    public void setCA(int CA) {
+        this.CA = CA;
+    }
+
+    public void setVie(int vie) {
+        this.vie = vie;
+    }
+
+    public void setVieMax(int vieMax) {
+        this.vieMax = vieMax;
+    }
+
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public void setEndurance(int endurance) {
+        this.endurance = endurance;
+    }
+
     public Conteneur getObjets() {
         return inventaire;
     }
