@@ -70,7 +70,7 @@ public class Kromrak extends Personnage {
         }
     }
 
-    public void jouerTour() {
+    public void jouerTour(Combat combat) {
         boolean valide;
         Scanner scanner;
 
@@ -83,7 +83,7 @@ public class Kromrak extends Personnage {
             scanner = new Scanner(System.in);
             switch (scanner.nextLine()){
                 case "1":
-                    Combat.getInstance().choisirCible();
+                    combat.choisirCible();
                     attaquer();
                     break;
                 default:
@@ -96,7 +96,6 @@ public class Kromrak extends Personnage {
 
     public void setSalle(Salle salle) {
         this.salle = salle;
-        salle.activer();
     }
 
     public Salle getSalle() {

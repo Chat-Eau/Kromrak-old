@@ -4,6 +4,7 @@ import Objets.Objet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static Outils.Constantes.SEP;
 
@@ -33,6 +34,15 @@ public class Conteneur {
         }
         this.objets.clear();
     }
+    public void rndAdd(Conteneur source) {
+        while (0 < source.size()) {
+            if (new Random().nextInt(10) == 0) {
+                this.add( source.get(0));
+            }
+            source.remove(0);
+        }
+    }
+
     public Objet get(int i){
         return objets.get(i);
     }

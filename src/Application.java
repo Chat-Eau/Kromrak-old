@@ -22,9 +22,9 @@ public class Application {
 
 //        //Test zone avec salle avec combat (sans déplacement)
         Zone zone = new Zone();
-        Kromrak.getInstance().setSalle(zone.entree);
-        Kromrak.getInstance().setSalle(zone.getSalle(new Coord(1,0)));
-        Kromrak.getInstance().setSalle(zone.getSalle(new Coord(0,0)));
+        zone.entree.activer();
+        zone.getSalle(new Coord(1,0)).activer();
+        zone.getSalle(new Coord(0,0)).activer();
 
 
 
