@@ -25,6 +25,7 @@ public class Combat extends Evenement{
     private Kromrak kromrak;
 
     private Combat() {
+        this.tour = 1;
         this.description = "Deux méchants très menacants attaque Kromrak! Oh! Il y a un caca aussi!";
         this.kromrak = Kromrak.getInstance();
         this.personnages.removeAll(personnages);
@@ -121,11 +122,7 @@ public class Combat extends Evenement{
     //Return 1 : Combat gagné
     protected int verifierEtat(){
         if (!this.kromrak.estVivant()) return -1;
-
-        for (int i = 0; i < personnages.size(); i++) {
-            if (personnages.get(i).estVivant() && personnages.get(i) != this.kromrak) return 0;
-        }
-
+        if (personnages.size() > 1) return 0;
         return 1;
     }
 
