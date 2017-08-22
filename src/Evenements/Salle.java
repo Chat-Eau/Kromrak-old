@@ -24,9 +24,17 @@ public class Salle extends Evenement{
     public Salle(){
         this.evenements.add(Combat.newCombat());
         this.description = "Vous entrez dans une salle non initialisée.";
-        this.coord
+        this.coord.x = -1;
+        this.coord.y = -1;
     }
 
+    public Salle(Coord coord){
+        this.evenements.add(Combat.newCombat());
+        this.description = "Vous entrez dans une salle non initialisée.";
+        this.coord = coord;
+    }
+
+    public Coord getCoord() { return this.coord; }
     public void setDescription(String description){
         this.description = description;
     }
