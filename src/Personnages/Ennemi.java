@@ -20,13 +20,14 @@ public class Ennemi extends Personnage {
     int noEnnemi;
     List<String> type = new ArrayList<>();
 
+    //TODO: On a tu vraiment besoin de cible?
+    protected Personnage cible = Kromrak.getInstance();
+
 
     //TODO:GLM: Refaire les initialisateurs. Ennemi(int) = random de niveau int. Ennemi(nom, int) cherche un ennemi specifique.
 
     public Ennemi() {
         this.nom = "Gobelin";
-        //TODO: On a tu vraiment besoin de cible?
-        this.cible = Kromrak.getInstance();
         lvl = 1;
         tier = 1;
         rarete = 1;
