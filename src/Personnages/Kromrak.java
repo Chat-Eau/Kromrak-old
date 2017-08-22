@@ -98,4 +98,8 @@ public class Kromrak extends Personnage {
         this.salle = salle;
         salle.activer();
     }
+
+    public Salle getSalle() {
+        return salle;
+    }
 }
