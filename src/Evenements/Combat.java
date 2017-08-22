@@ -114,6 +114,9 @@ public class Combat extends Evenement{
         this.kromrak.setCible(this.personnages.get(noEnnemi));
     }
 
+    //Return -1 : Kromrak mort
+    //Return 0 : Combat en cours
+    //Return 1 : Combat gagné
     protected int verifierEtat(){
         if (!this.kromrak.estVivant()) return -1;
 
@@ -131,12 +134,10 @@ public class Combat extends Evenement{
             System.out.println(SEP + "Combat en cours.");
         } else {
             System.out.println(SEP + "Je t'aime, Kromrak!");
-
-            System.out.println("Vous avez obtenu : " + loot.toString());
-            System.out.println();
+            System.out.println("Vous avez obtenu : " + loot.toString() + SEP);
             loot.addAll(kromrak.getObjets());
         }
-
+        Kromrak.getInstance().resetBarres();
         combat = null;
     }
 

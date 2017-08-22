@@ -11,6 +11,7 @@ import static Outils.Constantes.SEP;
 public class Evenement {
     String description = "";
     List<Evenement> evenements = new ArrayList<>();
+    //On devrais mettre un bool dans Evenement pour identifier les evenements agro/automatique.
 
     public Evenement(List<Evenement> evenements, String descEntree){
         this.evenements = evenements;
