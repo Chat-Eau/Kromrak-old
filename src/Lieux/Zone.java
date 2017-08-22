@@ -9,15 +9,13 @@ import java.util.List;
  * Created by lamg030499 on 2017-05-01.
  */
 public class Zone {
-    public Salle salles[][] = new Salle [10][10];
+    public Salle entree;
     public String type = "Non initialisé";
+    public int niveau = 1;
 
-    public Zone(){
-        for (int x = 0; x < 10; x++){
-            for (int y = 0; y < 10; y++){
-                this.salles[x][y] = new Salle();
-                this.salles[x][y].setDescription("Salle x = " + x + ", y = " + y + " .");
-            }
-        }
+    public Zone(Salle entree, String type, int niveau){
+        this.entree = entree;
+        this.type = type;
+        this.niveau = niveau;
     }
 }
