@@ -23,11 +23,19 @@ public class Salle extends Evenement{
     }
 
     public Salle(){
-        this.evenements.add(Combat.newCombat());
+        this.evenements.add(new Combat());
         this.description = "Vous entrez dans une salle non initialisée.";
-        //this.coord
+        this.coord.x = -1;
+        this.coord.y = -1;
     }
 
+    public Salle(Coord coord){
+        this.evenements.add(new Combat());
+        this.description = "Vous entrez dans une salle non initialisée aux coordonnées.";
+        this.coord = coord;
+    }
+
+    public Coord getCoord() { return this.coord; }
     public void setDescription(String description){
         this.description = description;
     }
@@ -37,7 +45,7 @@ public class Salle extends Evenement{
 
     @Override
     public void activer() {
-        super.activer();
         Kromrak.getInstance().setSalle(this);
+        super.activer();
     }
 }

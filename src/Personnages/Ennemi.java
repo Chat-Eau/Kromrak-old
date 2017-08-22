@@ -257,7 +257,7 @@ public class Ennemi extends Personnage {
         }
     }
 
-    public void jouerTour(){
+    public void jouerTour(Combat combat){
         System.out.println("Au tour de : " + getNom());
         attaquer();
     }
@@ -270,20 +270,6 @@ public class Ennemi extends Personnage {
             System.out.println(getNom() + " contre-attaque!" + SEP);
             attaquer();
         }
-    }
-
-    public void pop() {
-        System.out.println(this.nom + " est mort.");
-
-        Combat.getInstance().lootAdd(this.inventaire.getPiece());
-
-        while (0 < this.inventaire.size()) {
-            if (new Random().nextInt(10) == 0) {
-                Combat.getInstance().lootAdd((Objet) this.inventaire.get(0));
-            }
-            this.inventaire.remove(0);
-        }
-        Combat.getInstance().personnagesRemove(this);
     }
 
     public void setNoEnnemi(int noEnnemi){

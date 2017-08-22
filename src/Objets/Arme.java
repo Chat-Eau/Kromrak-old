@@ -30,7 +30,9 @@ public class Arme extends Equipement {
     }
 
     public String toString(){
+        if(this != null)
         return nom + " : dommages de " + nbDés + "D4, " + dmgBase + (multiplicateur != 1 ? " * " + multiplicateur : "");
+        return "Aucune arme";
     }
 }
 
