@@ -12,6 +12,7 @@ public class Zone {
     public Salle entree;
     public String type = "Non initialisé";
     public int niveau = 1;
+    private List<Salle> salles = new ArrayList<>();
 
     public Zone(Salle entree, String type, int niveau){
         this.entree = entree;
