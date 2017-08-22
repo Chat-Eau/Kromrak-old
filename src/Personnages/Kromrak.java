@@ -1,6 +1,7 @@
 package Personnages;
 
 import Evenements.Combat;
+import Evenements.Salle;
 import Objets.Arme;
 
 import java.util.Scanner;
@@ -11,7 +12,9 @@ import static Outils.Constantes.SEP;
  * Created by lapb290796 on 2017-02-21.
  */
 public class Kromrak extends Personnage {
+    Salle salle;
     private Kromrak() {
+        this.salle = null;
         inventaire.add(new Arme("Espadon", 1, 2, 1, 5));
         this.arme = (Arme) inventaire.get(0);
         nom = "Kromrak";
@@ -89,4 +92,8 @@ public class Kromrak extends Personnage {
         } while (!valide);
     }
 
+    public void setSalle(Salle salle) {
+        this.salle = salle;
+        salle.activer();
+    }
 }
