@@ -3,6 +3,7 @@ package Evenements;
 import Evenements.Combat;
 import Evenements.Evenement;
 import Outils.Coord;
+import Personnages.Kromrak;
 
 import java.awt.*;
 import java.util.List;
@@ -40,5 +41,11 @@ public class Salle extends Evenement{
     }
     public void addEvenement(Evenement evenement){
         this.evenements.add(evenement);
+    }
+
+    @Override
+    public void activer() {
+        super.activer();
+        Kromrak.getInstance().setSalle(this);
     }
 }
