@@ -16,6 +16,7 @@ public class Application {
 
         //Test salle avec combat :
         Kromrak.getInstance().setSalle(new Salle());
+        Kromrak.getInstance().setSalle(new Salle());
 
 
 
