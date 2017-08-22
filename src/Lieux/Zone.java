@@ -22,6 +22,10 @@ public class Zone {
     }
     public Zone(){
         this.salles.add(new Salle(new Coord(0,0)));
+        this.salles.add(new Salle(new Coord(1,0)));
+        this.salles.add(new Salle(new Coord(-1,0)));
+        this.salles.add(new Salle(new Coord(0,-1)));
+        this.salles.add(new Salle(new Coord(0,1)));
         this.entree = getSalle(new Coord(0,0));
         this.type = type;
     }

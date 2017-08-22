@@ -17,14 +17,15 @@ public class Application {
         //Combat.getInstance().newCombat().combattre();
 
         //Test salle avec combat :
-        Kromrak.getInstance().setSalle(new Salle(new Coord(2,2)));
+        //Kromrak.getInstance().setSalle(new Salle(new Coord(2,2)));
         //Kromrak.getInstance().setSalle(new Salle());
 
 //        //Test zone avec salle avec combat (sans déplacement)
-//        Zone zone = new Zone();
-//        Kromrak.getInstance().setSalle(zone.salles[3][3]);
-//        Kromrak.getInstance().setSalle(zone.salles[1][7]);
-//        Kromrak.getInstance().setSalle(zone.salles[6][9]);
+        Zone zone = new Zone();
+        Kromrak.getInstance().setSalle(zone.entree);
+        Kromrak.getInstance().setSalle(zone.getSalle(new Coord(1,0)));
+        Kromrak.getInstance().setSalle(zone.getSalle(new Coord(0,0)));
+
 
 
         System.out.println(Kromrak.getInstance().toString() + System.lineSeparator() +
