@@ -33,7 +33,7 @@ public class Evenement {
     public void activer() {
         System.out.println(this + SEP);
         for(Evenement evenement: evenements) {
-            if (getAuto()) evenement.activer();
+            if (evenement.getAuto()) evenement.activer();
         }
     }
 
