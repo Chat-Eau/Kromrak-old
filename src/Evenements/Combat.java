@@ -22,6 +22,8 @@ public class Combat extends Evenement{
     private List<Personnage> personnages = new ArrayList<>();
     private Conteneur loot = new Conteneur("loot de fin de combat");
 
+    //Mmmm
+
     private Kromrak kromrak;
 
     private Combat() {
