@@ -16,4 +16,10 @@ public class Coord {
         this.y = y;
         this.x = x;
     }
+
+    public boolean compareTo(Coord coord){
+        if (this.x == coord.x && this.y == coord.y)
+            return true;
+        return false;
+    }
 }

@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import static Outils.Constantes.SEP;
@@ -25,7 +26,7 @@ public class Combat extends Evenement{
 
     private Kromrak kromrak;
 
-    private Combat() {
+    public Combat() {
         this.tour = 1;
         this.description = "Deux méchants très menacants attaque Kromrak! Oh! Il y a un caca aussi!";
         this.kromrak = Kromrak.getInstance();
@@ -47,36 +48,24 @@ public class Combat extends Evenement{
         assignerNbrEnnemi();
     }
 
-    private static Combat combat = null;
-
-    public static Combat getInstance() {
-        return combat;
-    }
-
-    public static Combat newCombat() {
-        return combat = new Combat();
-    }
-    public static Combat setCombat(Combat nouveauCombat) { return combat = nouveauCombat; }
-
     public void activer()
     {
-        super.activer();
+        System.out.println(this + SEP);
 
-        boolean combatFini = false;
+        int etat = 0;
 
-        while (!combatFini) {
+        while (etat == 0) {
             for (int i = 0; i < personnages.size(); i++)  {
                 if (personnages.get(i).avancerVitesse()) {
                     System.out.print(SEP + "Tour " + this.tour++ + " : ");
-                    personnages.get(i).jouerTour();
-                    if (this.verifierEtat() != 0){
-                        combatFini = true;
+                    personnages.get(i).jouerTour(this);
+                    if ((etat = this.verifierEtat()) != 0){
                         break;
                     }
                 }
             }
         }
-        finCombat();
+        finCombat(etat);
     }
 
     //BL: Je laisse choisirCiblie() ici, c'est un peu moins compliquer
@@ -109,14 +98,25 @@ public class Combat extends Evenement{
     //Return 1 : Combat gagné
     protected int verifierEtat(){
         if (!this.kromrak.estVivant()) return -1;
-        if (personnages.size() > 1) return 0;
-        return 1;
+
+        int etat = 1;
+        for(int i = 0; i <personnages.size(); i++){
+            if (personnages.get(i).getNom()!="Kromrak") {
+                if (personnages.get(i).estVivant())
+                    etat = 0;
+                else {
+                    pop(i--);
+                }
+            }
+        }
+
+        return etat;
     }
 
-    protected void finCombat(){
-        if (this.verifierEtat() == -1) {
+    protected void finCombat(int etat){
+        if (etat == -1) {
             System.out.println(SEP + "Va chier Kromrak.");
-        } else if (this.verifierEtat() == 0) {
+        } else if (etat == 0) {
             System.out.println(SEP + "Combat en cours.");
         } else {
             System.out.println(SEP + "Je t'aime, Kromrak!");
@@ -124,18 +124,15 @@ public class Combat extends Evenement{
             loot.addAll(kromrak.getObjets());
         }
         Kromrak.getInstance().resetBarres();
-        combat = null;
     }
 
-    public void lootAdd(Objet objet) {
-        loot.add(objet);
-    }
-    public void lootAdd(int i) {
-        loot.add(i);
-    }
+    public void pop(int noEnnemi) {
+        System.out.println(this.personnages.get(noEnnemi).getNom() + " est mort.");
 
-    public void personnagesRemove(Personnage personnage) {
-        personnages.remove(personnage);
+        this.loot.add(this.personnages.get(noEnnemi).getInventaire().getPiece());
+        this.loot.rndAdd(this.personnages.get(noEnnemi).getInventaire());
+
+        this.personnages.remove(noEnnemi);
     }
 
     public void assignerNbrEnnemi(){

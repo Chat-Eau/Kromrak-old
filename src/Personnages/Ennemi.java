@@ -25,7 +25,6 @@ public class Ennemi extends Personnage {
     //TODO:GLM: Refaire les initialisateurs. Ennemi(int) = random de niveau int. Ennemi(nom, int) cherche un ennemi specifique.
 
     public Ennemi() {
-        //TODO: On a tu vraiment besoin de cible?
         cible = Kromrak.getInstance();
         this.nom = "Gobelin";
         Personnage cible = Kromrak.getInstance();
@@ -258,7 +257,7 @@ public class Ennemi extends Personnage {
         }
     }
 
-    public void jouerTour(){
+    public void jouerTour(Combat combat){
         System.out.println("Au tour de : " + getNom());
         attaquer();
     }
@@ -271,20 +270,6 @@ public class Ennemi extends Personnage {
             System.out.println(getNom() + " contre-attaque!" + SEP);
             attaquer();
         }
-    }
-
-    public void pop() {
-        System.out.println(this.nom + " est mort.");
-
-        Combat.getInstance().lootAdd(this.inventaire.getPiece());
-
-        while (0 < this.inventaire.size()) {
-            if (new Random().nextInt(10) == 0) {
-                Combat.getInstance().lootAdd((Objet) this.inventaire.get(0));
-            }
-            this.inventaire.remove(0);
-        }
-        Combat.getInstance().personnagesRemove(this);
     }
 
     public void setNoEnnemi(int noEnnemi){

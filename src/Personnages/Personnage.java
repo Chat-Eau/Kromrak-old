@@ -1,9 +1,13 @@
 package Personnages;
 
 
+import Evenements.Combat;
 import Objets.Arme;
 import Conteneur.Conteneur;
+import Objets.Objet;
 import Outils.Outils;
+
+import java.util.Random;
 
 import static Outils.Constantes.*;
 
@@ -83,20 +87,21 @@ public abstract class Personnage {
     }
 
     //BL: Un jouerTour() abstrait pour pouvoir l'appeler à partir du tableau de personnages
-    public abstract void jouerTour();
+    public abstract void jouerTour(Combat combat);
 
     public String toString () {
-        return "Nom: " + nom + SEP +
+        String resultat = "Nom: " + nom + SEP +
                 "Vie: " + this.vie + "/" + this.vieMax + SEP +
-                "Arme: " + this.arme.toString() + SEP +
                 "Vitesse: " + vitesse + SEP +
                 "Force: " + force + SEP +
                 "Dextérité: " + dextérité + SEP +
                 "Endurance: " + endurance + SEP +
                 "Intelligence: " + intelligence + SEP +
                 "Classe d'armure: " + CA + SEP + SEP +
-                "Inventaire: " + SEP +
-                getObjets().toString();
+                "Inventaire: " + SEP;
+        if (this.arme != null)
+            resultat += "Arme: " + this.arme.toString() + SEP;
+        return resultat + getObjets().toString();
     }
 
     protected void resetBarreVitesse(){
@@ -214,5 +219,9 @@ public abstract class Personnage {
 
     public void setNom(String nom) {this.nom = nom; }
 
-    public void pop() {};
+    public void pop() {}
+
+    public Conteneur getInventaire() {
+        return inventaire;
+    }
 }
