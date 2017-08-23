@@ -52,7 +52,7 @@ public class Combat extends Evenement{
     {
         System.out.println(this + SEP);
 
-        int etat = 0;
+        int etat = this.verifierEtat();
 
         while (etat == 0) {
             for (int i = 0; i < personnages.size(); i++)  {

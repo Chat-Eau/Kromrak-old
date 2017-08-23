@@ -20,9 +20,9 @@ public class Application {
         //Test salle avec combat :
         //Kromrak.getInstance().setSalle(new Salle(new Coord(2,2)));
         //Kromrak.getInstance().setSalle(new Salle());
-
-//        //Test zone avec salle avec combat (sans déplacement)
-/*        Zone zone = new Zone();
+      
+        //Test zone avec salle avec combat (sans déplacement)
+/*      Zone zone = new Zone();
         zone.entree.activer();
         zone.getSalle(new Coord(1,0)).activer();
         zone.getSalle(new Coord(0,0)).activer();*/

@@ -20,12 +20,10 @@ public abstract class Personnage {
     protected int lvl;
     protected Conteneur inventaire = new Conteneur("Les pochettes de Kromrak");
 
-    //TODO: La cible devrait etre le paramètre d'une fonction attaquer, pas une variable, non?
-    /*
-    BL: Ouais, mais pour la gestion des enemis, un attribut est plus simple parce que la cible par défaut des ennemis
+    /*BL: Ouais, mais pour la gestion des enemis, un attribut est plus simple parce que la cible par défaut des ennemis
     est (presque) toujours Kromrak. Pour Kromrak, on va avoir besoin d'une variable locale dans
-    cible de toute façon.
-    */
+    cible de toute façon.*/
+
     protected Personnage cible;
 
     protected boolean reaction = false;
@@ -34,7 +32,6 @@ public abstract class Personnage {
     private int barreReaction = 0;
 
     //Attributs
-    //TODO: Une classe pour chaque attribut pour séparer les get/set, les gérer individuellement pour les caps...
     protected int vieMax;
     protected int vie;
     protected int vitesse = 0;

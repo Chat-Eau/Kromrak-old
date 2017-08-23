@@ -15,8 +15,6 @@ public class Evenement {
     protected String nom = "Coffre";
     List<Evenement> evenements = new ArrayList<>();
     boolean auto = false;
-    //TODO:GLM: On devrais mettre un bool dans Evenement pour identifier les evenements agro/automatique.
-    //Done!
 
     public Evenement(List<Evenement> evenements, String descEntree, boolean auto){
         this.evenements = evenements;
