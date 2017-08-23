@@ -1,6 +1,7 @@
 package Outils;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Created by lapb290796 on 2017-02-21.
@@ -26,5 +27,16 @@ public class Outils {
     static public int minMaxCap(int stat, int min, int max){
         stat = stat > max ? max : stat;
         return stat < min ? min : stat;
+    }
+
+    static public int choixNumerique(int min, int max) {
+        boolean mauvaisChoix = false;
+        Scanner scanner = new Scanner(System.in);
+        int choix;
+        do{ choix = scanner.nextInt();
+        } while (choix < min || choix > max);
+        System.out.println();
+
+        return choix;
     }
 }

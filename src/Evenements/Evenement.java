@@ -11,7 +11,8 @@ import static Outils.Constantes.SEP;
  * Created by lamg030499 on 2017-05-04.
  */
 public class Evenement {
-    String description = "";
+    protected String description = "";
+    protected String nom = "Coffre";
     List<Evenement> evenements = new ArrayList<>();
     boolean auto = false;
 
@@ -30,9 +31,18 @@ public class Evenement {
 
     public void activer() {
         System.out.println(this + SEP);
-        for(Evenement evenement: evenements) {
-            if (evenement.getAuto()) evenement.activer();
+        for(int i = 0; i < evenements.size(); i++) {
+            if (evenements.get(i).getAuto()) evenements.get(i).activer();
+            else {
+                System.out.println((i+1) + evenements.get(i).getNom());
+            }
         }
+
+
+    }
+
+    public String getNom() {
+        return nom;
     }
 
     public String toString(){
