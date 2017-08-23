@@ -20,10 +20,6 @@ public class Ennemi extends Personnage {
     int noEnnemi;
     List<String> type = new ArrayList<>();
 
-
-
-    //TODO:GLM: Refaire les initialisateurs. Ennemi(int) = random de niveau int. Ennemi(nom, int) cherche un ennemi specifique.
-
     public Ennemi() {
         cible = Kromrak.getInstance();
         this.nom = "Gobelin";
