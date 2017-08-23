@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static Outils.Constantes.SEP;
+import static Outils.Outils.choixNumerique;
 
 /**
  * Created by lapb290796 on 2017-02-21.
@@ -82,8 +83,6 @@ public class Combat extends Evenement{
     //TODO:GLM: ChoisirCible() doit être refait pour prendre la variable noEnnemi de chaque ennemi, a la place de leur position dans le tableau
     public void choisirCible(){
         int noEnnemi = 0;
-        boolean mauvaisChoix = false;
-        Scanner scanner = new Scanner(System.in);
 
         System.out.print(SEP + "Choisisser votre cible :         ");
 
@@ -99,20 +98,8 @@ public class Combat extends Evenement{
 
         System.out.print(SEP + "Faites votre choix : ");
 
-        do{
-            do{
-                if (mauvaisChoix){
-                    System.out.print("Vous devez cibler un ennemi existant :");
-                } else {
-                    mauvaisChoix = true;
-                }
-                while (!scanner.hasNextInt()){
-                    System.out.print("Vous devez choisir un nombre : ");
-                    scanner.next();
-                }
-                noEnnemi = scanner.nextInt();
-            } while (noEnnemi < 1 || noEnnemi > this.personnages.size() - 1);
-        } while (!this.personnages.get(noEnnemi).estVivant());
+        noEnnemi = choixNumerique(1, this.personnages.size() - 1);
+
         System.out.println();
         this.kromrak.setCible(this.personnages.get(noEnnemi));
     }
