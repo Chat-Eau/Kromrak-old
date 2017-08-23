@@ -68,7 +68,6 @@ public class Combat extends Evenement{
         finCombat(etat);
     }
 
-    //BL: Je laisse choisirCiblie() ici, c'est un peu moins compliquer
     //TODO:GLM: ChoisirCible() doit être refait pour prendre la variable noEnnemi de chaque ennemi, a la place de leur position dans le tableau
     public void choisirCible(){
         int noEnnemi = 0;
