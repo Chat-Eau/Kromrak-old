@@ -1,9 +1,8 @@
-import Evenements.Combat;
 import Evenements.Salle;
-import Lieux.Zone;
+import Threads.KeepBarsUpdated;
 import Outils.Coord;
 import Personnages.Kromrak;
-import test.TestThread;
+import Threads.KromrakForm;
 
 import java.util.Scanner;
 

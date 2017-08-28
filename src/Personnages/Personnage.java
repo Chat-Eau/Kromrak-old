@@ -30,6 +30,11 @@ public abstract class Personnage{
     protected boolean reaction = false;
 
     private int barreVitesse = 0;
+
+    public int getBarreReaction() {
+        return barreReaction;
+    }
+
     private int barreReaction = 0;
 
     //Attributs
