@@ -13,7 +13,7 @@ import static Outils.Constantes.SEP;
 /**
  * Created by lamg030499 on 2017-05-01.
  */
-public class Salle extends Evenement{
+public class Salle extends Evenement implements Runnable{
     Coord coord;
 
     public Salle(List<Evenement> evenements, String descEntree, Coord coord){
@@ -48,5 +48,12 @@ public class Salle extends Evenement{
     public void activer() {
         Kromrak.getInstance().setSalle(this);
         super.activer();
+    }
+
+    //C'est le truc qui se lance quand on démarre un thread.
+    //Salle n'aurra probablemnt pas de thread dédié, c'était juste pour tester.
+    @Override
+    public void run() {
+        activer();
     }
 }
