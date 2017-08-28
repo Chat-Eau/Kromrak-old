@@ -7,14 +7,15 @@ import Conteneur.Conteneur;
 import Objets.Objet;
 import Outils.Outils;
 
+import java.awt.*;
 import java.util.Random;
 
 import static Outils.Constantes.*;
-
+import javax.swing.*;
 /**
  * Created by lapb290796 on 2017-02-21.
  */
-public abstract class Personnage {
+public abstract class Personnage{
     protected Arme arme;
     protected String nom;
     protected int lvl;
@@ -55,6 +56,7 @@ public abstract class Personnage {
         this.vie -= degats;
 
         vie = Outils.minMaxCap(vie, 0, vieMax);
+
 
         if (this.vie == 0) {
             this.pop();

@@ -16,7 +16,7 @@ public class Application {
         //Test combat
         //Combat.getInstance().newCombat().combattre();
 
-        //Test salle avec combat :
+        //test salle avec combat :
         //Kromrak.getInstance().setSalle(new Salle(new Coord(2,2)));
         //Kromrak.getInstance().setSalle(new Salle());
 
