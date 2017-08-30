@@ -1,6 +1,5 @@
 package Personnages;
 
-
 import Evenements.Combat;
 import Objets.Arme;
 import Conteneur.Conteneur;
@@ -12,9 +11,7 @@ import java.util.Random;
 
 import static Outils.Constantes.*;
 import javax.swing.*;
-/**
- * Created by lapb290796 on 2017-02-21.
- */
+
 public abstract class Personnage{
     protected Arme arme;
     protected String nom;

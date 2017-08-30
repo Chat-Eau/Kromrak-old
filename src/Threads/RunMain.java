@@ -7,15 +7,10 @@ import Personnages.Kromrak;
 import javax.swing.*;
 import java.util.Scanner;
 
-/**
- * Created by lamg030499 on 2017-08-30.
- */
 public class RunMain extends Thread{
-    JProgressBar vie, vit, reac;
-    RunMain(JPanel jPanel){
-        this.vie = vie;
-        this.vit = vit;
-        this.reac = reac;
+    JPanel panel = new JPanel();
+    RunMain(JPanel panel){
+        this.panel = panel;
     }
 
     public void run(){

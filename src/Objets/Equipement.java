@@ -1,8 +1,5 @@
 package Objets;
 
-/**
- * Created by lamg030499 on 2017-04-28.
- */
 public class Equipement extends Objet {
     private boolean equipé = false;
 

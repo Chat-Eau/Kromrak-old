@@ -3,9 +3,6 @@ package Outils;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * Created by lapb290796 on 2017-02-21.
- */
 public class Outils {
     private Outils() {}
 

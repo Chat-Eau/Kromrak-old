@@ -11,9 +11,6 @@ import java.util.Random;
 import static Outils.Constantes.SEP;
 import static Outils.Outils.lancerDes;
 
-/**
- * Created by lapb290796 on 2017-02-21.
- */
 public class Ennemi extends Personnage {
     int rarete;
     int tier;
@@ -277,6 +274,7 @@ public class Ennemi extends Personnage {
     @Override
     public int attaquer() {
         cible = Kromrak.getInstance();
+        Kromrak.getInstance().setCible(this);
         return super.attaquer();
     }
 }

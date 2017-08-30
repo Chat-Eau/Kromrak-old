@@ -16,9 +16,6 @@ import java.util.Scanner;
 import static Outils.Constantes.SEP;
 import static Outils.Outils.choixNumerique;
 
-/**
- * Created by lapb290796 on 2017-02-21.
- */
 public class Combat extends Evenement{
     private int tour = 1;
     private List<Personnage> personnages = new ArrayList<>();

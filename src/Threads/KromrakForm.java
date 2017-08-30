@@ -1,15 +1,17 @@
 package Threads;
 
-import Lieux.Zone;
-import Outils.Coord;
 import Personnages.Kromrak;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Scanner;
 
 public class KromrakForm {
     public JPanel panel1;
+
+    public JProgressBar getBarreVie() {
+        return barreVie;
+    }
+
     public JProgressBar barreVie;
     public JProgressBar barreReac;
     private JProgressBar barreVit;

@@ -4,9 +4,6 @@ import Personnages.Personnage;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by LAMG030499 on 2017-08-21.
- */
 public class Effet {
     protected Personnage personnage;
     protected String trigger;

@@ -1,8 +1,5 @@
 package Outils;
 
-/**
- * Created by LAMG030499 on 2017-08-22.
- */
 public class Coord {
     public int x = 0;
     public int y = 0;

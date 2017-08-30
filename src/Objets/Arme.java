@@ -2,9 +2,6 @@ package Objets;
 
 import static Outils.Outils.lancerDes;
 
-/**
- * Created by lapb290796 on 2017-02-21.
- */
 public class Arme extends Equipement {
     private int nbDés;
     private int multiplicateur;

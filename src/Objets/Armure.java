@@ -1,8 +1,5 @@
 package Objets;
 
-/**
- * Created by lamg030499 on 2017-04-28.
- */
 public class Armure extends Equipement{
     public Armure () {
         this.nom = "La Justice Juteuse";

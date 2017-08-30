@@ -1,18 +1,12 @@
 package Threads;
 
 import Personnages.Kromrak;
-import Threads.KromrakForm.*;
-import javafx.scene.control.ProgressBar;
 
 import javax.swing.*;
 
 import static Outils.Constantes.MAX_REACTION;
 import static Outils.Constantes.MAX_VITESSE;
-import static javafx.scene.input.KeyCode.K;
 
-/**
- * Created by lamg030499 on 2017-08-28.
- */
 public class KeepBarsUpdated extends Thread{
     JProgressBar vie, vit, reac;
     KeepBarsUpdated(JProgressBar vie, JProgressBar vit, JProgressBar reac){

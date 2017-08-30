@@ -6,9 +6,6 @@ import Outils.Coord;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by lamg030499 on 2017-05-01.
- */
 public class Zone {
     public Salle entree;
     public String type = "Non initialisé";

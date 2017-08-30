@@ -8,9 +8,6 @@ import java.util.Scanner;
 
 import static Outils.Constantes.SEP;
 
-/**
- * Created by lapb290796 on 2017-02-21.
- */
 public class Kromrak extends Personnage {
     Salle salle;
     private Kromrak() {
@@ -57,6 +54,7 @@ public class Kromrak extends Personnage {
         }
 
         if (reactionChoisie == 2){
+            //TODO:Changer la cible lors de contre-attaque, sinon la mauvaise cible peut être attaquée.
             super.recevoirDegats(nbDegats);
             System.out.println(SEP + this.getNom() + " contre-attaque!");
             this.attaquer();

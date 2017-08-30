@@ -10,9 +10,6 @@ import java.util.List;
 
 import static Outils.Constantes.SEP;
 
-/**
- * Created by lamg030499 on 2017-05-01.
- */
 public class Salle extends Evenement implements Runnable{
     Coord coord;
 
