@@ -48,13 +48,13 @@ public class Combat extends Evenement{
         assignerNbrEnnemi();
     }
 
-    public void activer()
-    {
+    public void activer() throws InterruptedException {
         System.out.println(this + SEP);
 
         int etat = this.verifierEtat();
 
         while (etat == 0) {
+            Thread.sleep(50);
             for (int i = 0; i < personnages.size(); i++)  {
                 if (personnages.get(i).avancerVitesse()) {
                     System.out.print(SEP + "Tour " + this.tour++ + " : ");
@@ -62,6 +62,7 @@ public class Combat extends Evenement{
                     if ((etat = this.verifierEtat()) != 0){
                         break;
                     }
+                    Thread.sleep(1500);
                 }
             }
         }
@@ -78,17 +79,12 @@ public class Combat extends Evenement{
             if (i != this.personnages.size() && i != 1)
                 System.out.print("         ");
             System.out.print((i) + ". " + this.personnages.get(i).getNom() + " lvl " + this.personnages.get(i).getLvl());
-            //TODO:GLM: Décomenter le sout en dessous lorsque choisirCible choisit selon le numéro de l'ennemi, pas sa position dans le tableau.
-
-//          System.out.print(((Ennemi)this.personnages.get(i)).getNoEnnemi() + ". "
-//                  + this.personnages.get(i).getNom() + " " + this.personnages.get(i).getLvl());
         }
 
         System.out.print(SEP + "Faites votre choix : ");
 
         noEnnemi = choixNumerique(1, this.personnages.size() - 1);
 
-        System.out.println();
         this.kromrak.setCible(this.personnages.get(noEnnemi));
     }
 

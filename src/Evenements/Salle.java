@@ -47,7 +47,11 @@ public class Salle extends Evenement implements Runnable{
     @Override
     public void activer() {
         Kromrak.getInstance().setSalle(this);
-        super.activer();
+        try {
+            super.activer();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     //C'est le truc qui se lance quand on démarre un thread.

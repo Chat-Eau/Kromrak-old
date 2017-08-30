@@ -27,7 +27,15 @@ public abstract class Personnage{
 
     protected Personnage cible;
 
+    public boolean isReaction() {
+        return reaction;
+    }
+
     protected boolean reaction = false;
+
+    public int getBarreVitesse() {
+        return barreVitesse;
+    }
 
     private int barreVitesse = 0;
 

@@ -29,7 +29,7 @@ public class Evenement {
     public Evenement(){
     }
 
-    public void activer() {
+    public void activer() throws InterruptedException {
         System.out.println(this + SEP);
         for(int i = 0; i < evenements.size(); i++) {
             if (evenements.get(i).getAuto()) evenements.get(i).activer();

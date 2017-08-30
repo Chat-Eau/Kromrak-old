@@ -10,7 +10,7 @@ public class Constantes {
     static public final int STEP_REACTION = 5;
 
     static public final int MAX_REACTION = 100;
-    static public final int MAX_VITESSE = 100;
+    static public final int MAX_VITESSE = 1000;
 
     private Constantes() {}
 }
