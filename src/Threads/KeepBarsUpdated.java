@@ -9,7 +9,7 @@ import static Outils.Constantes.MAX_VITESSE;
 
 public class KeepBarsUpdated extends Thread{
     JProgressBar vie, vit, reac;
-    KeepBarsUpdated(JProgressBar vie, JProgressBar vit, JProgressBar reac){
+    public KeepBarsUpdated(JProgressBar vie, JProgressBar vit, JProgressBar reac){
         this.vie = vie;
         this.vit = vit;
         this.reac = reac;

@@ -1,19 +1,15 @@
 package Threads;
 
+import Interface.KFrame;
 import Lieux.Zone;
 import Outils.Coord;
 import Personnages.Kromrak;
 
-import javax.swing.*;
 import java.util.Scanner;
 
-public class RunMain extends Thread{
-    JPanel panel = new JPanel();
-    RunMain(JPanel panel){
-        this.panel = panel;
-    }
-
-    public void run(){
+public class Main{
+    public static void main(String[] args){
+        KFrame frame = new KFrame();
         Scanner scanner = new Scanner(System.in);
 
         //Test combat

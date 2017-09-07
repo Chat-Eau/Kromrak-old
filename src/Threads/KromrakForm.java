@@ -16,10 +16,14 @@ public class KromrakForm {
     public JProgressBar barreReac;
     private JProgressBar barreVit;
     private JTextArea textMain;
+    private JTextPane textPane1;
 
     public static void main(String[] args){
         KromrakForm kromrakForm = new KromrakForm();
         kromrakForm.prepareGUI();
+
+       // Main main = new Main(kromrakForm);
+       // main.start();
     }
 
     private void prepareGUI(){
@@ -43,7 +47,5 @@ public class KromrakForm {
 
         KeepBarsUpdated keepBarsUpdated = new KeepBarsUpdated(barreVie, barreVit, barreReac);
         keepBarsUpdated.start();
-        RunMain runMain = new RunMain(panel1);
-        runMain.start();
     }
 }

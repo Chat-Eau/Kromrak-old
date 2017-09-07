@@ -1,5 +1,6 @@
 package Personnages;
 
+import Interface.KFrame;
 import Evenements.Combat;
 import Evenements.Salle;
 import Objets.Arme;
