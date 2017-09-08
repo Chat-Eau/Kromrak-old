@@ -1,9 +1,7 @@
 package Objets;
 
-/**
- * Created by lamg030499 on 2017-04-28.
- */
 public class Equipement extends Objet {
+    //TODO:Refaire en ur
     private boolean equipé = false;
 
     public Equipement () {

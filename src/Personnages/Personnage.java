@@ -1,24 +1,22 @@
 package Personnages;
 
-
 import Evenements.Combat;
 import Objets.Arme;
-import Conteneur.Conteneur;
+import Conteneur.*;
 import Objets.Objet;
 import Outils.Outils;
 
+import java.awt.*;
 import java.util.Random;
 
 import static Outils.Constantes.*;
+import javax.swing.*;
 
-/**
- * Created by lapb290796 on 2017-02-21.
- */
-public abstract class Personnage {
+public abstract class Personnage{
     protected Arme arme;
     protected String nom;
     protected int lvl;
-    protected Conteneur inventaire = new Conteneur("Les pochettes de Kromrak");
+    protected Inventaire inventaire = new Inventaire("Les pochettes de Kromrak");
 
     /*BL: Ouais, mais pour la gestion des enemis, un attribut est plus simple parce que la cible par défaut des ennemis
     est (presque) toujours Kromrak. Pour Kromrak, on va avoir besoin d'une variable locale dans
@@ -26,9 +24,22 @@ public abstract class Personnage {
 
     protected Personnage cible;
 
+    public boolean isReaction() {
+        return reaction;
+    }
+
     protected boolean reaction = false;
 
+    public int getBarreVitesse() {
+        return barreVitesse;
+    }
+
     private int barreVitesse = 0;
+
+    public int getBarreReaction() {
+        return barreReaction;
+    }
+
     private int barreReaction = 0;
 
     //Attributs
@@ -55,6 +66,7 @@ public abstract class Personnage {
         this.vie -= degats;
 
         vie = Outils.minMaxCap(vie, 0, vieMax);
+
 
         if (this.vie == 0) {
             this.pop();
