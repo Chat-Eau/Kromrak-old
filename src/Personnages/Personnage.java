@@ -2,7 +2,7 @@ package Personnages;
 
 import Evenements.Combat;
 import Objets.Arme;
-import Conteneur.Conteneur;
+import Conteneur.*;
 import Objets.Objet;
 import Outils.Outils;
 
@@ -16,7 +16,7 @@ public abstract class Personnage{
     protected Arme arme;
     protected String nom;
     protected int lvl;
-    protected Conteneur inventaire = new Conteneur("Les pochettes de Kromrak");
+    protected Inventaire inventaire = new Inventaire("Les pochettes de Kromrak");
 
     /*BL: Ouais, mais pour la gestion des enemis, un attribut est plus simple parce que la cible par défaut des ennemis
     est (presque) toujours Kromrak. Pour Kromrak, on va avoir besoin d'une variable locale dans

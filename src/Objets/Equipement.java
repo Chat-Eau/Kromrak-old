@@ -1,6 +1,7 @@
 package Objets;
 
 public class Equipement extends Objet {
+    //TODO:Refaire en ur
     private boolean equipé = false;
 
     public Equipement () {
