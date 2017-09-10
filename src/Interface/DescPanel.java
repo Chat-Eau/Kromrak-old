@@ -4,6 +4,7 @@ import Personnages.Kromrak;
 import Threads.KeepBarsUpdated;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 import static Outils.Constantes.SEP;
@@ -25,11 +26,41 @@ public class DescPanel extends JPanel {
         this.setVisible(true);
         this.setBackground(Color.LIGHT_GRAY);
 
-        JLabel label = new JLabel();
-        label.setSize(30, 10);
-        label.setLocation(400, 10);
-        label.setText("VIT " + Kromrak.getInstance().getVitesse());
-        this.add(label);
+        JLabel labelVit = new JLabel();
+        labelVit.setSize(100, 10);
+        labelVit.setLocation(400, 10);
+        labelVit.setText("VIT : " + Kromrak.getInstance().getVitesse());
+        this.add(labelVit);
+
+        JLabel labelInt = new JLabel();
+        labelInt.setSize(100, 10);
+        labelInt.setLocation(400, 30);
+        labelInt.setText("INT : " + Kromrak.getInstance().getIntelligence());
+        this.add(labelInt);
+
+        JLabel labelCA = new JLabel();
+        labelCA.setSize(100, 10);
+        labelCA.setLocation(400, 50);
+        labelCA.setText("CA  : " + Kromrak.getInstance().getCA());
+        this.add(labelCA);
+
+        JLabel labelFor = new JLabel();
+        labelFor.setSize(100, 10);
+        labelFor.setLocation(500, 10);
+        labelFor.setText("FOR : " + Kromrak.getInstance().getForce());
+        this.add(labelFor);
+
+        JLabel labelDex = new JLabel();
+        labelDex.setSize(100, 10);
+        labelDex.setLocation(500, 30);
+        labelDex.setText("DEX : " + Kromrak.getInstance().getDextérité());
+        this.add(labelDex);
+
+        JLabel labelEnd = new JLabel();
+        labelEnd.setSize(100, 10);
+        labelEnd.setLocation(500, 50);
+        labelEnd.setText("END : " + Kromrak.getInstance().getEndurance());
+        this.add(labelEnd);
 
         barreReac.setLocation(10,25);
         barreReac.setSize(100,10);

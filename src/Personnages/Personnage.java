@@ -186,6 +186,10 @@ public abstract class Personnage{
         return vieMax;
     }
 
+    public int getCA() {
+        return CA;
+    }
+
     public void setDextérité(int dextérité) {
         this.dextérité = dextérité;
     }
