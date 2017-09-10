@@ -1,7 +1,5 @@
 package Interface;
 
-import sun.security.krb5.internal.crypto.Des;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,8 +9,15 @@ import java.awt.*;
 public class KFrame extends JFrame{
 
     public DescPanel descPanel = new DescPanel();
+    public TextPanel textPanel = new TextPanel();
 
-    public KFrame() {
+    private static KFrame kFrame = new KFrame();
+
+    public static KFrame getInstance() {
+        return kFrame;
+    }
+
+    private KFrame() {
         this.setLayout(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,8 +29,11 @@ public class KFrame extends JFrame{
         this.setResizable(false);
 
         this.add(descPanel);
+        this.add(textPanel);
         this.setVisible(true);
         //DescPanel descPanel = new DescPanel();
         //this.add(descPanel);
     }
+
+
 }

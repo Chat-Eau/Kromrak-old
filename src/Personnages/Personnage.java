@@ -1,6 +1,7 @@
 package Personnages;
 
 import Evenements.Combat;
+import Interface.KFrame;
 import Objets.Arme;
 import Conteneur.*;
 import Objets.Objet;
@@ -61,6 +62,7 @@ public abstract class Personnage{
         int degats = Outils.minCap(nbDegats - CA, 1);
 
         System.out.print(this.nom + " a reçu: " + degats + " dégats." + SEP);
+        KFrame.getInstance().textPanel.zoneTexte.addText(this.nom + " a reçu: " + degats + " dégats." + SEP);
 
         avancerReaction();
         this.vie -= degats;

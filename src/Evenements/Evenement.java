@@ -1,5 +1,6 @@
 package Evenements;
 
+import Interface.KFrame;
 import Personnages.Kromrak;
 
 import java.util.ArrayList;
@@ -29,9 +30,11 @@ public class Evenement {
     public void activer() throws InterruptedException {
         System.out.println(this + SEP);
         for(int i = 0; i < evenements.size(); i++) {
-            if (evenements.get(i).getAuto()) evenements.get(i).activer();
+            if (evenements.get(i).getAuto())
+                evenements.get(i).activer();
             else {
                 System.out.println((i+1) + evenements.get(i).getNom());
+                KFrame.getInstance().textPanel.zoneTexte.addTextln((i+1) + evenements.get(i).getNom());
             }
         }
 

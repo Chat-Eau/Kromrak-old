@@ -1,8 +1,12 @@
 package Threads;
 
+import Interface.KFrame;
 import Personnages.Kromrak;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+
+import java.awt.*;
 
 import static Outils.Constantes.MAX_REACTION;
 import static Outils.Constantes.MAX_VITESSE;
@@ -16,7 +20,7 @@ public class KeepBarsUpdated extends Thread{
     }
 
     public void run(){
-                while (true){//TODO: Placer une condition de fin du jeu
+        while (true){//TODO: Placer une condition de fin du jeu
             try {
                 Thread.sleep(50);
             } catch (InterruptedException ignore){}
