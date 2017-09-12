@@ -18,15 +18,19 @@ public class KFrame extends JFrame{
     }
 
     private KFrame() {
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth();
+        int height = gd.getDisplayMode().getHeight();
+
         this.setLayout(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000, 800);
+        this.setSize(width, height);
         this.setLocation(300, 300);
         this.setBackground(Color.blue);
         this.setLocationRelativeTo(null);
         this.setTitle("KROMRAK LE KROMRAK:L'APPLICATION");
-        this.setResizable(false);
+        //this.setResizable(false);
 
         this.add(descPanel);
         this.add(textPanel);
