@@ -1,5 +1,8 @@
 package Outils;
 
+import Interface.KFrame;
+
+import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -25,6 +28,7 @@ public class Outils {
         stat = stat > max ? max : stat;
         return stat < min ? min : stat;
     }
+
 
     static public int choixNumerique(int min, int max) {
         boolean mauvaisChoix = false;

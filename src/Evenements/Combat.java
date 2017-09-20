@@ -55,8 +55,8 @@ public class Combat extends Evenement{
             Thread.sleep(50);
             for (int i = 0; i < personnages.size(); i++)  {
                 if (personnages.get(i).avancerVitesse()) {
-                    System.out.print(SEP + "Tour " + this.tour + " : ");
-                    KFrame.getInstance().textPanel.zoneTexte.addText(SEP + "Tour " + this.tour++ + " : ");
+                    System.out.print(this.tour + ". ");
+                    KFrame.getInstance().textPanel.zoneTexte.addText(this.tour++ + ". ");
                     personnages.get(i).jouerTour(this);
                     if ((etat = this.verifierEtat()) != 0){
                         break;
