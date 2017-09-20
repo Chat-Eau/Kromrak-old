@@ -4,6 +4,7 @@ import Interface.KFrame;
 import Evenements.Combat;
 import Evenements.Salle;
 import Objets.Arme;
+import com.sun.org.apache.xml.internal.security.utils.SignatureElementProxy;
 
 import java.util.Scanner;
 
@@ -49,8 +50,10 @@ public class Kromrak extends Personnage {
 
         int reactionChoisie = -1;
         if (reaction){
-            System.out.println(SEP + "Kromrak peux réagir à l'attaque! 1:Esquiver / 2:Contre-attaquer / Autre:économiser la réaction.");
-            System.out.print("Faites votre choix : ");
+            System.out.print(SEP + "Kromrak peux réagir à l'attaque! 1:Esquiver / 2:Contre-attaquer / Autre:économiser la réaction."
+                    + SEP + "Faites votre choix : ");
+            KFrame.getInstance().textPanel.zoneTexte.addText(SEP + "Kromrak peux réagir à l'attaque! 1:Esquiver / 2:Contre-attaquer / Autre:économiser la réaction."
+                    + SEP + "Faites votre choix : ");
             reactionChoisie = Integer.parseInt(scanner.next());
         }
 
@@ -58,10 +61,12 @@ public class Kromrak extends Personnage {
             //TODO:Changer la cible lors de contre-attaque, sinon la mauvaise cible peut être attaquée.
             super.recevoirDegats(nbDegats);
             System.out.println(SEP + this.getNom() + " contre-attaque!");
+            KFrame.getInstance().textPanel.zoneTexte.addText(SEP + this.getNom() + " contre-attaque!");
             this.attaquer();
             reaction = false;
         } else if (reactionChoisie == 1){
             System.out.println(this.getNom() + " esquive l'attaque de " + nbDegats + " dommages.");
+            KFrame.getInstance().textPanel.zoneTexte.addText(this.getNom() + " esquive l'attaque de " + nbDegats + " dommages.");
             reaction = false;
         } else {
             super.recevoirDegats(nbDegats);
@@ -75,12 +80,15 @@ public class Kromrak extends Personnage {
         System.out.println(" Au tour de Kromrak!");
         System.out.println("Vos choix: 1. Attaquer");
         System.out.print("Choix : ");
+        KFrame.getInstance().textPanel.zoneTexte.addText(" Au tour de Kromrak!" + SEP + "Vos choix: 1. Attaquer" + SEP + "Choix : ");
+
 
         do{
             valide = true;
             scanner = new Scanner(System.in);
             switch (scanner.nextLine()){
                 case "1":
+                    KFrame.getInstance().textPanel.zoneTexte.addText("1");
                     combat.choisirCible();
                     attaquer();
                     break;

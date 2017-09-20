@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args){
-        KFrame frame = new KFrame();
+        KFrame.getInstance();
         Scanner scanner = new Scanner(System.in);
 
         //Test combat
@@ -33,6 +33,9 @@ public class Main{
 
         System.out.println(Kromrak.getInstance().toString() + System.lineSeparator() +
                 System.lineSeparator() + "Appuyez sur 'Enter' pour continuer.");;
+        KFrame.getInstance().textPanel.zoneTexte.addTextln(Kromrak.getInstance().toString() + System.lineSeparator() +
+                System.lineSeparator() + "Appuyez sur 'Enter' pour continuer.");
+
         scanner.nextLine();
     }
 }

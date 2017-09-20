@@ -1,6 +1,7 @@
 package Evenements;
 
 import Conteneur.Conteneur;
+import Interface.KFrame;
 import Objets.Objet;
 import Personnages.Ennemi;
 import Personnages.Kromrak;
@@ -54,7 +55,8 @@ public class Combat extends Evenement{
             Thread.sleep(50);
             for (int i = 0; i < personnages.size(); i++)  {
                 if (personnages.get(i).avancerVitesse()) {
-                    System.out.print(SEP + "Tour " + this.tour++ + " : ");
+                    System.out.print(SEP + "Tour " + this.tour + " : ");
+                    KFrame.getInstance().textPanel.zoneTexte.addText(SEP + "Tour " + this.tour++ + " : ");
                     personnages.get(i).jouerTour(this);
                     if ((etat = this.verifierEtat()) != 0){
                         break;
@@ -71,16 +73,23 @@ public class Combat extends Evenement{
         int noEnnemi = 0;
 
         System.out.print(SEP + "Choisisser votre cible :         ");
+        KFrame.getInstance().textPanel.zoneTexte.addText(SEP + "Choisisser votre cible :         ");
 
         for (int i = 1; i < this.personnages.size(); i++){
-            if (i != this.personnages.size() && i != 1)
+            if (i != this.personnages.size() && i != 1){
                 System.out.print("         ");
+                KFrame.getInstance().textPanel.zoneTexte.addText("         ");
+            }
             System.out.print((i) + ". " + this.personnages.get(i).getNom() + " lvl " + this.personnages.get(i).getLvl());
+            KFrame.getInstance().textPanel.zoneTexte.addText((i) + ". " + this.personnages.get(i).getNom() + " lvl " + this.personnages.get(i).getLvl());
         }
 
         System.out.print(SEP + "Faites votre choix : ");
+        KFrame.getInstance().textPanel.zoneTexte.addText(SEP + "Faites votre choix : ");
 
         noEnnemi = choixNumerique(1, this.personnages.size() - 1);
+        KFrame.getInstance().textPanel.zoneTexte.addText(String.valueOf(noEnnemi) + SEP);
+
 
         this.kromrak.setCible(this.personnages.get(noEnnemi));
     }
@@ -108,11 +117,16 @@ public class Combat extends Evenement{
     protected void finCombat(int etat){
         if (etat == -1) {
             System.out.println(SEP + "Va chier Kromrak.");
+            KFrame.getInstance().textPanel.zoneTexte.addTextln(SEP + "Va chier Kromrak.");
         } else if (etat == 0) {
             System.out.println(SEP + "Combat en cours.");
+            KFrame.getInstance().textPanel.zoneTexte.addTextln(SEP + "Combat en cours.");
+
         } else {
             System.out.println(SEP + "Je t'aime, Kromrak!");
+            KFrame.getInstance().textPanel.zoneTexte.addTextln(SEP + "Je t'aime, Kromrak!");
             System.out.println("Vous avez obtenu : " + loot.toString() + SEP);
+            KFrame.getInstance().textPanel.zoneTexte.addTextln("Vous avez obtenu : " + loot.toString() + SEP);
             loot.addAll(kromrak.getObjets());
         }
         Kromrak.getInstance().resetBarres();
@@ -120,6 +134,7 @@ public class Combat extends Evenement{
 
     public void pop(int noEnnemi) {
         System.out.println(this.personnages.get(noEnnemi).getNom() + " est mort.");
+        KFrame.getInstance().textPanel.zoneTexte.addTextln(this.personnages.get(noEnnemi).getNom() + " est mort.");
 
         this.loot.add(this.personnages.get(noEnnemi).getInventaire().getPiece());
         this.loot.rndAdd(this.personnages.get(noEnnemi).getInventaire());

@@ -4,22 +4,19 @@ import Personnages.Kromrak;
 import Threads.KeepBarsUpdated;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-
-import static Outils.Constantes.SEP;
 
 /**
  * Created by lamg030499 on 2017-09-06.
  */
-public class DescPanel extends JPanel {
+public class BtnPannel extends JPanel {
     public JProgressBar barreVie = new JProgressBar();
     public JProgressBar barreReac = new JProgressBar();
     public JProgressBar barreVit = new JProgressBar();
     JLabel label = new JLabel();
 
 
-    public DescPanel(){
+    public BtnPannel(){
         this.setLocation(0,0);
         this.setSize(800,200);
         this.setLayout(null);

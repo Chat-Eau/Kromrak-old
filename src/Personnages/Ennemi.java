@@ -1,6 +1,7 @@
 package Personnages;
 
 import Evenements.Combat;
+import Interface.KFrame;
 import Objets.Arme;
 import Objets.Objet;
 
@@ -244,23 +245,28 @@ public class Ennemi extends Personnage {
         if (reactionChoisie == 0){
             super.recevoirDegats(nbDegats);
             System.out.println(SEP + this.getNom() + " contre-attaque!");
+            KFrame.getInstance().textPanel.zoneTexte.addTextln(SEP + this.getNom() + " contre-attaque!");
             this.attaquer();
         } else if (reactionChoisie == 1){
             System.out.println(this.getNom() + " esquive l'attaque de " + nbDegats + " dommages.");
+            KFrame.getInstance().textPanel.zoneTexte.addTextln(this.getNom() + " esquive l'attaque de " + nbDegats + " dommages.");
         }
     }
 
     public void jouerTour(Combat combat){
         System.out.println("Au tour de : " + getNom());
+        KFrame.getInstance().textPanel.zoneTexte.addTextln("Au tour de : " + getNom());
         attaquer();
     }
 
     protected void reactionEnnemi() {
         if (new Random().nextInt(3) == 0) {
             System.out.print(getNom() + " bloque l'attaque et ");
+            KFrame.getInstance().textPanel.zoneTexte.addTextln(getNom() + " bloque l'attaque et ");
             activerParade();
         } else {
             System.out.println(getNom() + " contre-attaque!" + SEP);
+            KFrame.getInstance().textPanel.zoneTexte.addTextln(getNom() + " contre-attaque!" + SEP);
             attaquer();
         }
     }
