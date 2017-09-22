@@ -254,8 +254,8 @@ public class Ennemi extends Personnage {
     }
 
     public void jouerTour(Combat combat){
-        System.out.println("Au tour de : " + getNom());
-        KFrame.getInstance().textPanel.zoneTexte.addTextln("Au tour de : " + getNom());
+        System.out.print("Au tour de " + getNom() + ": ");
+        KFrame.getInstance().textPanel.zoneTexte.addText("Au tour de " + getNom() + ": ");
         attaquer();
     }
 

@@ -3,6 +3,7 @@ package Interface;
 import Interface.Objets.JKromrakTextBox;
 import Personnages.Kromrak;
 import Threads.KeepBarsUpdated;
+import com.sun.org.apache.xpath.internal.functions.FuncFloor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,10 +16,15 @@ import static Outils.Constantes.SEP;
 public class TextPanel extends JPanel {
     public JKromrakTextBox zoneTexte = new JKromrakTextBox();
 
+    static public int width;
+    static public int height;
+
 
     public TextPanel(){
-        this.setLocation(0,400);
-        this.setSize(800,375);
+        width = KFrame.getInstance().getWidth() - 5;
+        height = KFrame.getInstance().getHeight()/5 - 30;
+        this.setLocation(0, (int) Math.round(KFrame.getInstance().getHeight()*0.8));
+        this.setSize(width,height);
         this.setLayout(null);
         this.setVisible(true);
         this.setBackground(Color.LIGHT_GRAY);
@@ -26,7 +32,7 @@ public class TextPanel extends JPanel {
         JScrollPane scrollPane = new JScrollPane(zoneTexte);
         scrollPane.setBackground(Color.GREEN);
         scrollPane.setLocation(0, 0);
-        scrollPane.setSize(800,375);
+        scrollPane.setSize(width,height);
         scrollPane.setVisible(true);
         scrollPane.setHorizontalScrollBar(null);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
