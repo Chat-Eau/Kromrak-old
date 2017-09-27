@@ -21,9 +21,10 @@ public class TextPanel extends JPanel {
 
 
     public TextPanel(){
-        width = KFrame.getInstance().getWidth() - 5;
-        height = KFrame.getInstance().getHeight()/5 - 30;
-        this.setLocation(0, (int) Math.round(KFrame.getInstance().getHeight()*0.8));
+        //Les - de width et height sont la au cas ou la fenetre n'est pas en borderless fullscreen.
+        width = KFrame.getInstance().getWidth()/* - 5*/;
+        height = KFrame.getInstance().getHeight()/3/* - 30*/;
+        this.setLocation(0, (int) Math.round(KFrame.getInstance().getHeight()*0.66666666));
         this.setSize(width,height);
         this.setLayout(null);
         this.setVisible(true);
@@ -40,5 +41,7 @@ public class TextPanel extends JPanel {
 
         zoneTexte.setLocation(0,0);
         zoneTexte.setSize(200,100);
+
+        this.zoneTexte.setFont(new Font("Palatino Linotype", 0, width/150 + 8));
     }
 }

@@ -21,11 +21,7 @@ public class ScrollDown extends Thread{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        try {
-            textBox.scrollRectToVisible(textBox.modelToView(textBox.getDocument().getLength()));
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
+        textBox.setCaretPosition(textBox.getDocument().getLength());
         this.interrupt();
     }
 }
