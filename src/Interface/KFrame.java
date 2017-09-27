@@ -2,6 +2,8 @@ package Interface;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowListener;
+
 import Outils.Constantes;
 /**
  * Created by lamg030499 on 2017-09-06.
@@ -24,15 +26,17 @@ public class KFrame extends JFrame{
         width = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 
         this.setLayout(null);
+        this.setUndecorated(true); //Retire la barre du haut.
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(width, height);
+
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setSize(width, height);
         this.setResizable(false);
-        this.setLocation(0, 0);
+        //this.setLocationRelativeTo(null);
+        //this.setLocation(0, 0);
         this.setBackground(Color.blue);
-        this.setLocationRelativeTo(null);
-        this.setTitle("KROMRAK LE KROMRAK:L'APPLICATION");
-        this.setVisible(true);
+        //this.setTitle("KROMRAK LE KROMRAK:L'APPLICATION");
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public void openDescPanel(boolean visible){

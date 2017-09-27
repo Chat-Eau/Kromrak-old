@@ -33,5 +33,6 @@ public class JKromrakTextBox extends JEditorPane{
             e.printStackTrace();
         }
         ScrollDown scrollDown = new ScrollDown(this);
-        scrollDown.start();    }
+        scrollDown.start();
+        }
 }

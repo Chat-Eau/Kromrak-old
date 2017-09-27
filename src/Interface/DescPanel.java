@@ -25,7 +25,7 @@ public class DescPanel extends JPanel {
         this.setSize(width,height);
         this.setLayout(null);
         this.setVisible(true);
-        this.setBackground(Color.LIGHT_GRAY);
+        this.setBackground(Color.gray);
 
         JLabel labelVit = new JLabel();
         labelVit.setSize(100, 10);
@@ -63,22 +63,24 @@ public class DescPanel extends JPanel {
         labelEnd.setText("END : " + Kromrak.getInstance().getEndurance());
         this.add(labelEnd);
 
-        barreReac = new JProgressBar();
-        barreReac.setLocation(10,25);
-        barreReac.setSize(100,10);
-        barreReac.setForeground(Color.orange);
-        this.add(barreReac);
-
         barreVie = new JProgressBar();
         barreVie.setLocation(10,10);
-        barreVie.setSize(100,10);
+        barreVie.setSize(width/10, height/15);
         barreVie.setForeground(Color.green);
         this.add(barreVie);
 
+        barreReac = new JProgressBar();
+        barreReac.setLocation(10,25);
+        barreReac.setSize(width/10, height/15);
+        barreReac.setForeground(Color.orange);
+        barreReac.setVisible(true);
+        this.add(barreReac);
+
         barreVit = new JProgressBar();
         barreVit.setLocation(10,40);
-        barreVit.setSize(100,10);
+        barreVit.setSize(width/10, height/15);
         barreVit.setForeground(Color.yellow);
+        barreVit.setVisible(true);
         this.add(barreVit);
 
         this.setVisible(true);

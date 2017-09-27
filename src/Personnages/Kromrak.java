@@ -4,7 +4,6 @@ import Interface.KFrame;
 import Evenements.Combat;
 import Evenements.Salle;
 import Objets.Arme;
-import com.sun.org.apache.xml.internal.security.utils.SignatureElementProxy;
 
 import java.util.Scanner;
 
@@ -77,11 +76,10 @@ public class Kromrak extends Personnage {
         boolean valide;
         Scanner scanner;
 
-        System.out.println(" Au tour de Kromrak!");
+        System.out.println("Au tour de Kromrak!");
         System.out.println("Vos choix: 1. Attaquer");
         System.out.print("Choix : ");
-        KFrame.getInstance().textPanel.zoneTexte.addText(" Au tour de Kromrak!" + SEP + "Vos choix: 1. Attaquer" + SEP + "Choix : ");
-
+        KFrame.getInstance().textPanel.zoneTexte.addText("Au tour de Kromrak!" + SEP + "Vos choix: 1. Attaquer" + SEP + "Choix : ");
 
         do{
             valide = true;
