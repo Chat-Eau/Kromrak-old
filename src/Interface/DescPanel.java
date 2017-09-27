@@ -19,8 +19,11 @@ public class DescPanel extends JPanel {
 
 
     public DescPanel(){
-        width = KFrame.getInstance().getWidth() - KFrame.getInstance().getHeight()/5;
-        height = KFrame.getInstance().getHeight()/5;
+            width = KFrame.getInstance().getWidth() - 5;
+            height = KFrame.getInstance().getHeight()/5 - 30;
+
+        //width= 200;
+        //height = 100;
         this.setLocation(0,0);
         this.setSize(width,height);
         this.setLayout(null);
