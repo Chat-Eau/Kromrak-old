@@ -2,12 +2,12 @@ package Objets;
 
 public class Equipement extends Objet {
     //TODO:Refaire en ur
-    private boolean equipé = false;
+    private boolean equiped = false;
 
     public Equipement () {
         this.nom = "Epée courte et molle";
         this.valeur = 3;
-        this.equipé = true;
+        this.equiped = true;
     }
 
     protected Equipement (String nom, int valeur) {
@@ -18,8 +18,8 @@ public class Equipement extends Objet {
         return super.toString();
     }
 
-    public void setEquipé(boolean equipé) {
-        this.equipé = equipé;
+    public void setEquiped(boolean equiped) {
+        this.equiped = equiped;
     }
-    public boolean getEquipé() {return equipé; }
+    public boolean getEquiped() {return equiped; }
 }

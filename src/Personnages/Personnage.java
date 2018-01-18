@@ -4,14 +4,9 @@ import Evenements.Combat;
 import Interface.KFrame;
 import Objets.Arme;
 import Conteneur.*;
-import Objets.Objet;
 import Outils.Outils;
 
-import java.awt.*;
-import java.util.Random;
-
 import static Outils.Constantes.*;
-import javax.swing.*;
 
 public abstract class Personnage{
     protected Arme arme;
@@ -62,7 +57,7 @@ public abstract class Personnage{
         int degats = Outils.minCap(nbDegats - CA, 1);
 
         System.out.print(this.nom + " a reçu: " + degats + " dégats." + SEP);
-        KFrame.getInstance().textPanel.zoneTexte.addText(this.nom + " a reçu: " + degats + " dégats." + SEP);
+        //KFrame.getInstance().textPanel.zoneTexte.addText(this.nom + " a reçu: " + degats + " dégats." + SEP);
 
         avancerReaction();
         this.vie -= degats;
@@ -92,8 +87,8 @@ public abstract class Personnage{
     }
 
     public void setArme (Arme arme) {
-        this.arme.setEquipé(false);
-        arme.setEquipé(true);
+        this.arme.setEquiped(false);
+        arme.setEquiped(true);
         this.arme = arme;
     }
 
