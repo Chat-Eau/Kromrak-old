@@ -2,6 +2,7 @@ package Conteneur;
 
 import Objets.Arme;
 import Objets.Equipement;
+import Objets.Objet;
 
 import static Outils.Constantes.SEP;
 
@@ -144,4 +145,6 @@ public class Inventaire extends Conteneur{
                 "Plastron" + this.getPlastron() + SEP +
                 super.toString();
     }
+
+    public boolean find(Objet objet) {return true; }
 }

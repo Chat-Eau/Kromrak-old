@@ -22,4 +22,6 @@ public class Equipement extends Objet {
         this.equiped = equiped;
     }
     public boolean getEquiped() {return equiped; }
+
+    public boolean isEquiped() {return true;}
 }

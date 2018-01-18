@@ -14,10 +14,6 @@ public abstract class Personnage{
     protected int lvl;
     protected Inventaire inventaire = new Inventaire("Les pochettes d'une personne");
 
-    /*BL: Ouais, mais pour la gestion des enemis, un attribut est plus simple parce que la cible par défaut des ennemis
-    est (presque) toujours Kromrak. Pour Kromrak, on va avoir besoin d'une variable locale dans
-    cible de toute façon.*/
-
     protected Personnage cible;
 
     public boolean isReaction() {

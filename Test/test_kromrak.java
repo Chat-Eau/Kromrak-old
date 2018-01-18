@@ -13,6 +13,8 @@ public class test_kromrak {
         Kromrak kromrak = Kromrak.getInstance();
 
         assertEquals(kromrak.getNom().compareTo("Kromrak"), 0);
+
+        assert kromrak == Kromrak.getInstance();
     }
 
     @Test
