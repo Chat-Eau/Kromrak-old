@@ -4,24 +4,15 @@ import Evenements.Combat;
 import Interface.KFrame;
 import Objets.Arme;
 import Conteneur.*;
-import Objets.Objet;
 import Outils.Outils;
 
-import java.awt.*;
-import java.util.Random;
-
 import static Outils.Constantes.*;
-import javax.swing.*;
 
 public abstract class Personnage{
     protected Arme arme;
     protected String nom;
     protected int lvl;
     protected Inventaire inventaire = new Inventaire("Les pochettes d'une personne");
-
-    /*BL: Ouais, mais pour la gestion des enemis, un attribut est plus simple parce que la cible par défaut des ennemis
-    est (presque) toujours Kromrak. Pour Kromrak, on va avoir besoin d'une variable locale dans
-    cible de toute façon.*/
 
     protected Personnage cible;
 
@@ -62,7 +53,7 @@ public abstract class Personnage{
         int degats = Outils.minCap(nbDegats - CA, 1);
 
         System.out.print(this.nom + " a reçu: " + degats + " dégats." + SEP);
-        KFrame.getInstance().textPanel.zoneTexte.addText(this.nom + " a reçu: " + degats + " dégats." + SEP);
+        //KFrame.getInstance().textPanel.zoneTexte.addText(this.nom + " a reçu: " + degats + " dégats." + SEP);
 
         avancerReaction();
         this.vie -= degats;
@@ -92,8 +83,8 @@ public abstract class Personnage{
     }
 
     public void setArme (Arme arme) {
-        this.arme.setEquipé(false);
-        arme.setEquipé(true);
+        this.arme.setEquiped(false);
+        arme.setEquiped(true);
         this.arme = arme;
     }
 

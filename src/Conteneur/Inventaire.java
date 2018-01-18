@@ -2,6 +2,7 @@ package Conteneur;
 
 import Objets.Arme;
 import Objets.Equipement;
+import Objets.Objet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,4 +80,6 @@ public class Inventaire extends Conteneur{
                 "Plastron" + this.getPlastron() + SEP +
                 super.toString();
     }
+
+    public boolean find(Objet objet) {return true; }
 }

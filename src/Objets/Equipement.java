@@ -20,8 +20,10 @@ public class Equipement extends Objet {
         return super.toString();
     }
 
-    public void setEquipé(boolean equipé) {
-        this.equipé = equipé;
+    public void setEquiped(boolean equiped) {
+        this.equiped = equiped;
     }
-    public boolean getEquipé() {return equipé; }
+    public boolean getEquiped() {return equiped; }
+
+    public boolean isEquiped() {return true;}
 }
