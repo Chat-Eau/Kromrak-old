@@ -4,6 +4,7 @@ import Evenements.Combat;
 import Interface.KFrame;
 import Objets.Arme;
 import Conteneur.*;
+import Objets.Equipement;
 import Outils.Outils;
 
 import static Outils.Constantes.*;
@@ -227,7 +228,9 @@ public abstract class Personnage{
 
     public void pop() {}
 
-    public Conteneur getInventaire() {
+    public Inventaire getInventaire() {
         return inventaire;
     }
+
+    public void equip(Equipement equipment){inventaire.equip(equipment);}
 }

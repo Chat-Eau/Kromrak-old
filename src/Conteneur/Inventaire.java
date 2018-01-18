@@ -51,21 +51,31 @@ public class Inventaire extends Conteneur{
     }
 
     public void equip(Equipement equipment) {
-        if (true) { //TODO:Vérifier les conditions d'équipement
-            for (Equipement slot:equipements) {
-                if (slot.)
-            }
-            if (this.plastron != null){
-                this.add(this.plastron);
-            }
-            this.plastron = plastron;
+        if (true) {
+            //TODO:Vérifier les conditions d'équipement
+            return;
         }
+        for (Equipement slot:equipements) {
+            if (slot.getType() == equipment.getType()){
+                unequip(equipment);
+                break;
+            }
+        }
+        equipements.add(equipment);
     }
 
-    public Equipement getEquipment(String slot) {
-        return plastron;
+    public Equipement getEquipment(String type) {
+        for (Equipement equipement:equipements) {
+            if (equipement.getType() == type){
+                return equipement;
+            }
+        }
+        return null;
     }
 
+    public void unequip(Equipement equipement){
+        equipements.remove(equipement);
+    }
 
     public Arme getArme1() {
         return arme1;
@@ -77,7 +87,6 @@ public class Inventaire extends Conteneur{
     public String toString(){
         return "Arme : " + this.getArme1() + SEP +
                 "Arme seconde main : " + this.getArme2() + SEP +
-                "Plastron" + this.getPlastron() + SEP +
                 super.toString();
     }
 

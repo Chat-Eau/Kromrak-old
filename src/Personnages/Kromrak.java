@@ -13,7 +13,7 @@ public class Kromrak extends Personnage {
     Salle salle;
     private Kromrak() {
         this.salle = null;
-        inventaire.add(new Arme("Espadon", 1, 2, 1, 5));
+        inventaire.add(new Arme("Espadon", 1, 2, 1, 5, "Arme2"));
         this.arme = (Arme) inventaire.get(0);
         nom = "Kromrak";
 
