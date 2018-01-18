@@ -3,6 +3,9 @@ package Conteneur;
 import Objets.Arme;
 import Objets.Equipement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Outils.Constantes.SEP;
 
 public class Inventaire extends Conteneur{
@@ -13,23 +16,10 @@ public class Inventaire extends Conteneur{
     Arme arme1 = null;
     Arme arme2 = null;
 
-    Equipement plastron = null;
-    Equipement Casque = null;
-    Equipement Bottes = null;
-    Equipement Gants = null;
+    //0:Chest, 1:Head, 2:Feet, 3:Hands, 4:Legs, 5:Finger1,
+    //6:Finger2, 7:Neck, 8:Accessory1, 9:Accessory2, 10:Accessory3
+    private List<Equipement> equipements = new ArrayList<>();
 
-
-
-
-    Equipement Jambieres = null;
-
-    Equipement Anneau1 = null;
-    Equipement Anneau2 = null;
-    Equipement Amulette = null;
-
-    Equipement accessoire1 = null;
-    Equipement accessoire2 = null;
-    Equipement accessoire3 = null;
 
     public void setArme1(Arme armeIn) {
         if (true) { //TODO:Vérifier les conditions d'équipement
@@ -58,44 +48,23 @@ public class Inventaire extends Conteneur{
             System.out.println("Les conditions d'équipement ne sont pas respectées.");
         }
     }
-    public void setPlastron(Equipement plastron) {
+
+    public void equip(Equipement equipment) {
         if (true) { //TODO:Vérifier les conditions d'équipement
+            for (Equipement slot:equipements) {
+                if (slot.)
+            }
             if (this.plastron != null){
                 this.add(this.plastron);
             }
             this.plastron = plastron;
         }
     }
-    public void setCasque(Equipement casque) {
-        Casque = casque;
+
+    public Equipement getEquipment(String slot) {
+        return plastron;
     }
-    public void setBottes(Equipement bottes) {
-        Bottes = bottes;
-    }
-    public void setGants(Equipement gants) {
-        Gants = gants;
-    }
-    public void setJambieres(Equipement jambieres) {
-        Jambieres = jambieres;
-    }
-    public void setAnneau1(Equipement anneau1) {
-        Anneau1 = anneau1;
-    }
-    public void setAnneau2(Equipement anneau2) {
-        Anneau2 = anneau2;
-    }
-    public void setAmulette(Equipement amulette) {
-        Amulette = amulette;
-    }
-    public void setAccessoire1(Equipement accessoire1) {
-        this.accessoire1 = accessoire1;
-    }
-    public void setAccessoire2(Equipement accessoire2) {
-        this.accessoire2 = accessoire2;
-    }
-    public void setAccessoire3(Equipement accessoire3) {
-        this.accessoire3 = accessoire3;
-    }
+
 
     public Arme getArme1() {
         return arme1;
@@ -103,42 +72,8 @@ public class Inventaire extends Conteneur{
     public Arme getArme2() {
         return arme2;
     }
-    public Equipement getPlastron() {
-        return plastron;
-    }
-    public Equipement getCasque() {
-        return Casque;
-    }
-    public Equipement getBottes() {
-        return Bottes;
-    }
-    public Equipement getGants() {
-        return Gants;
-    }
-    public Equipement getJambieres() {
-        return Jambieres;
-    }
-    public Equipement getAnneau1() {
-        return Anneau1;
-    }
-    public Equipement getAnneau2() {
-        return Anneau2;
-    }
-    public Equipement getAmulette() {
-        return Amulette;
-    }
-    public Equipement getAccessoire1() {
-        return accessoire1;
-    }
-    public Equipement getAccessoire2() {
-        return accessoire2;
-    }
-    public Equipement getAccessoire3() {
-        return accessoire3;
-    }
 
     public String toString(){
-
         return "Arme : " + this.getArme1() + SEP +
                 "Arme seconde main : " + this.getArme2() + SEP +
                 "Plastron" + this.getPlastron() + SEP +
