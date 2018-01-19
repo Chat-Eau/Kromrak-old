@@ -14,63 +14,44 @@ public class Inventaire extends Conteneur{
         super("Inventaire");
     }
 
-    Arme arme1 = null;
-    Arme arme2 = null;
-
     //0:Chest, 1:Head, 2:Feet, 3:Hands, 4:Legs, 5:Finger1,
     //6:Finger2, 7:Neck, 8:Accessory1, 9:Accessory2, 10:Accessory3
     private List<Equipement> equipements = new ArrayList<>();
+    private List<Arme> weapons = new ArrayList<>();
 
-
-    public void setArme1(Arme armeIn) {
-        if (true) { //TODO:Vérifier les conditions d'équipement
-            if (false){ //TODO:Vérifier si l'arme équippée est à deux mains. Si vrai rentrer dans la boucle.
-                this.add(arme2);
-                this.arme2 = null;
-            }
-            if (this.arme1 != null) {
-                this.add(this.arme1);
-            }
-            this.arme1 = armeIn;
-        } else {
-            System.out.println("Les conditions d'équipement ne sont pas respectées.");
-        }
-    }
-    public void setArme2(Arme armeIn) {
-        if (true) { //TODO:Vérifier les conditions d'équipement
-            if (false){ //TODO:Vérifier si l'arme principale est à deux mains
-                this.add(this.arme1);
-                this.arme1 = null;
-            } else if (this.arme2 != null) {
-                this.add(this.arme2);
-            }
-            this.arme2 = armeIn;
-        } else {
-            System.out.println("Les conditions d'équipement ne sont pas respectées.");
-        }
-    }
-
-    public void equip(Equipement equipment) {
-        if (true) {
+    public void equip(Arme weapon) {
+        if (false) {
             //TODO:Vérifier les conditions d'équipement
             return;
         }
         for (Equipement slot:equipements) {
             if (slot.getType() == equipment.getType()){
+                equipment.setEquiped(false);
+                this.getObjets().add(equipment);
                 unequip(equipment);
                 break;
             }
         }
+        equipment.setEquiped(true);
+        this.getObjets().remove(equipment);
         equipements.add(equipment);
     }
-
-    public Equipement getEquipment(String type) {
-        for (Equipement equipement:equipements) {
-            if (equipement.getType() == type){
-                return equipement;
+    public void equip(Equipement equipment) {
+        if (false) {
+            //TODO:Vérifier les conditions d'équipement
+            return;
+        }
+        for (Equipement slot:equipements) {
+            if (slot.getType() == equipment.getType()){
+                equipment.setEquiped(false);
+                this.getObjets().add(equipment);
+                unequip(equipment);
+                break;
             }
         }
-        return null;
+        equipment.setEquiped(true);
+        this.getObjets().remove(equipment);
+        equipements.add(equipment);
     }
 
     public void unequip(Equipement equipement){
@@ -90,5 +71,12 @@ public class Inventaire extends Conteneur{
                 super.toString();
     }
 
-    public boolean find(Objet objet) {return true; }
+    public boolean find(Objet object) {
+        for (Objet invObject:this.getObjets()) {
+            if (invObject == object){
+                return true;
+            }
+        }
+        return false;
+    }
 }

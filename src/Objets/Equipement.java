@@ -2,7 +2,7 @@ package Objets;
 
 public class Equipement extends Objet {
     //TODO:Refaire en ur
-    private boolean equiped = false;
+    private boolean equiped;
     private String type;
 
     public Equipement () {
@@ -14,6 +14,8 @@ public class Equipement extends Objet {
 
     protected Equipement (String nom, int valeur, String type) {
         super(nom, valeur);
+        this.equiped = false;
+        this.type = type;
     }
 
     public String toString(){
@@ -23,9 +25,8 @@ public class Equipement extends Objet {
     public void setEquiped(boolean equiped) {
         this.equiped = equiped;
     }
-    public boolean getEquiped() {return equiped; }
 
-    public boolean isEquiped() {return true;}
+    public boolean isEquiped() {return equiped;}
 
     public String getType() {
         return type;

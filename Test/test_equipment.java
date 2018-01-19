@@ -14,17 +14,19 @@ public class test_equipment {
         Equipement equipment = new Equipement();
 
         assert !equipment.isEquiped();
+        assert !kromrak.getInventaire().find(equipment);
 
         kromrak.getInventaire().add(equipment);
 
         assert !equipment.isEquiped();
-
         assert kromrak.getInventaire().find(equipment);
+
 
         kromrak.equip(equipment);
 
+        assert equipment.isEquiped();
         assert !kromrak.getInventaire().find(equipment);
 
-        assert equipment.isEquiped();
+        System.out.println(kromrak.toString());
     }
 }

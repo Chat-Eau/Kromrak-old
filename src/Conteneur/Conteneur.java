@@ -59,4 +59,7 @@ public class Conteneur {
         return string;
     }
 
+    public List<Objet> getObjets() {
+        return objets;
+    }
 }

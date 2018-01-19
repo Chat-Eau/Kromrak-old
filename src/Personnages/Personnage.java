@@ -13,7 +13,7 @@ public abstract class Personnage{
     protected Arme arme;
     protected String nom;
     protected int lvl;
-    protected Inventaire inventaire = new Inventaire("Les pochettes d'une personne");
+    protected Inventaire inventaire = new Inventaire("Kromrak's fannypack");
 
     protected Personnage cible;
 
