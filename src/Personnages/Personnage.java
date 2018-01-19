@@ -233,4 +233,5 @@ public abstract class Personnage{
     }
 
     public void equip(Equipement equipment){inventaire.equip(equipment);}
+    public void unequip(Equipement equipment){inventaire.unequip(equipment);}
 }

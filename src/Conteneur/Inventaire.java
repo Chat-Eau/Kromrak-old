@@ -11,7 +11,12 @@ import static Outils.Constantes.SEP;
 
 public class Inventaire extends Conteneur{
     public Inventaire(String nom){
-        super("Inventaire");
+        super(nom, 0);
+    }
+    public Inventaire(String newName, Inventaire copiedInv){
+        super(newName, copiedInv.getObjets(), 0);
+        this.equipements = copiedInv.equipements;
+        this.weapons = copiedInv.weapons;
     }
 
     //0:Chest, 1:Head, 2:Feet, 3:Hands, 4:Legs, 5:Finger1,
@@ -25,16 +30,14 @@ public class Inventaire extends Conteneur{
             return;
         }
         for (Equipement slot:equipements) {
-            if (slot.getType() == equipment.getType()){
-                equipment.setEquiped(false);
-                this.getObjets().add(equipment);
-                unequip(equipment);
+            if (slot.getType() == weapon.getType()){
+                unequip(slot);
                 break;
             }
         }
-        equipment.setEquiped(true);
-        this.getObjets().remove(equipment);
-        equipements.add(equipment);
+        weapon.setEquiped(true);
+        this.getObjets().remove(weapon);
+        equipements.add(weapon);
     }
     public void equip(Equipement equipment) {
         if (false) {
@@ -43,9 +46,7 @@ public class Inventaire extends Conteneur{
         }
         for (Equipement slot:equipements) {
             if (slot.getType() == equipment.getType()){
-                equipment.setEquiped(false);
-                this.getObjets().add(equipment);
-                unequip(equipment);
+                unequip(slot);
                 break;
             }
         }
@@ -54,21 +55,25 @@ public class Inventaire extends Conteneur{
         equipements.add(equipment);
     }
 
-    public void unequip(Equipement equipement){
-        equipements.remove(equipement);
+    public void unequip(Arme weapon){
+        weapon.setEquiped(false);
+        this.getObjets().add(weapon);
+        equipements.remove(weapon);
     }
-
-    public Arme getArme1() {
-        return arme1;
-    }
-    public Arme getArme2() {
-        return arme2;
-    }
+    public void unequip(Equipement equipment){
+        equipment.setEquiped(false);
+        this.getObjets().add(equipment);
+        equipements.remove(equipment);    }
 
     public String toString(){
-        return "Arme : " + this.getArme1() + SEP +
-                "Arme seconde main : " + this.getArme2() + SEP +
-                super.toString();
+        return super.toString();
+    }
+
+    public List<Arme> getWeapons() {
+        return weapons;
+    }
+    public List<Equipement> getEquipements() {
+        return equipements;
     }
 
     public boolean find(Objet object) {

@@ -10,11 +10,21 @@ import static Outils.Constantes.SEP;
 
 public class Conteneur {
     private List<Objet> objets = new ArrayList<>();
-    private Piece pieces = new Piece(0);
+    private Integer pieces;
     private String nom;
 
     public Conteneur(String nom){
         this.nom = nom;
+        this.pieces = 0;
+    }
+    public Conteneur(String nom, Integer pieces){
+        this.nom = nom;
+        this.pieces = pieces;
+    }
+    public Conteneur(String nom, List<Objet> objets, Integer pieces){
+        this.nom = nom;
+        this.objets = objets;
+        this.pieces = pieces;
     }
 
     public String getNom(){
@@ -23,9 +33,9 @@ public class Conteneur {
 
     public int size() { return objets.size();}
     public void add(Objet objet) { objets.add(objet);}
-    public void add(int i) { this.pieces.add(i);}
+    public void add(int i) { this.pieces += i;}
     public void addAll(Conteneur cible) {
-        cible.add(this.pieces.getValeur());
+        cible.add(this.pieces);
         for (Objet objet: this.objets) {
             cible.add(objet);
         }
@@ -46,10 +56,10 @@ public class Conteneur {
     public Objet remove(int i){
         return objets.remove(i);
     }
-    public int getPiece() { return pieces.getValeur(); }
+    public int getPiece() { return pieces; }
 
     public String toString(){
-        String string = this.pieces.toString() + SEP;
+        String string = this.pieces + SEP;
         for (int i = 0; i < objets.size(); i++){
             string += (i+1) + ". " + objets.get(i).toString();
             if (i < objets.size() -1){
