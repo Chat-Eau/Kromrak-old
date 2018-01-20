@@ -31,13 +31,21 @@ public class Combat extends Evenement{
         this.personnages.removeAll(personnages);
         this.personnages.add(this.personnages.size(), kromrak);
         this.auto = true;
-
+        Random random = new Random();
         try {
             Scanner scanner = new Scanner(new FileInputStream("src\\fichierEnnemi"));
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
+
                 if (line.charAt(0) != '/'){
-                    personnages.add(new Ennemi(line));
+                    if (random.nextInt(3) == 1) {
+                        personnages.add(new Ennemi(line));
+                    }
+                } else if (!scanner.hasNextLine()){
+                    if (personnages.size() == 0){
+                        //Place le dernier mob de la liste dans le combat si aucun mob n'as été choisi.
+                        personnages.add(new Ennemi(line));
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
@@ -127,7 +135,7 @@ public class Combat extends Evenement{
             KFrame.getInstance().textPanel.zoneTexte.addTextln(SEP + "Je t'aime, Kromrak!");
             System.out.println("Vous avez obtenu : " + loot.toString() + SEP);
             KFrame.getInstance().textPanel.zoneTexte.addTextln("Vous avez obtenu : " + loot.toString() + SEP);
-            loot.addAll(kromrak.getObjets());
+            kromrak.getInventaire().addAll(loot);
         }
         Kromrak.getInstance().resetBarres();
     }

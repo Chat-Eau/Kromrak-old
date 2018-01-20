@@ -1,10 +1,9 @@
 package Personnages;
 
 import Evenements.Combat;
-import Interface.KFrame;
 import Objets.Arme;
 import Conteneur.*;
-import Objets.Equipement;
+import Objets.Equipment;
 import Outils.Outils;
 
 import static Outils.Constantes.*;
@@ -232,6 +231,6 @@ public abstract class Personnage{
         return inventaire;
     }
 
-    public void equip(Equipement equipment){inventaire.equip(equipment);}
-    public void unequip(Equipement equipment){inventaire.unequip(equipment);}
+    public void equip(Equipment equipment){inventaire.equip(equipment);}
+    public void unequip(Equipment equipment){inventaire.unequip(equipment);}
 }

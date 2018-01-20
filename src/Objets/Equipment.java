@@ -1,18 +1,18 @@
 package Objets;
 
-public class Equipement extends Objet {
+public class Equipment extends Objet {
     //TODO:Refaire en ur
     private boolean equiped;
     private String type;
 
-    public Equipement () {
+    public Equipment() {
         this.nom = "Helmet of the healer";
         this.valeur = 666;
         this.equiped = false;
         this.type = "head";
     }
 
-    protected Equipement (String nom, int valeur, String type) {
+    public Equipment(String nom, int valeur, String type) {
         super(nom, valeur);
         this.equiped = false;
         this.type = type;

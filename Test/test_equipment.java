@@ -1,9 +1,6 @@
-import Conteneur.Inventaire;
-import Objets.Equipement;
+import Objets.Equipment;
 import Personnages.Kromrak;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by Benjamin Laprise on 2018-01-17.
@@ -12,8 +9,7 @@ public class test_equipment {
     @Test
     public void testEquip() {
         Kromrak kromrak = Kromrak.getInstance();
-        Equipement equipment = new Equipement();
-        Inventaire invBackup = new Inventaire("Copied Krompockets™", kromrak.getInventaire());
+        Equipment equipment = new Equipment();
 
         assert !equipment.isEquiped();
         assert !kromrak.getInventaire().find(equipment);
@@ -27,14 +23,34 @@ public class test_equipment {
 
         assert equipment.isEquiped();
         assert !kromrak.getInventaire().find(equipment);
-        assert kromrak.getInventaire() == invBackup;
 
         kromrak.unequip(equipment);
 
         assert !equipment.isEquiped();
         assert kromrak.getInventaire().find(equipment);
-        assert !(kromrak.getInventaire() == invBackup);
+    }
 
-        System.out.println(kromrak.toString());
+    @Test
+    public void receiveArmorReducedDamage() {
+        Kromrak kromrak = Kromrak.getInstance();
+        //TODO:GLM:Donner 1 CA minimum à l'armure, dans le futur, puisque les équipements ne donnent pas encore de stats.
+        Equipment chestPlate = new Equipment("Thick Honey chest plate", 8, "Chest");
+        kromrak.getInventaire().add(chestPlate);
+        kromrak.equip(chestPlate);
+        kromrak.setVieMax(1000);
+        kromrak.setVie(1000);
+        Integer lifeBackup = kromrak.getVie();
+        Integer CABackup = kromrak.getCA();
+
+        kromrak.recevoirDegats(300);
+
+        assert ((lifeBackup - 299 + CABackup) == kromrak.getVie());
+
+        kromrak.unequip(chestPlate);
+        lifeBackup = kromrak.getVie();
+        kromrak.recevoirDegats(300);
+
+        assert ((lifeBackup - 300 + CABackup) == kromrak.getVie());
+
     }
 }

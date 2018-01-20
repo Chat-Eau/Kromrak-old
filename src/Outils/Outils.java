@@ -2,6 +2,7 @@ package Outils;
 
 import Interface.KFrame;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
@@ -34,10 +35,13 @@ public class Outils {
         boolean mauvaisChoix = false;
         Scanner scanner = new Scanner(System.in);
         int choix;
-        do{ choix = scanner.nextInt();
+        do{
+            choix = scanner.nextInt();
         } while (choix < min || choix > max);
         System.out.println();
 
         return choix;
     }
+
+
 }

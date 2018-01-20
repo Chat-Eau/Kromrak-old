@@ -2,7 +2,7 @@ package Objets;
 
 import static Outils.Outils.lancerDes;
 
-public class Arme extends Equipement {
+public class Arme extends Equipment {
     private int nbDés;
     private int multiplicateur;
     private int dmgBase;

@@ -34,12 +34,13 @@ public class Conteneur {
     public int size() { return objets.size();}
     public void add(Objet objet) { objets.add(objet);}
     public void add(int i) { this.pieces += i;}
-    public void addAll(Conteneur cible) {
-        cible.add(this.pieces);
-        for (Objet objet: this.objets) {
-            cible.add(objet);
+    public void addAll(Conteneur source) {
+        this.add(source.pieces);
+        for (Objet objet: source.objets) {
+            this.add(objet);
         }
-        this.objets.clear();
+        source.objets.clear();
+        source.pieces = 0;
     }
     public void rndAdd(Conteneur source) {
         while (0 < source.size()) {

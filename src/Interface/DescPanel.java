@@ -1,10 +1,14 @@
 package Interface;
 
+import Interface.Objets.JKromrakExitButton;
+import Interface.Objets.JKromrakHideButton;
 import Personnages.Kromrak;
 import Threads.KeepBarsUpdated;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * Created by lamg030499 on 2017-09-06.
@@ -13,13 +17,25 @@ public class DescPanel extends JPanel {
     public JProgressBar barreVie;
     public JProgressBar barreReac;
     public JProgressBar barreVit;
+    public JKromrakExitButton btnExit;
+    public JKromrakHideButton btnHide;
+
 
     static public int width;
     static public int height;
 
+    public ImageIcon createImageIcon(String path, String description){
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null){
+            return new ImageIcon(imgURL, description);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
 
     public DescPanel(){
-            width = KFrame.getInstance().getWidth() - 5;
+            width = KFrame.getInstance().getWidth();
             height = KFrame.getInstance().getHeight()/5 - 30;
 
         //width= 200;
@@ -30,11 +46,25 @@ public class DescPanel extends JPanel {
         this.setVisible(true);
         this.setBackground(Color.gray);
 
+        //ImageIcon icon = createImageIcon("/Images/exitButton.png", "Exit button");
+        btnExit = new JKromrakExitButton();
+        btnExit.setLocation(width - width / 40 - 15,15);
+        btnExit.setSize(width/40, width/50);
+        btnExit.setVisible(true);
+        this.add(btnExit);
+
+        btnHide = new JKromrakHideButton();
+        btnHide.setLocation(width - width / 20 - 30,15);
+        btnHide.setSize(width/40, width/50);
+        btnHide.setVisible(true);
+        this.add(btnHide);
+
         JLabel labelVit = new JLabel();
         labelVit.setSize(100, 10);
         labelVit.setLocation(400, 10);
         labelVit.setText("VIT : " + Kromrak.getInstance().getVitesse());
         this.add(labelVit);
+
 
         JLabel labelInt = new JLabel();
         labelInt.setSize(100, 10);
@@ -67,24 +97,27 @@ public class DescPanel extends JPanel {
         this.add(labelEnd);
 
         barreVie = new JProgressBar();
+        this.add(barreVie);
         barreVie.setLocation(10,10);
         barreVie.setSize(width/10, height/15);
         barreVie.setForeground(Color.green);
-        this.add(barreVie);
 
         barreReac = new JProgressBar();
+        this.add(barreReac);
         barreReac.setLocation(10,25);
         barreReac.setSize(width/10, height/15);
         barreReac.setForeground(Color.orange);
         barreReac.setVisible(true);
-        this.add(barreReac);
 
         barreVit = new JProgressBar();
+        this.add(barreVit);
         barreVit.setLocation(10,40);
         barreVit.setSize(width/10, height/15);
         barreVit.setForeground(Color.yellow);
         barreVit.setVisible(true);
-        this.add(barreVit);
+
+
+
 
         this.setVisible(true);
         KeepBarsUpdated keepBarsUpdated = new KeepBarsUpdated(barreVie, barreVit, barreReac);
