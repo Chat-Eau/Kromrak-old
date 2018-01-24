@@ -38,11 +38,11 @@ public class Ennemi extends Personnage {
         CA = 0;
 
         if (new Random().nextInt(3) == 0) {
-            inventaire.add(new Arme());
+            inventaire.add(new Arme("Épée courte et molle", 1, 0, 1, 3, "1Main"));
             this.arme = (Arme) inventaire.get(0);
         }
         for (int i = new Random().nextInt(5) + 10; 0 < i; i--) {
-            inventaire.add(new Objet());
+            inventaire.add(new Objet("Gemme de test", 4));
         }
     }
     public Ennemi(String ennemi) {
@@ -227,7 +227,7 @@ public class Ennemi extends Personnage {
         }
 
         if (new Random().nextInt(3) == 0) {
-            this.arme = (new Arme());
+            this.arme = (new Arme("Épée courte et molle", 1, 0, 1, 3, "1Main"));
             inventaire.add(this.arme);
         }
     }

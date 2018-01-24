@@ -5,13 +5,6 @@ public class Equipment extends Objet {
     private boolean equiped;
     private String type;
 
-    public Equipment() {
-        this.nom = "Helmet of the healer";
-        this.valeur = 666;
-        this.equiped = false;
-        this.type = "head";
-    }
-
     public Equipment(String nom, int valeur, String type) {
         super(nom, valeur);
         this.equiped = false;

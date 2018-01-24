@@ -9,7 +9,7 @@ public class test_equipment {
     @Test
     public void testEquip() {
         Kromrak kromrak = Kromrak.getInstance();
-        Equipment equipment = new Equipment();
+        Equipment equipment = new Equipment("Gants du test de la destinée",0,"Main");
 
         assert !equipment.isEquiped();
         assert !kromrak.getInventaire().find(equipment);

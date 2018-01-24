@@ -7,14 +7,6 @@ public class Arme extends Equipment {
     private int multiplicateur;
     private int dmgBase;
 
-    public Arme () {
-        this.nbDés = 1;
-        this.dmgBase = -1;
-        this.multiplicateur = 1;
-        this.nom = "Epée courte et molle";
-        this.valeur = 3;
-    }
-
     public Arme (String nom, int nbDés, int dmgBase,int multiplicateur, int valeur, String type) {
         super(nom, valeur, type);
         this.nbDés = nbDés;
